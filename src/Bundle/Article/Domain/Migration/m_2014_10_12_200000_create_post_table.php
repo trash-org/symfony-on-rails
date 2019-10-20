@@ -5,12 +5,12 @@ namespace App\Bundle\Article\Domain\Migration;
 use App\Rails\Domain\Eloquent\Base\BaseCreateTableMigrate;
 use Illuminate\Database\Schema\Blueprint;
 
-class create_post_table_2014_10_12_100000 extends BaseCreateTableMigrate
+class m_2014_10_12_200000_create_post_table extends BaseCreateTableMigrate
 {
 
     public function tableName()
     {
-        return 'post22222';
+        return 'article_post';
     }
 
     public function tableSchema()

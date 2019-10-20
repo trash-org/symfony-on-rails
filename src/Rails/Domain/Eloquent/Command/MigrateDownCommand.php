@@ -25,6 +25,8 @@ class MigrateDownCommand extends BaseMigrateCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $classes = MigrateHelper::getAll();
+        arsort($classes);
+        // todo: intersect for exists migrate in table
         $this->showClasses($classes);
         $isApply = Question::confirm2('Down migrations?', false);
 

@@ -14,18 +14,23 @@ abstract class BaseMigrateCommand extends Command
     protected function showClasses($classes) {
         Output::line();
         Output::line('Migrations:');
-        Output::arr($classes);
+        Output::arr(array_values($classes));
     }
 
     protected function runMigrate($classes, $method, OutputInterface $output) {
-        foreach ($classes as $class) {
+        Output::line();
+        foreach ($classes as $class => $classNameClean) {
             /** @var BaseCreateTableMigrate $migration */
             $migration = new $class;
             $output->writeln([
-                '',
                 ' * ' . ClassHelper::getClassOfClassName($class),
-            ], OutputInterface::OUTPUT_NORMAL);
+            ]);
             $migration->{$method}();
+            if($method == 'up') {
+                // todo: register to migration table
+            } else {
+                // todo: un register to migration table
+            }
         }
         $output->writeln([
             '',

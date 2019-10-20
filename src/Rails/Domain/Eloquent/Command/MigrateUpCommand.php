@@ -25,6 +25,8 @@ class MigrateUpCommand extends BaseMigrateCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $classes = MigrateHelper::getAll();
+        asort($classes);
+        // todo: intersect for NOT exists migrate in table
         $this->showClasses($classes);
         $isApply = Question::confirm2('Up migrations?', false);
 

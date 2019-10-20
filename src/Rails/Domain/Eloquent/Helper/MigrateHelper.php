@@ -37,8 +37,9 @@ class MigrateHelper
         $files = FileHelper::scanDir($srcDir . $dir);
         $classes = [];
         foreach ($files as $file) {
-            $className = 'App\\' . $dir . '\\' . FileHelper::fileRemoveExt($file);
-            $classes[] = $className;
+            $classNameClean = FileHelper::fileRemoveExt($file);
+            $className = 'App\\' . $dir . '\\' . $classNameClean;
+            $classes[$className] = $classNameClean;
         }
         return $classes;
     }
