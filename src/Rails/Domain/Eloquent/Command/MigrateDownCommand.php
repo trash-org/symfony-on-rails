@@ -15,11 +15,11 @@ class MigrateDownCommand extends BaseMigrateCommand
     {
         $this
             // the short description shown while running "php bin/console list"
-            ->setDescription('Migration up')
+            ->setDescription('Migration down')
 
             // the full command description shown when running the command with
             // the "--help" option
-            ->setHelp('This command up all migrations...');
+            ->setHelp('This command down all migrations...');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
