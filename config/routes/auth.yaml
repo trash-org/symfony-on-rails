@@ -1,0 +1,3 @@
+app_auth_login:
+    path: /api/v1/auth
+    controller: App\Bundle\User\Api\Controller\AuthController::login

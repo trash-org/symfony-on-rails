@@ -1,0 +1,3 @@
+cd ../../..
+phpunit
+pause
