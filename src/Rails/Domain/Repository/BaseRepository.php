@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Rails\Domain\Db;
+namespace App\Rails\Domain\Repository;
 
 use App\Rails\Domain\Helper\EntityHelper;
 

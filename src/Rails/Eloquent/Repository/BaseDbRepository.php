@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Rails\Domain\Db;
+namespace App\Rails\Eloquent\Repository;
 
+use App\Rails\Domain\Repository\BaseRepository;
+use App\Rails\Eloquent\Helper\Connection;
 use Illuminate\Database\Query\Builder;
 use php7extension\core\exceptions\NotFoundException;
 

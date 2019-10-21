@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Rails\Domain\Db;
+namespace App\Rails\Eloquent\Helper;
 
 use Illuminate\Database\Query\Builder;
 use php7rails\domain\data\Query;

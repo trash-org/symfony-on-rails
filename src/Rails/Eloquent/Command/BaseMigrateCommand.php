@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Rails\Domain\Eloquent\Command;
+namespace App\Rails\Eloquent\Command;
 
-use App\Rails\Domain\Eloquent\Base\BaseCreateTableMigrate;
+use App\Rails\Eloquent\Base\BaseCreateTableMigrate;
 use php7extension\core\common\helpers\ClassHelper;
 use php7extension\core\console\helpers\Output;
 use Symfony\Component\Console\Command\Command;

@@ -23,4 +23,4 @@ $_SERVER['APP_DEBUG'] = $_SERVER['APP_DEBUG'] ?? $_ENV['APP_DEBUG'] ?? 'prod' !=
 $_SERVER['APP_DEBUG'] = $_ENV['APP_DEBUG'] = (int) $_SERVER['APP_DEBUG'] || filter_var($_SERVER['APP_DEBUG'], FILTER_VALIDATE_BOOLEAN) ? '1' : '0';
 
 $connectionConfig = include (__DIR__ . '/routes/../../config/eloquent/connection.php');
-\App\Rails\Domain\Db\Connection::addList($connectionConfig);
+\App\Rails\Eloquent\Helper\Connection::addList($connectionConfig);

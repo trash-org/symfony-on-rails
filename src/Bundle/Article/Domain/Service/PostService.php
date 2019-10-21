@@ -4,7 +4,7 @@ namespace App\Bundle\Article\Domain\Service;
 
 use App\Bundle\Article\Domain\Interfaces\PostRepositoryInterface;
 use App\Bundle\Article\Domain\Interfaces\PostServiceInterface;
-use App\Rails\Domain\Base\BaseCrudService;
+use App\Rails\Domain\Service\BaseCrudService;
 use App\Rails\Domain\Interfaces\GetEntityClassInterface;
 
 /**

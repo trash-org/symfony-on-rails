@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Rails\Domain\Eloquent\Command;
+namespace App\Rails\Eloquent\Command;
 
-use App\Rails\Domain\Eloquent\Helper\MigrateHelper;
+use App\Rails\Eloquent\Helper\MigrateHelper;
 use php7extension\core\console\helpers\input\Question;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

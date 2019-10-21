@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Rails\Domain\Db;
+namespace App\Rails\Eloquent\Repository;
 
 use App\Rails\Domain\Interfaces\CrudServiceInterface;
+use App\Rails\Eloquent\Helper\QueryBuilderHelper;
 use php7extension\core\helpers\ClassHelper;
 use php7rails\domain\BaseEntityWithId;
 use php7rails\domain\data\Query;

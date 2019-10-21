@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Rails\Domain\Eloquent\Base;
+namespace App\Rails\Eloquent\Base;
 
-use App\Rails\Domain\Db\Connection;
+use App\Rails\Eloquent\Helper\Connection;
 use Illuminate\Database\Migrations\Migration;
 
 abstract class BaseMigrate extends Migration

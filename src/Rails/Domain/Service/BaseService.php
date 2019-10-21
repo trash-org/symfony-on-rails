@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Rails\Domain\Base;
+namespace App\Rails\Domain\Service;
 
-use App\Rails\Domain\Db\BaseRepository;
+use App\Rails\Domain\Repository\BaseRepository;
 use App\Rails\Domain\Interfaces\GetEntityClassInterface;
 
 abstract class BaseService implements GetEntityClassInterface

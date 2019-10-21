@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Rails\Domain\Db;
+namespace App\Rails\Eloquent\Helper;
 
 use Illuminate\Database\Capsule\Manager;
 use Illuminate\Database\Connection as IlluminateConnection;

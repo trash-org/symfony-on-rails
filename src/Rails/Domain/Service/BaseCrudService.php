@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Rails\Domain\Base;
+namespace App\Rails\Domain\Service;
 
-use App\Rails\Domain\Db\BaseDbCrudRepository;
 use App\Rails\Domain\Interfaces\CrudServiceInterface;
+use App\Rails\Eloquent\Repository\BaseDbCrudRepository;
 use php7extension\core\helpers\ClassHelper;
 use php7rails\domain\data\Query;
 
 /**
  * Class BaseCrudService
- * @package App\Rails\Domain\Base
+ * @package App\Rails\Domain\Service
  *
  * @method BaseDbCrudRepository getRepository()
  */

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Rails\Domain\Eloquent\Helper;
+namespace App\Rails\Eloquent\Helper;
 
 use php7extension\yii\helpers\ArrayHelper;
 use php7extension\yii\helpers\FileHelper;
@@ -21,7 +21,7 @@ class MigrateHelper
 
     private static function getRootPath()
     {
-        $rootDir = __DIR__ . '/../../../../../';
+        $rootDir = __DIR__ . '/../../../../';
         return $rootDir;
     }
 
