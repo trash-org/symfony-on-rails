@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Rails\Eloquent\Base;
+namespace App\Rails\Eloquent\Migrate;
 
 use App\Rails\Eloquent\Helper\Connection;
 use Illuminate\Database\Migrations\Migration;

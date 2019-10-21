@@ -2,7 +2,7 @@
 
 namespace App\Rails\Eloquent\Command;
 
-use App\Rails\Eloquent\Base\BaseCreateTableMigrate;
+use App\Rails\Eloquent\Migrate\BaseCreateTableMigrate;
 use php7extension\core\common\helpers\ClassHelper;
 use php7extension\core\console\helpers\Output;
 use Symfony\Component\Console\Command\Command;
