@@ -10,7 +10,7 @@ use App\Rails\Domain\Interfaces\GetEntityClassInterface;
 class PostRepository extends BaseDbCrudRepository implements PostRepositoryInterface, GetEntityClassInterface
 {
 
-    public $tableName = 'post';
+    public $tableName = 'article_post';
     public $entityClass = Post::class;
 
 }

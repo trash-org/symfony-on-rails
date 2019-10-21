@@ -24,7 +24,7 @@ abstract class BaseDbRepository extends BaseRepository
     protected function getQueryBuilder() : Builder
     {
         $queryBuilder = Connection::getQueryBuilder($this->connectionName());
-        $queryBuilder->from('post');
+        $queryBuilder->from($this->tableName());
         return $queryBuilder;
     }
 
