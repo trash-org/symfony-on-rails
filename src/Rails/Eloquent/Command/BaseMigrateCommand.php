@@ -4,6 +4,7 @@ namespace App\Rails\Eloquent\Command;
 
 use App\Rails\Eloquent\Entity\MigrationEntity;
 use App\Rails\Eloquent\Helper\MigrateHistoryHelper;
+use App\Rails\Eloquent\Helper\MigrationService;
 use App\Rails\Eloquent\Migrate\BaseCreateTableMigrate;
 use php7extension\core\common\helpers\ClassHelper;
 use php7extension\core\console\helpers\Output;
@@ -24,20 +25,15 @@ abstract class BaseMigrateCommand extends Command
         /** @var MigrationEntity[] $collection */
         foreach ($collection as $migrationEntity) {
 
-            /** @var BaseCreateTableMigrate $migration */
-            /*$migration = new $class;
-            $migration->{$method}();*/
             if($method == 'up') {
-                MigrateHistoryHelper::upMigration($migrationEntity->className, $method);
+                MigrationService::upMigration($migrationEntity);
             } else {
-                MigrateHistoryHelper::downMigration($migrationEntity->className, $method);
+                MigrationService::downMigration($migrationEntity);
             }
-
 
             $output->writeln([
                 ' * ' . ClassHelper::getClassOfClassName($migrationEntity->version),
             ]);
-
 
         }
         $output->writeln([

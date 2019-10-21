@@ -45,7 +45,7 @@ class MigrateHistoryHelper
         $queryBuilder->from(self::MIGRATION_TABLE_NAME);
         $queryBuilder->insert([
             'version' => $version,
-            'executed_at' => time(),
+            'executed_at' => new \DateTime(),
         ]);
     }
 
@@ -56,36 +56,28 @@ class MigrateHistoryHelper
         $queryBuilder->delete();
     }
 
-    public static function upMigration($class, $connectionName = 'default') {
+    public static function upMigration($class) {
         /** @var BaseCreateTableMigrate $migration */
         $migration = new $class;
         // todo: begin transaction
+        Connection::getConnection()->beginTransaction();
         $migration->up();
         $version = ClassHelper::getClassOfClassName($class);
+        Connection::getConnection()->commit();
         self::insert($version);
         // todo: end transaction
     }
 
-    public static function downMigration($class, $connectionName = 'default') {
+    public static function downMigration($class) {
         /** @var BaseCreateTableMigrate $migration */
         $migration = new $class;
         // todo: begin transaction
+        Connection::getConnection()->beginTransaction();
         $migration->down();
         $version = ClassHelper::getClassOfClassName($class);
         self::delete($version);
+        Connection::getConnection()->commit();
         // todo: end transaction
-    }
-
-    public static function runMigration($class, $method, $connectionName = 'default') {
-        /** @var BaseCreateTableMigrate $migration */
-        /*$migration = new $class;
-        $migration->{$method}();
-        ClassHelper::getClassOfClassName($class);
-        if($method == 'up') {
-            // todo: register to migration table
-        } else {
-            // todo: un register to migration table
-        }*/
     }
 
     public static function all($connectionName = 'default') {

@@ -2,8 +2,7 @@
 
 namespace App\Rails\Eloquent\Command;
 
-use App\Rails\Eloquent\Helper\MigrateHistoryHelper;
-use App\Rails\Eloquent\Helper\MigrateSourceHelper;
+use App\Rails\Eloquent\Helper\MigrationService;
 use php7extension\core\console\helpers\input\Question;
 use php7extension\yii\helpers\ArrayHelper;
 use Symfony\Component\Console\Input\InputInterface;
@@ -26,21 +25,7 @@ class MigrateUpCommand extends BaseMigrateCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        /*
-         * читать коллекцию из БД
-         * читать коллекцию классов
-         * оставить только те классы, которых нет в БД
-         * сортировать по возрастанию (version)
-         * выпонить up
-         */
-
-        $sourceCollection = MigrateSourceHelper::getAll();
-        //$filteredCollection = $sourceCollection;
-        $historyCollection = MigrateHistoryHelper::all();
-        $filteredCollection = MigrateHistoryHelper::filterVersion($sourceCollection, $historyCollection);
-        ArrayHelper::multisort($filteredCollection, 'version');
-
-        // todo: intersect for NOT exists migrate in table
+        $filteredCollection = MigrationService::allForUp();
         $this->showClasses(ArrayHelper::getColumn($filteredCollection, 'version'));
         $isApply = Question::confirm2('Up migrations?', false);
 
