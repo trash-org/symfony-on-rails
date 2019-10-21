@@ -2,10 +2,11 @@
 
 namespace App\Rails\Eloquent\Helper;
 
+use App\Rails\Eloquent\Entity\MigrationEntity;
 use php7extension\yii\helpers\ArrayHelper;
 use php7extension\yii\helpers\FileHelper;
 
-class MigrateHelper
+class MigrateSourceHelper
 {
 
     public static function getAll()
@@ -39,7 +40,12 @@ class MigrateHelper
         foreach ($files as $file) {
             $classNameClean = FileHelper::fileRemoveExt($file);
             $className = 'App\\' . $dir . '\\' . $classNameClean;
-            $classes[$className] = $classNameClean;
+            //$classes[$classNameClean] = $className;
+
+            $entity = new MigrationEntity;
+            $entity->version = $classNameClean;
+            $entity->className = $className;
+            $classes[] = $entity;
         }
         return $classes;
     }
