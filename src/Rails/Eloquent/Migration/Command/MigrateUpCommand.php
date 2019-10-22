@@ -27,7 +27,7 @@ class MigrateUpCommand extends BaseMigrateCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $filteredCollection = MigrationService::allForUp();
+        $filteredCollection = $this->migrationService->allForUp();
         if(empty($filteredCollection)) {
             $output->writeln(['', '<fg=magenta>- Migrations up to date! -</>', '']);
             return;

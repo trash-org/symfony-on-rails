@@ -25,7 +25,7 @@ class MigrateDownCommand extends BaseMigrateCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $historyCollection = MigrationService::allForDown();
+        $historyCollection = $this->migrationService->allForDown();
         if(empty($historyCollection)) {
             $output->writeln(['', '<fg=magenta>- No applied migrations found! -</>', '']);
             return;
