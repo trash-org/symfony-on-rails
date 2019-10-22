@@ -2,26 +2,36 @@
 
 namespace App\Controller;
 
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class MainController
+class MainController extends AbstractController
 {
     public function index()
     {
-        return new Response(
-            '
-<html>
-<body>
-<h1>Main page</h1>
-<ul>
-    <li><a href="/lucky/number">Fist controller</a></li>
-    <li><a href="/auth">API - auth</a></li>
-    <li><a href="/api/rbac">API - rbac</a></li>
-    <li><a href="/rails">rails</a></li>
-</ul>
-</body>
-</html>'
-        );
+        return $this->render('main/index.html.twig', [
+            'links' => [
+                [
+                    'title' => 'Fist controller',
+                    'url' => '/lucky/number',
+                ],
+                [
+                    'title' => 'API - auth',
+                    'url' => '/api/v1/auth',
+                ],
+                [
+                    'title' => 'API - rbac',
+                    'url' => '/api/v1/rbac',
+                ],
+                [
+                    'title' => 'API - article',
+                    'url' => '/api/v1/article',
+                ],
+                [
+                    'title' => 'rails',
+                    'url' => '/rails',
+                ],
+            ],
+        ]);
     }
 
 }
