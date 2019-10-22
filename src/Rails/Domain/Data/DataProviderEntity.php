@@ -36,6 +36,9 @@ class DataProviderEntity extends BaseEntity
         if($pageCount !== null && $this->page > $pageCount) {
             $this->page = $pageCount;
         }
+        if($this->page < 1) {
+            $this->page = 1;
+        }
         return $this->page;
     }
 
@@ -57,7 +60,14 @@ class DataProviderEntity extends BaseEntity
             return null;
         }
         $totalCount = $this->totalCount;
-        return intval(ceil($totalCount / $this->pageSize));
+
+        $this->pageCount = intval(ceil($totalCount / $this->getPageSize()));
+
+        if($this->pageCount < 1) {
+            $this->pageCount = 1;
+        }
+
+        return $this->pageCount;
     }
 
 }
