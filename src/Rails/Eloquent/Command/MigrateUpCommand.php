@@ -3,10 +3,12 @@
 namespace App\Rails\Eloquent\Command;
 
 use App\Rails\Eloquent\Helper\MigrationService;
+use php7extension\core\common\helpers\ClassHelper;
 use php7extension\core\console\helpers\input\Question;
 use php7extension\yii\helpers\ArrayHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\ConfirmationQuestion;
 
 class MigrateUpCommand extends BaseMigrateCommand
 {
@@ -26,14 +28,22 @@ class MigrateUpCommand extends BaseMigrateCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $filteredCollection = MigrationService::allForUp();
-        $this->showClasses(ArrayHelper::getColumn($filteredCollection, 'version'));
-        $isApply = Question::confirm2('Up migrations?', false);
-
-        if( ! $isApply) {
+        if(empty($filteredCollection)) {
+            $output->writeln(['', '<fg=magenta>- Migrations up to date! -</>', '']);
             return;
         }
 
-        $this->runMigrate($filteredCollection, 'up', $output);
+        $this->showClasses(ArrayHelper::getColumn($filteredCollection, 'version'));
+        if ( ! $this->isContinueQuestion('Apply migrations?', $input, $output)) {
+            return;
+        }
+
+        $outputInfoCallback = function ($version) use ($output) {
+            $output->writeln(' * ' . $version);
+        };
+        $output->writeln('');
+        $this->runMigrate($filteredCollection, 'up', $outputInfoCallback);
+        $output->writeln(['', '<fg=green>All migrations success!</>', '']);
     }
 
 }

@@ -26,14 +26,22 @@ class MigrateDownCommand extends BaseMigrateCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $historyCollection = MigrationService::allForDown();
-        $this->showClasses(ArrayHelper::getColumn($historyCollection, 'version'));
-        $isApply = Question::confirm2('Down migrations?', false);
-
-        if( ! $isApply) {
+        if(empty($historyCollection)) {
+            $output->writeln(['', '<fg=magenta>- No applied migrations found! -</>', '']);
             return;
         }
 
-        $this->runMigrate($historyCollection, 'down', $output);
+        $this->showClasses(ArrayHelper::getColumn($historyCollection, 'version'));
+        if ( ! $this->isContinueQuestion('Down migrations?', $input, $output)) {
+            return;
+        }
+
+        $outputInfoCallback = function ($version) use ($output) {
+            $output->writeln(' * ' . $version);
+        };
+        $output->writeln('');
+        $this->runMigrate($historyCollection, 'down', $outputInfoCallback);
+        $output->writeln(['', '<fg=green>All migrations success!</>', '']);
     }
 
 }

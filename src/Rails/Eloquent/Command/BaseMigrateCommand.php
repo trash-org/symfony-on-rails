@@ -9,7 +9,9 @@ use App\Rails\Eloquent\Migrate\BaseCreateTableMigrate;
 use php7extension\core\common\helpers\ClassHelper;
 use php7extension\core\console\helpers\Output;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\ConfirmationQuestion;
 
 abstract class BaseMigrateCommand extends Command
 {
@@ -18,28 +20,25 @@ abstract class BaseMigrateCommand extends Command
         Output::line();
         Output::line('Migrations:');
         Output::arr(array_values($classes));
+        Output::line();
     }
 
-    protected function runMigrate($collection, $method, OutputInterface $output) {
-        Output::line();
+    protected function isContinueQuestion(string $question, InputInterface $input, OutputInterface $output) : bool {
+        $helper = $this->getHelper('question');
+        $question = new ConfirmationQuestion($question . ' (y|n) [n]: ', false);
+        return $helper->ask($input, $output, $question);
+    }
+
+    protected function runMigrate($collection, $method, $outputInfoCallback) {
         /** @var MigrationEntity[] $collection */
         foreach ($collection as $migrationEntity) {
-
             if($method == 'up') {
                 MigrationService::upMigration($migrationEntity);
             } else {
                 MigrationService::downMigration($migrationEntity);
             }
-
-            $output->writeln([
-                ' * ' . ClassHelper::getClassOfClassName($migrationEntity->version),
-            ]);
-
+            call_user_func($outputInfoCallback, $migrationEntity->version);
         }
-        $output->writeln([
-            '',
-            'All migrations success!',
-        ], OutputInterface::OUTPUT_NORMAL);
     }
 
 }
