@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Rails\Eloquent\Helper;
+namespace App\Rails\Eloquent\Migration\Helper;
 
 
-use App\Rails\Eloquent\Entity\MigrationEntity;
+use App\Rails\Eloquent\Migration\Entity\MigrationEntity;
 use php7extension\yii\helpers\ArrayHelper;
 
 class MigrationService

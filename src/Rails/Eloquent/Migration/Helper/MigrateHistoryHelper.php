@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Rails\Eloquent\Helper;
+namespace App\Rails\Eloquent\Migration\Helper;
 
-use App\Rails\Eloquent\Entity\MigrationEntity;
-use App\Rails\Eloquent\Migrate\BaseCreateTableMigrate;
+use App\Rails\Eloquent\Helper\Connection;
+use App\Rails\Eloquent\Migration\Entity\MigrationEntity;
+use App\Rails\Eloquent\Migration\Base\BaseCreateTableMigrate;
 use Illuminate\Database\Schema\Blueprint;
 use php7extension\core\common\helpers\ClassHelper;
 use php7extension\yii\helpers\ArrayHelper;

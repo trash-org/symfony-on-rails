@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Rails\Eloquent\Command;
+namespace App\Rails\Eloquent\Migration\Command;
 
-use App\Rails\Eloquent\Entity\MigrationEntity;
-use App\Rails\Eloquent\Helper\MigrateHistoryHelper;
-use App\Rails\Eloquent\Helper\MigrationService;
-use App\Rails\Eloquent\Migrate\BaseCreateTableMigrate;
+use App\Rails\Eloquent\Migration\Entity\MigrationEntity;
+use App\Rails\Eloquent\Migration\Helper\MigrateHistoryHelper;
+use App\Rails\Eloquent\Migration\Helper\MigrationService;
+use App\Rails\Eloquent\Migration\Base\BaseCreateTableMigrate;
 use php7extension\core\common\helpers\ClassHelper;
 use php7extension\core\console\helpers\Output;
 use Symfony\Component\Console\Command\Command;

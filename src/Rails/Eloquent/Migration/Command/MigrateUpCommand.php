@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Rails\Eloquent\Command;
+namespace App\Rails\Eloquent\Migration\Command;
 
-use App\Rails\Eloquent\Helper\MigrationService;
+use App\Rails\Eloquent\Migration\Helper\MigrationService;
 use php7extension\core\common\helpers\ClassHelper;
 use php7extension\core\console\helpers\input\Question;
 use php7extension\yii\helpers\ArrayHelper;

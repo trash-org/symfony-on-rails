@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Rails\Eloquent\Entity;
+namespace App\Rails\Eloquent\Migration\Entity;
 
 class MigrationEntity
 {

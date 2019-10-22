@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Rails\Eloquent\Migrate;
+namespace App\Rails\Eloquent\Migration\Base;
 
 abstract class BaseCreateTableMigrate extends BaseMigrate
 {
