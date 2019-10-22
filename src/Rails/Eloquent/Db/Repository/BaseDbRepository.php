@@ -3,7 +3,7 @@
 namespace App\Rails\Eloquent\Db\Repository;
 
 use App\Rails\Domain\Repository\BaseRepository;
-use App\Rails\Eloquent\Db\Helper\Connection;
+use Illuminate\Database\Capsule\Manager;
 use Illuminate\Database\Query\Builder;
 use php7extension\core\exceptions\NotFoundException;
 
@@ -25,8 +25,7 @@ abstract class BaseDbRepository extends BaseRepository
 
     protected function getQueryBuilder() : Builder
     {
-        $queryBuilder = Connection::getQueryBuilder($this->connectionName());
-        $queryBuilder->from($this->tableName());
+        $queryBuilder = Manager::table($this->tableName(), null, $this->connectionName());
         return $queryBuilder;
     }
 

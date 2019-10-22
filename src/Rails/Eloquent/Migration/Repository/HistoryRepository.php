@@ -2,9 +2,9 @@
 
 namespace App\Rails\Eloquent\Migration\Repository;
 
-use App\Rails\Eloquent\Db\Helper\Connection;
 use App\Rails\Eloquent\Migration\Entity\MigrationEntity;
 use App\Rails\Eloquent\Migration\Base\BaseCreateTableMigrate;
+use Illuminate\Database\Capsule\Manager;
 use Illuminate\Database\Schema\Blueprint;
 use php7extension\core\common\helpers\ClassHelper;
 use php7extension\yii\helpers\ArrayHelper;
@@ -34,8 +34,7 @@ class HistoryRepository
     }
 
     private static function insert($version, $connectionName = 'default') {
-        $queryBuilder = Connection::getQueryBuilder($connectionName);
-        $queryBuilder->from(self::MIGRATION_TABLE_NAME);
+        $queryBuilder = Manager::table(self::MIGRATION_TABLE_NAME, null, $connectionName);
         $queryBuilder->insert([
             'version' => $version,
             'executed_at' => new \DateTime(),
@@ -43,8 +42,7 @@ class HistoryRepository
     }
 
     private static function delete($version, $connectionName = 'default') {
-        $queryBuilder = Connection::getQueryBuilder($connectionName);
-        $queryBuilder->from(self::MIGRATION_TABLE_NAME);
+        $queryBuilder = Manager::table(self::MIGRATION_TABLE_NAME, null, $connectionName);
         $queryBuilder->where('version', $version);
         $queryBuilder->delete();
     }
@@ -53,10 +51,10 @@ class HistoryRepository
         /** @var BaseCreateTableMigrate $migration */
         $migration = new $class;
         // todo: begin transaction
-        Connection::getConnection()->beginTransaction();
+        Manager::connection()->beginTransaction();
         $migration->up();
         $version = ClassHelper::getClassOfClassName($class);
-        Connection::getConnection()->commit();
+        Manager::connection()->commit();
         self::insert($version);
         // todo: end transaction
     }
@@ -65,18 +63,17 @@ class HistoryRepository
         /** @var BaseCreateTableMigrate $migration */
         $migration = new $class;
         // todo: begin transaction
-        Connection::getConnection()->beginTransaction();
+        Manager::connection()->beginTransaction();
         $migration->down();
         $version = ClassHelper::getClassOfClassName($class);
         self::delete($version);
-        Connection::getConnection()->commit();
+        Manager::connection()->commit();
         // todo: end transaction
     }
 
     public static function all($connectionName = 'default') {
         self::forgeMigrationTable($connectionName);
-        $queryBuilder = Connection::getQueryBuilder($connectionName);
-        $queryBuilder->from(self::MIGRATION_TABLE_NAME);
+        $queryBuilder = Manager::table(self::MIGRATION_TABLE_NAME, null, $connectionName);
         $array = $queryBuilder->get()->toArray();
         $collection = [];
         foreach ($array as $item) {
@@ -89,7 +86,7 @@ class HistoryRepository
     }
 
     private static function forgeMigrationTable($connectionName = 'default') {
-        $schema = Connection::getSchema($connectionName);
+        $schema = Manager::schema($connectionName);
         $hasTable = $schema->hasTable(self::MIGRATION_TABLE_NAME);
         if($hasTable) {
             return;
@@ -102,7 +99,7 @@ class HistoryRepository
             $table->string('version')->primary();
             $table->timestamp('executed_at');
         };
-        $schema = Connection::getSchema($connectionName);
+        $schema = Manager::schema($connectionName);
         $schema->create(self::MIGRATION_TABLE_NAME, $tableSchema);
     }
 
