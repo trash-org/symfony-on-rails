@@ -1,4 +1,10 @@
 
+app_article:
+    resource: "../../src/Bundle/Article/Api/config/routes.yaml"
+
+app_user:
+    resource: "../../src/Bundle/User/Api/config/routes.yaml"
+
 # main page
 default:
     path: /
@@ -8,9 +14,6 @@ default:
 app_lucky_number:
     path: /lucky/number
     controller: App\Controller\LuckyController::number
-
-
-
 
 app_rails_index:
     path: /rails
