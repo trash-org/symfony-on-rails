@@ -2,7 +2,7 @@
 
 namespace App\Rails\Eloquent\Migration\Helper;
 
-use App\Rails\Eloquent\Helper\Connection;
+use App\Rails\Eloquent\Db\Helper\Connection;
 use App\Rails\Eloquent\Migration\Entity\MigrationEntity;
 use App\Rails\Eloquent\Migration\Base\BaseCreateTableMigrate;
 use Illuminate\Database\Schema\Blueprint;

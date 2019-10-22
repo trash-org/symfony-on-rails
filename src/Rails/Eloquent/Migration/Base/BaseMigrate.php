@@ -2,7 +2,7 @@
 
 namespace App\Rails\Eloquent\Migration\Base;
 
-use App\Rails\Eloquent\Helper\Connection;
+use App\Rails\Eloquent\Db\Helper\Connection;
 use Illuminate\Database\Migrations\Migration;
 
 abstract class BaseMigrate extends Migration

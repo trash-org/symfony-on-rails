@@ -3,7 +3,7 @@
 namespace App\Rails\Domain\Service;
 
 use App\Rails\Domain\Interfaces\CrudServiceInterface;
-use App\Rails\Eloquent\Repository\BaseDbCrudRepository;
+use App\Rails\Eloquent\Db\Repository\BaseDbCrudRepository;
 use php7extension\core\helpers\ClassHelper;
 use php7rails\domain\data\Query;
 
