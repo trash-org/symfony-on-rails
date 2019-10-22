@@ -3,7 +3,7 @@
 namespace App\Rails\Eloquent\Migration\Command;
 
 use App\Rails\Eloquent\Migration\Entity\MigrationEntity;
-use App\Rails\Eloquent\Migration\Helper\MigrationService;
+use App\Rails\Eloquent\Migration\Service\MigrationService;
 use php7extension\core\console\helpers\Output;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -15,10 +15,10 @@ abstract class BaseMigrateCommand extends Command
 
     protected $migrationService;
 
-    public function __construct(?string $name = null)
+    public function __construct(?string $name = null, MigrationService $migrationService)
     {
         parent::__construct($name);
-        $this->migrationService = new \App\Rails\Eloquent\Migration\Service\MigrationService();
+        $this->migrationService = $migrationService;
     }
 
     protected function showClasses($classes) {

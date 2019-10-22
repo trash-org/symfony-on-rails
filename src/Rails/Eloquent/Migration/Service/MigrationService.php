@@ -13,10 +13,10 @@ class MigrationService
     private $sourceRepository;
     private $historyRepository;
 
-    public function __construct()
+    public function __construct(SourceRepository $sourceRepository, HistoryRepository $historyRepository)
     {
-        $this->sourceRepository = new SourceRepository;
-        $this->historyRepository = new HistoryRepository;
+        $this->sourceRepository = $sourceRepository;
+        $this->historyRepository = $historyRepository;
     }
 
     public function upMigration(MigrationEntity $migrationEntity) {

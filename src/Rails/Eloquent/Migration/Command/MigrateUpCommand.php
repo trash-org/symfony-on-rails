@@ -2,13 +2,9 @@
 
 namespace App\Rails\Eloquent\Migration\Command;
 
-use App\Rails\Eloquent\Migration\Helper\MigrationService;
-use php7extension\core\common\helpers\ClassHelper;
-use php7extension\core\console\helpers\input\Question;
 use php7extension\yii\helpers\ArrayHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Question\ConfirmationQuestion;
 
 class MigrateUpCommand extends BaseMigrateCommand
 {
