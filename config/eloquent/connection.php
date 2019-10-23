@@ -11,4 +11,11 @@ return [
         "collation" => "utf8_unicode_ci",
         "prefix" => "",
     ],
+    'slave' => [
+        "driver" => 'sqlite',
+        "database" => __DIR__ . '/../../var/sqlite/default.sqlite',
+        "charset" => "utf8",
+        "collation" => "utf8_unicode_ci",
+        "prefix" => "",
+    ],
 ];

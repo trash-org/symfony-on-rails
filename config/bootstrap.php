@@ -1,6 +1,6 @@
 <?php
 
-use App\Rails\Eloquent\Db\Helper\Connection;
+use App\Rails\Eloquent\Db\Helper\ManagerFactory;
 use Symfony\Component\Dotenv\Dotenv;
 
 require dirname(__DIR__).'/vendor/autoload.php';
@@ -24,4 +24,4 @@ $_SERVER['APP_DEBUG'] = $_SERVER['APP_DEBUG'] ?? $_ENV['APP_DEBUG'] ?? 'prod' !=
 $_SERVER['APP_DEBUG'] = $_ENV['APP_DEBUG'] = (int) $_SERVER['APP_DEBUG'] || filter_var($_SERVER['APP_DEBUG'], FILTER_VALIDATE_BOOLEAN) ? '1' : '0';
 
 $connectionConfig = include (__DIR__ . '/routes/../../config/eloquent/connection.php');
-Connection::defineConnections($connectionConfig);
+ManagerFactory::createManager($connectionConfig);
