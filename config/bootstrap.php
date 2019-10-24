@@ -27,4 +27,6 @@ $_SERVER['APP_DEBUG'] = $_ENV['APP_DEBUG'] = (int) $_SERVER['APP_DEBUG'] || filt
 $connectionConfig = include (__DIR__ . '/routes/../../config/eloquent/connection.php');
 ManagerFactory::createManager($connectionConfig);
 
+\App\Rails\Eloquent\Fixture\Repository\FileRepository::$config = include (__DIR__ . '/routes/../../config/eloquent/fixture.php');
+
 Constant::init();

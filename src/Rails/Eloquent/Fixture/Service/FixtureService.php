@@ -2,14 +2,19 @@
 
 namespace App\Rails\Eloquent\Fixture\Service;
 
+use App\Rails\Domain\Data\Collection;
 use App\Rails\Eloquent\Fixture\Repository\DbRepository;
 use App\Rails\Eloquent\Fixture\Repository\FileRepository;
+use App\Rails\Eloquent\Migration\Repository\HistoryRepository;
 
 class FixtureService
 {
 
     private $dbRepository;
     private $fileRepository;
+    private $excludeNames = [
+        HistoryRepository::MIGRATION_TABLE_NAME,
+    ];
 
     public function __construct(DbRepository $dbRepository, FileRepository $fileRepository)
     {
@@ -18,11 +23,13 @@ class FixtureService
     }
 
     public function allFixtures() {
-        return $this->fileRepository->allTables();
+        $collection = $this->fileRepository->allTables();
+        return $this->filterByExclude($collection);
     }
 
     public function allTables() {
-        return $this->dbRepository->allTables();
+        $collection = $this->dbRepository->allTables();
+        return $this->filterByExclude($collection);
     }
 
     public function importTable($name) {
@@ -35,6 +42,10 @@ class FixtureService
         if($collection->count()) {
             $this->fileRepository->saveData($name, $collection);
         }
+    }
+
+    private function filterByExclude(Collection $collection) {
+        return $collection->whereNotIn('name', $this->excludeNames);
     }
 
 }

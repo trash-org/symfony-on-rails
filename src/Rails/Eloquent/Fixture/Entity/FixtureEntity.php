@@ -6,5 +6,6 @@ class FixtureEntity
 {
 
     public $name;
+    public $fileName;
 
 }
