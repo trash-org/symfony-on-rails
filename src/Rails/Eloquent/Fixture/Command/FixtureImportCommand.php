@@ -26,7 +26,6 @@ class FixtureImportCommand extends BaseMigrateCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-
         /** @var FixtureEntity[]|Collection $tableCollection */
         $tableCollection = $this->fixtureService->allFixtures();
         $selectedTables = Select::display('Select tables for import', ArrayHelper::getColumn($tableCollection->toArray(), 'name'), 1);
