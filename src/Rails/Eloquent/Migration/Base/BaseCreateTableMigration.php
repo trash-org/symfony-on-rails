@@ -2,7 +2,7 @@
 
 namespace App\Rails\Eloquent\Migration\Base;
 
-abstract class BaseCreateTableMigrate extends BaseMigrate
+abstract class BaseCreateTableMigration extends BaseMigration
 {
 
     abstract public function tableSchema();

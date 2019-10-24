@@ -5,7 +5,7 @@ namespace App\Rails\Eloquent\Migration\Base;
 use Illuminate\Database\Capsule\Manager;
 use Illuminate\Database\Migrations\Migration;
 
-abstract class BaseMigrate extends Migration
+abstract class BaseMigration extends Migration
 {
 
     public $connectionName = 'default';

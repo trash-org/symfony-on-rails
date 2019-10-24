@@ -3,7 +3,7 @@
 namespace App\Rails\Eloquent\Migration\Repository;
 
 use App\Rails\Eloquent\Migration\Entity\MigrationEntity;
-use App\Rails\Eloquent\Migration\Base\BaseCreateTableMigrate;
+use App\Rails\Eloquent\Migration\Base\BaseCreateTableMigration;
 use Illuminate\Database\Capsule\Manager;
 use Illuminate\Database\Schema\Blueprint;
 use php7extension\core\common\helpers\ClassHelper;
@@ -48,7 +48,7 @@ class HistoryRepository
     }
 
     public static function upMigration($class) {
-        /** @var BaseCreateTableMigrate $migration */
+        /** @var BaseCreateTableMigration $migration */
         $migration = new $class;
         // todo: begin transaction
         Manager::connection()->beginTransaction();
@@ -60,7 +60,7 @@ class HistoryRepository
     }
 
     public static function downMigration($class) {
-        /** @var BaseCreateTableMigrate $migration */
+        /** @var BaseCreateTableMigration $migration */
         $migration = new $class;
         // todo: begin transaction
         Manager::connection()->beginTransaction();
