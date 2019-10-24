@@ -33,6 +33,8 @@ class FixtureExportCommand extends BaseMigrateCommand
         $selectedTables = Select::display('Select tables for export', ArrayHelper::getColumn($tableCollection->toArray(), 'name'), 1);
         $selectedTables = array_values($selectedTables);
 
+        $output->writeln('');
+
         foreach ($selectedTables as $tableName) {
             $this->fixtureService->exportTable($tableName);
             $output->writeln(' * ' . $tableName);

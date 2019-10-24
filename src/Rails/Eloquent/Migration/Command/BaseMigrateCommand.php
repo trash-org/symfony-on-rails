@@ -23,8 +23,7 @@ abstract class BaseMigrateCommand extends Command
 
     protected function showClasses($classes) {
         Output::line();
-        Output::line('Migrations:');
-        Output::arr(array_values($classes));
+        Output::arr(array_values($classes), 'Migrations');
         Output::line();
     }
 

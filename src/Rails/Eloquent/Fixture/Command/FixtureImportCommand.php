@@ -5,6 +5,7 @@ namespace App\Rails\Eloquent\Fixture\Command;
 use App\Rails\Eloquent\Fixture\Entity\FixtureEntity;
 use Illuminate\Database\Eloquent\Collection;
 use php7extension\core\console\helpers\input\Select;
+use php7extension\core\console\helpers\Output;
 use php7extension\yii\helpers\ArrayHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -30,6 +31,8 @@ class FixtureImportCommand extends BaseMigrateCommand
         $tableCollection = $this->fixtureService->allFixtures();
         $selectedTables = Select::display('Select tables for import', ArrayHelper::getColumn($tableCollection->toArray(), 'name'), 1);
         $selectedTables = array_values($selectedTables);
+
+        $output->writeln('');
 
         foreach ($selectedTables as $tableName) {
             $this->fixtureService->importTable($tableName);

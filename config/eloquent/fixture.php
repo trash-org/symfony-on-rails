@@ -2,7 +2,7 @@
 
 return [
     'directory' => [
-        'src/Fixture',
+        'default' => 'src/Fixture',
         'src/Bundle/Article/Domain/Fixture',
     ],
 ];

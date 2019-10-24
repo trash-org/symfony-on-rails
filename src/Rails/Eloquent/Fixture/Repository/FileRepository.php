@@ -5,7 +5,6 @@ namespace App\Rails\Eloquent\Fixture\Repository;
 use App\Rails\Domain\Data\Collection;
 use App\Rails\Domain\Repository\BaseRepository;
 use App\Rails\Eloquent\Fixture\Entity\FixtureEntity;
-use php7extension\core\exceptions\NotFoundException;
 use php7extension\core\store\StoreFile;
 use php7extension\yii\helpers\ArrayHelper;
 use php7extension\yii\helpers\FileHelper;
@@ -48,7 +47,7 @@ class FileRepository extends BaseRepository
         if($collection->count() < 1) {
             return $this->forgeEntity([
                 'name' => $name,
-                'fileName' => self::$config['directory'][0] . '/' . $name . '.' . $this->extension,
+                'fileName' => self::$config['directory']['default'] . '/' . $name . '.' . $this->extension,
             ]);
         }
 
@@ -60,21 +59,6 @@ class FileRepository extends BaseRepository
         $store = new StoreFile($entity->fileName);
         return $store;
     }
-
-    /*private function getStoreInstance(string $name) : StoreFile {
-        $fileName = $this->getFileName($name);
-        $store = new StoreFile($fileName, $this->extension);
-        return $store;
-    }*/
-
-    /*private function getDirectory() : string {
-        return FileHelper::rootPath() . '/' . self::$config['directory'][0];
-    }*/
-
-    /*private function getFileName(string $name) : string {
-        $fileName = $this->getDirectory() . '/' . $name . '.' . $this->extension;
-        return $fileName;
-    }*/
 
     private function scanDir($dir) : array
     {
