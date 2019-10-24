@@ -12,6 +12,18 @@ class DbRepository extends BaseRepository
 
     public $entityClass = FixtureEntity::class;
 
+    public function saveData($name, $data)
+    {
+        $queryBuilder = Manager::table($name);
+        $queryBuilder->truncate();
+        $queryBuilder->insert($data);
+    }
+
+    public function loadData($name)
+    {
+
+    }
+
     public function allTables()
     {
         $schema = Manager::schema();

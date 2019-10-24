@@ -18,6 +18,16 @@ class FileRepository extends BaseRepository
         return $this->scanDir(FileHelper::rootPath() . '/data/');
     }
 
+    public function saveData($name, $data)
+    {
+
+    }
+
+    public function loadData($name)
+    {
+
+    }
+
     private function scanDir($dir)
     {
         $files = FileHelper::scanDir($dir);

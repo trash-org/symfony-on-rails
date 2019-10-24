@@ -28,6 +28,12 @@ class FixtureService
         return $this->dbRepository->allTables();
     }
 
+    public function importTable($name) {
+        $store = new StoreFile('./data/'.$name.'.php', 'php');
+        $data = $store->load();
+        $this->dbRepository->saveData($name, $data);
+    }
+
     public function exportTable($name) {
         $queryBuilder = Manager::table($name);
         $data = $queryBuilder->get()->toArray();
