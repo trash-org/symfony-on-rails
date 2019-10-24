@@ -1,6 +1,7 @@
 <?php
 
 use App\Rails\Eloquent\Db\Helper\ManagerFactory;
+use php7rails\app\helpers\Constant;
 use Symfony\Component\Dotenv\Dotenv;
 
 require dirname(__DIR__).'/vendor/autoload.php';
@@ -25,3 +26,5 @@ $_SERVER['APP_DEBUG'] = $_ENV['APP_DEBUG'] = (int) $_SERVER['APP_DEBUG'] || filt
 
 $connectionConfig = include (__DIR__ . '/routes/../../config/eloquent/connection.php');
 ManagerFactory::createManager($connectionConfig);
+
+Constant::init();
