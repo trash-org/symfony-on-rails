@@ -1,29 +1,30 @@
 <?php
 
-namespace App\Rails\Eloquent\Migration\Command;
+namespace App\Rails\Eloquent\Fixture\Command;
 
-use App\Rails\Eloquent\Migration\Entity\MigrationEntity;
-use App\Rails\Eloquent\Migration\Service\MigrationService;
+use App\Rails\Eloquent\Fixture\Entity\FixtureEntity;
+use App\Rails\Eloquent\Fixture\Service\FixtureService;
 use php7extension\core\console\helpers\Output;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 
-abstract class BaseMigrateCommand extends Command
+abstract class BaseCommand extends Command
 {
 
-    protected $migrationService;
+    protected $fixtureService;
 
-    public function __construct(?string $name = null, MigrationService $migrationService)
+    public function __construct(?string $name = null, FixtureService $fixtureService)
     {
         parent::__construct($name);
-        $this->migrationService = $migrationService;
+        $this->fixtureService = $fixtureService;
     }
 
     protected function showClasses($classes) {
         Output::line();
-        Output::arr(array_values($classes), 'Migrations');
+        Output::line('Fixtures:');
+        Output::arr(array_values($classes));
         Output::line();
     }
 
@@ -34,14 +35,14 @@ abstract class BaseMigrateCommand extends Command
     }
 
     protected function runMigrate($collection, $method, $outputInfoCallback) {
-        /** @var MigrationEntity[] $collection */
-        foreach ($collection as $migrationEntity) {
+        /** @var FixtureEntity[] $collection */
+        foreach ($collection as $fixtureEntity) {
             if($method == 'up') {
-                $this->migrationService->upMigration($migrationEntity);
+                $this->fixtureService->upMigration($fixtureEntity);
             } else {
-                $this->migrationService->downMigration($migrationEntity);
+                $this->fixtureService->downMigration($fixtureEntity);
             }
-            call_user_func($outputInfoCallback, $migrationEntity->version);
+            call_user_func($outputInfoCallback, $fixtureEntity->version);
         }
     }
 

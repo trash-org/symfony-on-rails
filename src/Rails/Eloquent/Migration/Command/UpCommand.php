@@ -6,31 +6,31 @@ use php7extension\yii\helpers\ArrayHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class MigrateDownCommand extends BaseMigrateCommand
+class UpCommand extends BaseCommand
 {
-    protected static $defaultName = 'orm:migrate:down';
+    protected static $defaultName = 'orm:migrate:up';
 
     protected function configure()
     {
         $this
             // the short description shown while running "php bin/console list"
-            ->setDescription('Migration down')
+            ->setDescription('Migration up')
 
             // the full command description shown when running the command with
             // the "--help" option
-            ->setHelp('This command down all migrations...');
+            ->setHelp('This command up all migrations...');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $historyCollection = $this->migrationService->allForDown();
-        if(empty($historyCollection)) {
-            $output->writeln(['', '<fg=magenta>- No applied migrations found! -</>', '']);
+        $filteredCollection = $this->migrationService->allForUp();
+        if(empty($filteredCollection)) {
+            $output->writeln(['', '<fg=magenta>- Migrations up to date! -</>', '']);
             return;
         }
 
-        $this->showClasses(ArrayHelper::getColumn($historyCollection, 'version'));
-        if ( ! $this->isContinueQuestion('Down migrations?', $input, $output)) {
+        $this->showClasses(ArrayHelper::getColumn($filteredCollection, 'version'));
+        if ( ! $this->isContinueQuestion('Apply migrations?', $input, $output)) {
             return;
         }
 
@@ -38,7 +38,7 @@ class MigrateDownCommand extends BaseMigrateCommand
             $output->writeln(' * ' . $version);
         };
         $output->writeln('');
-        $this->runMigrate($historyCollection, 'down', $outputInfoCallback);
+        $this->runMigrate($filteredCollection, 'up', $outputInfoCallback);
         $output->writeln(['', '<fg=green>All migrations success!</>', '']);
     }
 
