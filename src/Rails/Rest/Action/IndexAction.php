@@ -13,7 +13,6 @@ class IndexAction extends BaseAction
 
     public function run() : JsonResponse {
         $response = new JsonResponse;
-        //$query = RequestHelper::forgeQueryFromRequest($this->request);
         $getParams = new GetParams();
         $query = $getParams->getAllParams($this->request->query->all());
         $dp = new DataProvider([
