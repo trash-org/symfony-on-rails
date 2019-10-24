@@ -4,9 +4,6 @@ namespace App\Rails\Eloquent\Fixture\Service;
 
 use App\Rails\Eloquent\Fixture\Repository\DbRepository;
 use App\Rails\Eloquent\Fixture\Repository\FileRepository;
-use Illuminate\Database\Capsule\Manager;
-use php7extension\core\store\StoreFile;
-use php7extension\yii\helpers\ArrayHelper;
 
 class FixtureService
 {
@@ -29,18 +26,14 @@ class FixtureService
     }
 
     public function importTable($name) {
-        $store = new StoreFile('./data/'.$name.'.php', 'php');
-        $data = $store->load();
+        $data = $this->fileRepository->loadData($name);
         $this->dbRepository->saveData($name, $data);
     }
 
     public function exportTable($name) {
-        $queryBuilder = Manager::table($name);
-        $data = $queryBuilder->get()->toArray();
-        if($data) {
-            $store = new StoreFile('./data/'.$name.'.php', 'php');
-            $data = ArrayHelper::toArray($data);
-            $store->save($data);
+        $collection = $this->dbRepository->loadData($name);
+        if($collection->count()) {
+            $this->fileRepository->saveData($name, $collection->toArray());
         }
     }
 

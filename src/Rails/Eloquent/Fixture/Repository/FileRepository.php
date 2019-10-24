@@ -6,6 +6,8 @@ use App\Rails\Domain\Data\Collection;
 use App\Rails\Domain\Repository\BaseRepository;
 use App\Rails\Eloquent\Fixture\Entity\FixtureEntity;
 use Illuminate\Database\Capsule\Manager;
+use php7extension\core\store\StoreFile;
+use php7extension\yii\helpers\ArrayHelper;
 use php7extension\yii\helpers\FileHelper;
 
 class FileRepository extends BaseRepository
@@ -20,12 +22,16 @@ class FileRepository extends BaseRepository
 
     public function saveData($name, $data)
     {
-
+        $store = new StoreFile('./data/'.$name.'.php', 'php');
+        $data = ArrayHelper::toArray($data);
+        $store->save($data);
     }
 
     public function loadData($name)
     {
-
+        $store = new StoreFile('./data/'.$name.'.php', 'php');
+        $data = $store->load();
+        return $data;
     }
 
     private function scanDir($dir)

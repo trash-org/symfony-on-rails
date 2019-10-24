@@ -21,7 +21,9 @@ class DbRepository extends BaseRepository
 
     public function loadData($name)
     {
-
+        $queryBuilder = Manager::table($name);
+        $data = $queryBuilder->get()->toArray();
+        return new Collection($data);
     }
 
     public function allTables()
