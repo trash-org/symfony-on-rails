@@ -20,18 +20,18 @@ class FileRepository extends BaseRepository
         return $this->scanDir(FileHelper::rootPath() . '/data/');
     }
 
-    public function saveData($name, $data)
+    public function saveData($name, Collection $collection)
     {
         $store = new StoreFile('./data/'.$name.'.php', 'php');
-        $data = ArrayHelper::toArray($data);
+        $data = ArrayHelper::toArray($collection);
         $store->save($data);
     }
 
-    public function loadData($name)
+    public function loadData($name) : Collection
     {
         $store = new StoreFile('./data/'.$name.'.php', 'php');
         $data = $store->load();
-        return $data;
+        return new Collection($data);
     }
 
     private function scanDir($dir)

@@ -33,7 +33,7 @@ class FixtureService
     public function exportTable($name) {
         $collection = $this->dbRepository->loadData($name);
         if($collection->count()) {
-            $this->fileRepository->saveData($name, $collection->toArray());
+            $this->fileRepository->saveData($name, $collection);
         }
     }
 

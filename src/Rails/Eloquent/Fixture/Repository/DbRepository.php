@@ -6,27 +6,29 @@ use App\Rails\Domain\Data\Collection;
 use App\Rails\Domain\Repository\BaseRepository;
 use App\Rails\Eloquent\Fixture\Entity\FixtureEntity;
 use Illuminate\Database\Capsule\Manager;
+use php7extension\yii\helpers\ArrayHelper;
 
 class DbRepository extends BaseRepository
 {
 
     public $entityClass = FixtureEntity::class;
 
-    public function saveData($name, $data)
+    public function saveData($name, Collection $collection)
     {
         $queryBuilder = Manager::table($name);
         $queryBuilder->truncate();
+        $data = ArrayHelper::toArray($collection);
         $queryBuilder->insert($data);
     }
 
-    public function loadData($name)
+    public function loadData($name) : Collection
     {
         $queryBuilder = Manager::table($name);
         $data = $queryBuilder->get()->toArray();
         return new Collection($data);
     }
 
-    public function allTables()
+    public function allTables() : Collection
     {
         $schema = Manager::schema();
         $dbName = $schema->getConnection()->getDatabaseName();
