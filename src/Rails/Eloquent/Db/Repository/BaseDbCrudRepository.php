@@ -76,11 +76,14 @@ abstract class BaseDbCrudRepository extends BaseDbRepository implements CrudServ
 
     public function one(Query $query = null)
     {
-        $query = Query::forge($query);
+        $query->limit(1);
+        $collection = $this->all($query);
+        return $collection->first();
+        /*$query = Query::forge($query);
         $queryBuilder = $this->getQueryBuilder();
         QueryBuilderHelper::setWhere($query, $queryBuilder);
         QueryBuilderHelper::setSelect($query, $queryBuilder);
-        return $this->oneByBuilder($queryBuilder);
+        return $this->oneByBuilder($queryBuilder);*/
     }
 
     /**
