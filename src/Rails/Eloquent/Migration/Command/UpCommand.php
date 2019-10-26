@@ -4,6 +4,7 @@ namespace App\Rails\Eloquent\Migration\Command;
 
 use php7extension\yii\helpers\ArrayHelper;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class UpCommand extends BaseCommand
@@ -12,6 +13,7 @@ class UpCommand extends BaseCommand
 
     protected function configure()
     {
+        parent::configure();
         $this
             // the short description shown while running "php bin/console list"
             ->setDescription('Migration up')

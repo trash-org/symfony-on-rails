@@ -4,6 +4,7 @@ namespace App\Rails\Eloquent\Fixture\Command;
 
 use App\Rails\Eloquent\Fixture\Service\FixtureService;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputOption;
 
 abstract class BaseCommand extends Command
 {
@@ -16,4 +17,15 @@ abstract class BaseCommand extends Command
         $this->fixtureService = $fixtureService;
     }
 
+    protected function configure()
+    {
+        $this
+            ->addOption(
+                'withConfirm',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Your selection migrations',
+                true
+            );
+    }
 }

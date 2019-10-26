@@ -15,6 +15,7 @@ class ExportCommand extends BaseCommand
 
     protected function configure()
     {
+        parent::configure();
         $this
             // the short description shown while running "php bin/console list"
             ->setDescription('Export fixture data to files')
@@ -26,12 +27,17 @@ class ExportCommand extends BaseCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-
         /** @var FixtureEntity[]|Collection $tableCollection */
         $tableCollection = $this->fixtureService->allTables();
 
-        $selectedTables = Select::display('Select tables for export', ArrayHelper::getColumn($tableCollection->toArray(), 'name'), 1);
-        $selectedTables = array_values($selectedTables);
+        $withConfirm = $input->getOption('withConfirm');
+        $tableArray = ArrayHelper::getColumn($tableCollection->toArray(), 'name');
+        if($withConfirm) {
+            $selectedTables = Select::display('Select tables for export', $tableArray, 1);
+            $selectedTables = array_values($selectedTables);
+        } else {
+            $selectedTables = $tableArray;
+        }
 
         $output->writeln('');
 

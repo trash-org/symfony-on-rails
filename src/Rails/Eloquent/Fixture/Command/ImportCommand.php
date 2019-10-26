@@ -15,6 +15,7 @@ class ImportCommand extends BaseCommand
 
     protected function configure()
     {
+        parent::configure();
         $this
             // the short description shown while running "php bin/console list"
             ->setDescription('Import fixture data to DB')
@@ -28,8 +29,15 @@ class ImportCommand extends BaseCommand
     {
         /** @var FixtureEntity[]|Collection $tableCollection */
         $tableCollection = $this->fixtureService->allFixtures();
-        $selectedTables = Select::display('Select tables for import', ArrayHelper::getColumn($tableCollection->toArray(), 'name'), 1);
-        $selectedTables = array_values($selectedTables);
+
+        $withConfirm = $input->getOption('withConfirm');
+        $tableArray = ArrayHelper::getColumn($tableCollection->toArray(), 'name');
+        if($withConfirm) {
+            $selectedTables = Select::display('Select tables for import', $tableArray, 1);
+            $selectedTables = array_values($selectedTables);
+        } else {
+            $selectedTables = $tableArray;
+        }
 
         $output->writeln('');
 

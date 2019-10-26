@@ -12,6 +12,7 @@ class DownCommand extends BaseCommand
 
     protected function configure()
     {
+        parent::configure();
         $this
             // the short description shown while running "php bin/console list"
             ->setDescription('Migration down')
