@@ -8,7 +8,7 @@ use App\Rails\Eloquent\Db\Helper\QueryFilter;
 use php7extension\core\helpers\ClassHelper;
 use php7rails\domain\BaseEntityWithId;
 use php7rails\domain\data\Query;
-use php7rails\domain\helpers\repository\RelationWithHelper;
+use App\Rails\Domain\Helper\Repository\RelationWithHelper;
 
 abstract class BaseDbCrudRepository extends BaseDbRepository implements CrudServiceInterface
 {

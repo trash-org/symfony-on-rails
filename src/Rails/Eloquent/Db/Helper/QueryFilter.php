@@ -4,14 +4,14 @@ namespace App\Rails\Eloquent\Db\Helper;
 
 use App\Rails\Domain\Interfaces\ReadAllServiceInterface;
 use php7rails\domain\data\Query;
-use php7rails\domain\helpers\repository\RelationHelper;
-use php7rails\domain\helpers\repository\RelationWithHelper;
+use App\Rails\Domain\Helper\Repository\RelationHelper;
+use App\Rails\Domain\Helper\Repository\RelationWithHelper;
 use php7rails\domain\repositories\BaseRepository;
 
 /**
  * Class QueryFilter
  *
- * @package php7rails\domain\helpers\repository
+ * @package App\Rails\Domain\Helper\Repository
  *
  */
 class QueryFilter {
