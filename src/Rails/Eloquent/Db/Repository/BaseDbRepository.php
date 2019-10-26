@@ -29,6 +29,12 @@ abstract class BaseDbRepository extends BaseRepository
         return $queryBuilder;
     }
 
+    protected function getSchema() : \Illuminate\Database\Schema\Builder
+    {
+        $schema = Manager::schema($this->connectionName());
+        return $schema;
+    }
+
     protected function allByBuilder(Builder $queryBuilder) {
         $postCollection = $queryBuilder->get();
         $array = $postCollection->toArray();

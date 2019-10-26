@@ -5,7 +5,10 @@ namespace App\Rails\Eloquent\Db\Repository;
 use App\Rails\Domain\Interfaces\CrudServiceInterface;
 use App\Rails\Eloquent\Db\Helper\QueryBuilderHelper;
 use App\Rails\Eloquent\Db\Helper\QueryFilter;
+use Illuminate\Database\Capsule\Manager;
+use php7extension\core\exceptions\NotFoundException;
 use php7extension\core\helpers\ClassHelper;
+use php7extension\yii\helpers\ArrayHelper;
 use php7rails\domain\BaseEntityWithId;
 use php7rails\domain\data\Query;
 use App\Rails\Domain\Helper\Repository\RelationWithHelper;
@@ -78,6 +81,9 @@ abstract class BaseDbCrudRepository extends BaseDbRepository implements CrudServ
     {
         $query->limit(1);
         $collection = $this->all($query);
+        if($collection->count() < 1) {
+            throw new NotFoundException('Not found entity!');
+        }
         return $collection->first();
         /*$query = Query::forge($query);
         $queryBuilder = $this->getQueryBuilder();
@@ -87,17 +93,30 @@ abstract class BaseDbCrudRepository extends BaseDbRepository implements CrudServ
     }
 
     /**
-     * @param BaseEntityWithId $data
+     * @param BaseEntityWithId $entity
      */
-    public function create($data)
+    public function create($entity)
     {
+        $schema = $this->getSchema();
+        $columnList = $schema->getColumnListing($this->tableName());
+
+        //print_r();die();
+
         $queryBuilder = $this->getQueryBuilder();
-        $lastId = $queryBuilder->insertGetId($data->toArray());
-        $data->id = $lastId;
+
+        $lastId = $queryBuilder->insertGetId($entity->toArray($columnList));
+        $entity->id = $lastId;
     }
 
     public function updateById($id, $data)
     {
+        $schema = $this->getSchema();
+        $columnList = $schema->getColumnListing($this->tableName());
+
+        $data = ArrayHelper::extractByKeys($data, $columnList);
+
+        //print_r($data);die();
+
         $entity = $this->oneById($id);
         ClassHelper::configure($entity, $data);
         $queryBuilder = $this->getQueryBuilder();

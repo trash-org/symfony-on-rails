@@ -24,21 +24,25 @@ class DefaultControllerTest extends BaseRestTest
                 "id" => 5,
                 "title" => '5555',
                 'category_id' => 2,
+                'category' => null,
             ],
             [
                 "id" => 6,
                 "title" => '6666',
                 'category_id' => 3,
+                'category' => null,
             ],
             [
                 "id" => 7,
                 "title" => '7777',
                 'category_id' => 1,
+                'category' => null,
             ],
             [
                 "id" => 8,
                 "title" => '8888',
                 'category_id' => 2,
+                'category' => null,
             ]
         ];
         $this->assertBody($response, $actualBody);
@@ -95,6 +99,7 @@ class DefaultControllerTest extends BaseRestTest
                 "id" => 3,
                 "title" => null,
                 'category_id' => null,
+                'category' => null,
             ],
         ];
         $this->assertBody($response, $actualBody);
@@ -111,6 +116,7 @@ class DefaultControllerTest extends BaseRestTest
             'id' => 3,
             'title' => '3333',
             'category_id' => 3,
+            'category' => null,
         ];
         $this->assertBody($response, $actualBody);
         $this->assertEquals(HttpStatusCodeEnum::OK, $response->getStatusCode());
@@ -149,6 +155,7 @@ class DefaultControllerTest extends BaseRestTest
             'id' => $lastId,
             'title' => 'qwerty',
             'category_id' => 3,
+            'category' => null,
         ]);
 
         $response = $this->sendDelete('article/' . $lastId);
