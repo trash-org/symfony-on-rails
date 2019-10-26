@@ -50,6 +50,57 @@ class DefaultControllerTest extends BaseRestTest
         $this->assertEquals(HttpStatusCodeEnum::OK, $response->getStatusCode());
     }
 
+    public function testAllWithRelations()
+    {
+        $response = $this->sendGet('article', [
+            'per-page' => '4',
+            'page' => '2',
+            'expand' => 'category',
+        ]);
+
+        $actualBody = [
+            [
+                "id" => 5,
+                "title" => '5555',
+                'category_id' => 2,
+                'category' => [
+                    'id' => 2,
+                    'title' => '222',
+                ],
+            ],
+            [
+                "id" => 6,
+                "title" => '6666',
+                'category_id' => 3,
+                'category' => [
+                    'id' => 3,
+                    'title' => '333',
+                ],
+            ],
+            [
+                "id" => 7,
+                "title" => '7777',
+                'category_id' => 1,
+                'category' => [
+                    'id' => 1,
+                    'title' => '111',
+                ],
+            ],
+            [
+                "id" => 8,
+                "title" => '8888',
+                'category_id' => 2,
+                'category' => [
+                    'id' => 2,
+                    'title' => '222',
+                ],
+            ]
+        ];
+        $this->assertBody($response, $actualBody);
+        $this->assertPagination($response, null, 2, 4);
+        $this->assertEquals(HttpStatusCodeEnum::OK, $response->getStatusCode());
+    }
+
     /*public function testAllOnlyFields()
     {
         $response = $this->sendGet('article', [
@@ -117,6 +168,25 @@ class DefaultControllerTest extends BaseRestTest
             'title' => '3333',
             'category_id' => 3,
             'category' => null,
+        ];
+        $this->assertBody($response, $actualBody);
+        $this->assertEquals(HttpStatusCodeEnum::OK, $response->getStatusCode());
+    }
+
+    public function testViewWithRelations()
+    {
+        $response = $this->sendGet('article/3', [
+            'expand' => 'category',
+        ]);
+
+        $actualBody = [
+            'id' => 3,
+            'title' => '3333',
+            'category_id' => 3,
+            'category' => [
+                'id' => 3,
+                'title' => '333',
+            ],
         ];
         $this->assertBody($response, $actualBody);
         $this->assertEquals(HttpStatusCodeEnum::OK, $response->getStatusCode());
