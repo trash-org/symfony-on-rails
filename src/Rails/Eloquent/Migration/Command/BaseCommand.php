@@ -36,9 +36,7 @@ abstract class BaseCommand extends Command
     }
 
     protected function showClasses($classes) {
-        Output::line();
-        Output::arr(array_values($classes), 'Migrations');
-        Output::line();
+
     }
 
     protected function isContinueQuestion(string $question, InputInterface $input, OutputInterface $output) : bool {

@@ -2,9 +2,9 @@
 
 namespace App\Rails\Eloquent\Migration\Command;
 
+use php7extension\core\console\helpers\Output;
 use php7extension\yii\helpers\ArrayHelper;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class UpCommand extends BaseCommand
@@ -25,13 +25,23 @@ class UpCommand extends BaseCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $output->writeln(['<fg=white># Migrate UP</>']);
+
         $filteredCollection = $this->migrationService->allForUp();
         if(empty($filteredCollection)) {
             $output->writeln(['', '<fg=magenta>- Migrations up to date! -</>', '']);
             return;
         }
 
-        $this->showClasses(ArrayHelper::getColumn($filteredCollection, 'version'));
+        $withConfirm = $input->getOption('withConfirm');
+        if($withConfirm) {
+            $versionArray = ArrayHelper::getColumn($filteredCollection, 'version');
+            $versionArray = array_values($versionArray);
+            Output::line();
+            Output::arr($versionArray, 'Migrations for UP');
+            Output::line();
+        }
+
         if ( ! $this->isContinueQuestion('Apply migrations?', $input, $output)) {
             return;
         }
@@ -41,7 +51,7 @@ class UpCommand extends BaseCommand
         };
         $output->writeln('');
         $this->runMigrate($filteredCollection, 'up', $outputInfoCallback);
-        $output->writeln(['', '<fg=green>All migrations success!</>', '']);
+        $output->writeln(['', '<fg=green>Migrate UP success!</>', '']);
     }
 
 }

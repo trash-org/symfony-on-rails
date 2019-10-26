@@ -27,6 +27,8 @@ class ImportCommand extends BaseCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $output->writeln(['<fg=white># Fixture IMPORT</>']);
+
         /** @var FixtureEntity[]|Collection $tableCollection */
         $tableCollection = $this->fixtureService->allFixtures();
 
@@ -46,7 +48,7 @@ class ImportCommand extends BaseCommand
             $output->writeln(' * ' . $tableName);
         }
 
-        $output->writeln(['', '<fg=green>All fixtures imported!</>', '']);
+        $output->writeln(['', '<fg=green>Fixture IMPORT success!</>', '']);
     }
 
 }

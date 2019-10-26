@@ -27,6 +27,8 @@ class ExportCommand extends BaseCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $output->writeln(['<fg=white># Fixture EXPORT</>']);
+
         /** @var FixtureEntity[]|Collection $tableCollection */
         $tableCollection = $this->fixtureService->allTables();
 
@@ -46,7 +48,7 @@ class ExportCommand extends BaseCommand
             $output->writeln(' * ' . $tableName);
         }
 
-        $output->writeln(['', '<fg=green>All fixtures exported!</>', '']);
+        $output->writeln(['', '<fg=green>Fixture EXPORT success!</>', '']);
     }
 
 }

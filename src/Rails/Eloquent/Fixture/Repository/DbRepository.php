@@ -6,12 +6,20 @@ use App\Rails\Domain\Data\Collection;
 use App\Rails\Domain\Repository\BaseRepository;
 use App\Rails\Eloquent\Fixture\Entity\FixtureEntity;
 use Illuminate\Database\Capsule\Manager;
+use Illuminate\Support\Facades\DB;
 use php7extension\yii\helpers\ArrayHelper;
 
 class DbRepository extends BaseRepository
 {
 
     public $entityClass = FixtureEntity::class;
+
+    public function __construct()
+    {
+        $schema = Manager::schema();
+        //Manager::connection()->statement('SET FOREIGN_KEY_CHECKS=0;');
+        $schema->disableForeignKeyConstraints();
+    }
 
     public function saveData($name, Collection $collection)
     {

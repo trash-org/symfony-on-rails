@@ -12,7 +12,41 @@ class DefaultControllerTest extends BaseRestTest
     protected $basePath = 'api/v1/';
     protected $lastId;
 
-    public function testIndex()
+    public function testAll()
+    {
+        $response = $this->sendGet('article', [
+            'per-page' => '4',
+            'page' => '2',
+        ]);
+
+        $actualBody = [
+            [
+                "id" => 5,
+                "title" => '5555',
+                'category_id' => 2,
+            ],
+            [
+                "id" => 6,
+                "title" => '6666',
+                'category_id' => 3,
+            ],
+            [
+                "id" => 7,
+                "title" => '7777',
+                'category_id' => 1,
+            ],
+            [
+                "id" => 8,
+                "title" => '8888',
+                'category_id' => 2,
+            ]
+        ];
+        $this->assertBody($response, $actualBody);
+        $this->assertPagination($response, null, 2, 4);
+        $this->assertEquals(HttpStatusCodeEnum::OK, $response->getStatusCode());
+    }
+
+    public function testAllOnlyFields()
     {
         $response = $this->sendGet('article', [
             'per-page' => '4',
@@ -24,18 +58,22 @@ class DefaultControllerTest extends BaseRestTest
             [
                 "id" => 5,
                 "title" => null,
+                'category_id' => null,
             ],
             [
                 "id" => 6,
                 "title" => null,
+                'category_id' => null,
             ],
             [
                 "id" => 7,
                 "title" => null,
+                'category_id' => null,
             ],
             [
                 "id" => 8,
                 "title" => null,
+                'category_id' => null,
             ]
         ];
         $this->assertBody($response, $actualBody);
@@ -43,7 +81,7 @@ class DefaultControllerTest extends BaseRestTest
         $this->assertEquals(HttpStatusCodeEnum::OK, $response->getStatusCode());
     }
 
-    public function testIndexById()
+    public function testAllById()
     {
         $response = $this->sendGet('article', [
             'per-page' => '4',
@@ -56,6 +94,7 @@ class DefaultControllerTest extends BaseRestTest
             [
                 "id" => 3,
                 "title" => null,
+                'category_id' => null,
             ],
         ];
         $this->assertBody($response, $actualBody);
@@ -71,6 +110,7 @@ class DefaultControllerTest extends BaseRestTest
         $actualBody = [
             'id' => 3,
             'title' => '3333',
+            'category_id' => 3,
         ];
         $this->assertBody($response, $actualBody);
         $this->assertEquals(HttpStatusCodeEnum::OK, $response->getStatusCode());
@@ -99,6 +139,7 @@ class DefaultControllerTest extends BaseRestTest
         $this->assertBody($responseView, [
             'id' => $lastId,
             'title' => 'qwerty',
+            'category_id' => 3,
         ]);
 
         $response = $this->sendDelete('article/' . $lastId);
