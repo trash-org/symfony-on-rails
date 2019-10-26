@@ -15,7 +15,7 @@ class ManyToMany extends Base implements HandlerInterface {
 	
 	public function join($collection, RelationEntity $relationEntity) {
 		/** @var RelationEntity[] $viaRelations */
-		$viaRelations = RelationConfigHelper::getRelationsConfig($relationEntity->via->domain, $relationEntity->via->name);
+		$viaRelations = RelationConfigHelper::getRelationsConfig($relationEntity->via->model);
 		$name = $relationEntity->via->self;
 		$viaRelationToThis = $viaRelations[$name];
 		$values = ArrayHelper::getColumn($collection, $viaRelationToThis->foreign->field);
@@ -26,7 +26,7 @@ class ManyToMany extends Base implements HandlerInterface {
 	}
 	
 	public function load(BaseEntity $entity, WithDto $w, $relCollection): RelationEntity {
-		$viaRelations = RelationConfigHelper::getRelationsConfig($w->relationConfig->via->domain, $w->relationConfig->via->name);
+		$viaRelations = RelationConfigHelper::getRelationsConfig($w->relationConfig->via->model);
 		/** @var RelationEntity $viaRelationToThis */
 		$viaRelationToThis = $viaRelations[$w->relationConfig->via->self];
 		/** @var RelationEntity $viaRelationToForeign */

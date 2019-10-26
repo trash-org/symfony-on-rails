@@ -2,7 +2,9 @@
 
 namespace App\Rails\Eloquent\Db\Repository;
 
+use App\Rails\Domain\Interfaces\CrudRepositoryInterface;
 use App\Rails\Domain\Interfaces\CrudServiceInterface;
+use App\Rails\Domain\Interfaces\RelationConfigInterface;
 use App\Rails\Eloquent\Db\Helper\QueryBuilderHelper;
 use App\Rails\Eloquent\Db\Helper\QueryFilter;
 use Illuminate\Database\Capsule\Manager;
@@ -13,7 +15,7 @@ use php7rails\domain\BaseEntityWithId;
 use php7rails\domain\data\Query;
 use App\Rails\Domain\Helper\Repository\RelationWithHelper;
 
-abstract class BaseDbCrudRepository extends BaseDbRepository implements CrudServiceInterface
+abstract class BaseDbCrudRepository extends BaseDbRepository implements CrudRepositoryInterface
 {
 
     public function relations() {
@@ -64,7 +66,6 @@ abstract class BaseDbCrudRepository extends BaseDbRepository implements CrudServ
         //$collection = $this->forgeEntity($models);
 
         $collection = $queryFilter->loadRelations($collection);
-        if(is_array($collection)) dd($collection);
 
         return $collection;
 

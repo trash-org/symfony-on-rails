@@ -4,6 +4,7 @@ namespace App\Rails\Domain\Helper\Repository;
 
 use App\Rails\Domain\Data\Collection;
 use App\Rails\Domain\Entity\relation\RelationEntity;
+use App\Rails\Domain\Interfaces\RelationConfigInterface;
 use Yii;
 use App\Rails\Domain\Strategies\join\JoinStrategy;
 use php7rails\domain\data\EntityCollection;
@@ -15,7 +16,7 @@ use php7rails\domain\helpers\Helper;
 
 class RelationHelper {
 
-    public static function load($repository, Query $query, $data, WithDto $withDto = null) {
+    public static function load(RelationConfigInterface $repository, Query $query, $data, WithDto $withDto = null) {
         $relations = $repository->relations();
         $relations = Helper::forgeEntity($relations, RelationEntity::class, true, true);
 
@@ -110,12 +111,13 @@ class RelationHelper {
 	
 	private static function loadRelations($data, WithDto $w) {
 		$isEntity = DomainHelper::isEntity($data);
-		$collection = $isEntity ? [$data] : $data;
+        /** @var Collection $collection */
+        $collection = $isEntity ? [$data] : $data;
 		$collection = self::loadRelationsForCollection($collection, $w);
 		return $isEntity ? $collection[0] : $collection;
 	}
 	
-	private static function loadRelationsForCollection($collection, WithDto $withDto) : Collection {
+	private static function loadRelationsForCollection(Collection $collection, WithDto $withDto) : Collection {
 		/** @var EntityCollection $relCollection */
 		
 		$joinStrategy = new JoinStrategy();

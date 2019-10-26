@@ -2,7 +2,9 @@
 
 namespace App\Rails\Eloquent\Db\Helper;
 
+use App\Rails\Domain\Data\Collection;
 use App\Rails\Domain\Interfaces\ReadAllServiceInterface;
+use App\Rails\Domain\Interfaces\RelationConfigInterface;
 use php7rails\domain\data\Query;
 use App\Rails\Domain\Helper\Repository\RelationHelper;
 use App\Rails\Domain\Helper\Repository\RelationWithHelper;
@@ -17,7 +19,7 @@ use php7rails\domain\repositories\BaseRepository;
 class QueryFilter {
 	
 	/**
-	 * @var BaseRepository
+	 * @var BaseRepository|RelationConfigInterface
 	 */
 	private $repository;
 	private $query;
@@ -35,7 +37,7 @@ class QueryFilter {
 		return $query;
 	}
 	
-	public function loadRelations($data) {
+	public function loadRelations(Collection $data) {
 		if(empty($this->with)) {
 			return $data;
 		}
