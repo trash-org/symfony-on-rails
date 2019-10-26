@@ -10,5 +10,6 @@ class PostEntity extends BaseEntity
     protected $id;
     protected $category_id;
     protected $title;
+    protected $category;
 
 }

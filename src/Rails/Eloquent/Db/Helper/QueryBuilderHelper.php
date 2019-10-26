@@ -13,7 +13,11 @@ class QueryBuilderHelper
         $queryArr = $query->toArray();
         if(!empty($queryArr[Query::WHERE])) {
             foreach ($queryArr[Query::WHERE] as $key => $value) {
-                $queryBuilder->where($key, $value);
+                if(is_array($value)) {
+                    $queryBuilder->whereIn($key, $value);
+                } else {
+                    $queryBuilder->where($key, $value);
+                }
             }
         }
     }
