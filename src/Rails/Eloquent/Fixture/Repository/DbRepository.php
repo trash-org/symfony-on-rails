@@ -26,6 +26,13 @@ class DbRepository extends BaseRepository
         $schema->disableForeignKeyConstraints();
     }
 
+    public function deleteTable($name)
+    {
+        $targetTableName = TableAliasHelper::encode('default', $name);
+        $schema = Manager::schema();
+        $schema->drop($targetTableName);
+    }
+
     public function saveData($name, Collection $collection)
     {
         $targetTableName = TableAliasHelper::encode('default', $name);

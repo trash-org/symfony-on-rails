@@ -22,14 +22,23 @@ class FixtureService
         $this->fileRepository = $fileRepository;
     }
 
+    public function allForDelete() {
+        $collection = $this->dbRepository->allTables();
+        return $collection;
+    }
+
     public function allFixtures() {
         $collection = $this->fileRepository->allTables();
         return $this->filterByExclude($collection);
     }
 
-    public function allTables() {
+    public function allTables() : Collection {
         $collection = $this->dbRepository->allTables();
         return $this->filterByExclude($collection);
+    }
+
+    public function dropTable($name) {
+        $this->dbRepository->deleteTable($name);
     }
 
     public function importTable($name) {
