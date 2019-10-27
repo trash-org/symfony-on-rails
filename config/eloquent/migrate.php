@@ -3,5 +3,6 @@
 return [
     'directory' => [
         'Bundle\Article\Domain\Migration',
+        'Migrations',
     ],
 ];
