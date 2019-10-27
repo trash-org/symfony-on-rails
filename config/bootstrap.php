@@ -29,4 +29,17 @@ ManagerFactory::createManager($connectionConfig);
 
 \App\Rails\Eloquent\Fixture\Repository\FileRepository::$config = include (__DIR__ . '/routes/../../config/eloquent/fixture.php');
 
+/** Подключение рельсов */
+include_once(__DIR__ . '/../vendor/php7rails/app/src/libs/Boot.php');
+$boot = new \php7rails\app\libs\Boot;
+$boot->appName = 'frontend';
+$boot->init();
+$boot->loadConfig([
+    'config/rails/env',
+    'config/rails/env-local',
+]);
+$boot->setAliases([
+    '@yubundle/bundle' => 'vendor/yubundle/bundle/src',
+]);
+/** Подключение рельсов */
 Constant::init();
