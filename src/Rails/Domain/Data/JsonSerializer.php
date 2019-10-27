@@ -21,8 +21,7 @@ class JsonSerializer
     }
 
     public function serializeException(FlattenException $exception) {
-
-        if($exception->getClass() == 'php7extension\\core\\exceptions\\NotFoundException') {
+        if(in_array($exception->getClass(), ['Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException', 'php7extension\\core\\exceptions\\NotFoundException'])) {
             $this->response->setStatusCode(404);
         } elseif($exception->getClass() == 'Symfony\\Component\\HttpKernel\\Exception\\MethodNotAllowedHttpException') {
             $this->response->setStatusCode(405);

@@ -332,4 +332,11 @@ class PostControllerTest extends BaseRestTest
         $this->assertCors($response, '*', null, ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'HEAD', 'PATCH', 'TRACE', 'CONNECT']);
     }
 
+    public function testNotRoute()
+    {
+        $response = $this->sendGet('article-possst/1');
+
+        $this->assertEquals(HttpStatusCodeEnum::NOT_FOUND, $response->getStatusCode());
+    }
+
 }
