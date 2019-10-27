@@ -18,6 +18,17 @@ class BaseRestTest extends WebTestCase
     protected $baseUrl;
     protected $basePath = '/';
 
+    protected function sendOptions($uri)
+    {
+        $client = $this->getGuzzleClient();
+        try {
+            $response = $client->request(HttpMethodEnum::OPTIONS, $uri);
+        } catch (RequestException $e) {
+            $response = $e->getResponse();
+        }
+        return $response;
+    }
+
     protected function sendDelete($uri)
     {
         $client = $this->getGuzzleClient();
@@ -87,6 +98,25 @@ class BaseRestTest extends WebTestCase
         $this->assertNotEmpty($entityId);
         if($actualEntityId) {
             $this->assertEquals($actualEntityId, $entityId);
+        }
+    }
+
+    protected function assertCors(ResponseInterface $response, $origin, $headers = null, $methods = null)
+    {
+        $actualOrigin = $response->getHeader(HttpHeaderEnum::ACCESS_CONTROL_ALLOW_ORIGIN)[0];
+        $actualHeaders = $response->getHeader(HttpHeaderEnum::ACCESS_CONTROL_ALLOW_HEADERS)[0];
+        $actualMethods = $response->getHeader(HttpHeaderEnum::ACCESS_CONTROL_ALLOW_METHODS)[0];
+
+        $this->assertEquals($origin, $actualOrigin);
+
+        if($headers) {
+            $this->assertEquals($headers, $actualHeaders);
+        }
+        if($methods) {
+            $arr = explode(',', $actualMethods);
+            $arr = array_map('trim', $arr);
+            $diff = array_diff($methods, $arr);
+            $this->assertEmpty($diff, 'Diff: ' . implode(',', $diff));
         }
     }
 

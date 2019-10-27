@@ -2,14 +2,10 @@
 
 namespace App\Rails\Domain\Data;
 
-use App\Rails\Domain\Helper\EntityHelper;
 use php7extension\core\web\enums\HttpHeaderEnum;
 use php7extension\yii\helpers\ArrayHelper;
-use php7extension\yii\helpers\Inflector;
 use Symfony\Component\Debug\Exception\FlattenException;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\VarDumper\Caster\ReflectionCaster;
-use Symfony\Component\VarDumper\Cloner\VarCloner;
 
 class JsonSerializer
 {
@@ -28,6 +24,8 @@ class JsonSerializer
 
         if($exception->getClass() == 'php7extension\\core\\exceptions\\NotFoundException') {
             $this->response->setStatusCode(404);
+        } elseif($exception->getClass() == 'Symfony\\Component\\HttpKernel\\Exception\\MethodNotAllowedHttpException') {
+            $this->response->setStatusCode(405);
         } else {
             $this->response->setStatusCode(500);
         }

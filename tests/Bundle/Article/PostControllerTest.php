@@ -5,7 +5,7 @@ namespace Tests\Bundle\Article\Controller;
 use App\Rails\Test\BaseRestTest;
 use php7extension\core\web\enums\HttpStatusCodeEnum;
 
-class DefaultControllerTest extends BaseRestTest
+class PostControllerTest extends BaseRestTest
 {
 
     protected $baseUrl = 'http://symfony4.lab';
@@ -311,6 +311,25 @@ class DefaultControllerTest extends BaseRestTest
 
         $responseView = $this->sendGet('article/' . $lastId);
         $this->assertEquals(HttpStatusCodeEnum::NOT_FOUND, $responseView->getStatusCode());
+    }
+
+    public function testMethodAllowed()
+    {
+        $response = $this->sendPost('article/1');
+        $this->assertEquals(HttpStatusCodeEnum::METHOD_NOT_ALLOWED, $response->getStatusCode());
+
+        $response = $this->sendPut('article');
+        $this->assertEquals(HttpStatusCodeEnum::METHOD_NOT_ALLOWED, $response->getStatusCode());
+
+        $response = $this->sendDelete('article');
+        $this->assertEquals(HttpStatusCodeEnum::METHOD_NOT_ALLOWED, $response->getStatusCode());
+    }
+
+    public function testOptions()
+    {
+        $response = $this->sendOptions('article/1');
+
+        $this->assertCors($response, '*', null, ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'HEAD', 'PATCH', 'TRACE', 'CONNECT']);
     }
 
 }
