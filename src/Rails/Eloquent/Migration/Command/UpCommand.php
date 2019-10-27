@@ -9,7 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class UpCommand extends BaseCommand
 {
-    protected static $defaultName = 'orm:migrate:up';
+    protected static $defaultName = 'db:migrate:up';
 
     protected function configure()
     {

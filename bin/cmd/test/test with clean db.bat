@@ -1,9 +1,9 @@
 @echo off
 cd ../..
-REM php console orm:migrate:down --withConfirm=0
-php console orm:db:delete-all-tables --withConfirm=0
-php console orm:migrate:up --withConfirm=0
-php console orm:fixture:import --withConfirm=0
+REM php console db:migrate:down --withConfirm=0
+php console db:delete-all-tables --withConfirm=0
+php console db:migrate:up --withConfirm=0
+php console db:fixture:import --withConfirm=0
 
 cd ..
 phpunit

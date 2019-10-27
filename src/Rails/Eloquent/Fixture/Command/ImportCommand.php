@@ -11,7 +11,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ImportCommand extends BaseCommand
 {
-    protected static $defaultName = 'orm:fixture:import';
+    protected static $defaultName = 'db:fixture:import';
 
     protected function configure()
     {

@@ -9,7 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class DownCommand extends BaseCommand
 {
-    protected static $defaultName = 'orm:migrate:down';
+    protected static $defaultName = 'db:migrate:down';
 
     protected function configure()
     {

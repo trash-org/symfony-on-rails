@@ -12,7 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class DeleteAllTablesCommand extends BaseCommand
 {
-    protected static $defaultName = 'orm:db:delete-all-tables';
+    protected static $defaultName = 'db:delete-all-tables';
 
     protected function configure()
     {

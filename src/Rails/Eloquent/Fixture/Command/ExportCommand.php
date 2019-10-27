@@ -11,7 +11,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ExportCommand extends BaseCommand
 {
-    protected static $defaultName = 'orm:fixture:export';
+    protected static $defaultName = 'db:fixture:export';
 
     protected function configure()
     {
