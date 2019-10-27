@@ -1,0 +1,193 @@
+<h2>Dropdown menus</h2>
+
+<h3>Добавление выпадающих меню (Dropdowns) с помощью Data Attribute</h3>
+
+<div class="dropdown">
+    <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+        Ссылка с выпадающим меню
+        <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+        <li><a href="#">Пункт 1</a></li>
+        <li><a href="#">Пункт 2</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Пункт 3</a></li>
+    </ul>
+</div>
+
+<h3>Выпадающие списки в навигационных панелях (navs)</h3>
+
+<ul class="nav nav-pills">
+    <li class="active"><a href="#">Главная</a></li>
+    <li class="dropdown">
+        <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+            Меню
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="#">Текст подпункта</a></li>
+            <li><a href="#">Текст подпункта</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Текст подпункта</a></li>
+        </ul>
+    </li>
+    <li class="dropdown">
+        <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+            Меню
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="#">Текст подпункта</a></li>
+            <li><a href="#">Текст подпункта</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Текст подпункта</a></li>
+        </ul>
+    </li>
+    <li class="dropdown pull-right">
+        <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+            Меню
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="#">Текст подпункта</a></li>
+            <li><a href="#">Текст подпункта</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Текст подпункта</a></li>
+        </ul>
+    </li>
+</ul>
+
+
+<h3>Выпадающие списки для кнопок</h3>
+
+<div class="btn-group">
+    <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Кнопка <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+        <li><a href="#">Пункт 1</a></li>
+        <li><a href="#">Пункт 2</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Пункт 3</a></li>
+    </ul>
+</div>
+
+<h3>Выпадающие списки для кнопок через разделитель</h3>
+
+<div class="btn-group">
+    <button type="button" class="btn btn-default">Кнопка</button>
+    <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="caret"></span></button>
+    <ul class="dropdown-menu">
+        <li><a href="#">Пункт 1</a></li>
+        <li><a href="#">Пункт 2</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Пункт 3</a></li>
+    </ul>
+</div>
+
+<h3>Выпадающие меню для кнопок, объединенных в группу</h3>
+
+<!-- Кнопки, объединенные в группу с помощью класса .btn-group -->
+<div class="btn-group">
+    <!-- Обычные кнопки -->
+    <button type="button" class="btn btn-warning">Обычная кнопка</button>
+    <button type="button" class="btn btn-danger">Обычная кнопка</button>
+    <!-- Кнопка с выпадающим меню -->
+    <div class="btn-group">
+        <button type="button" data-toggle="dropdown" class="btn btn-info dropdown-toggle">
+            Кнопка с выпадающим меню
+            <span class="caret"></span>
+        </button>
+        <!-- Выпадающее меню -->
+        <ul class="dropdown-menu">
+            <!-- Пункты меню -->
+            <li><a href="#">Пункт 1</a></li>
+            <li><a href="#">Пункт 2</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Пункт 3</a></li>
+        </ul>
+    </div>
+</div>
+
+<br/>
+<br/>
+
+<!-- Кнопки, объединенные в группу с помощью класса .btn-group -->
+<div class="btn-group-vertical">
+    <!-- Обычные кнопки -->
+    <button type="button" class="btn btn-warning">Обычная кнопка</button>
+    <button type="button" class="btn btn-danger">Обычная кнопка</button>
+    <!-- Кнопка с выпадающим меню -->
+    <div class="btn-group">
+        <button type="button" data-toggle="dropdown" class="btn btn-info dropdown-toggle">
+            Кнопка с выпадающим меню
+            <span class="caret"></span>
+        </button>
+        <!-- Выпадающее меню -->
+        <ul class="dropdown-menu">
+            <!-- Пункты меню -->
+            <li><a href="#">Пункт 1</a></li>
+            <li><a href="#">Пункт 2</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Пункт 3</a></li>
+        </ul>
+    </div>
+</div>
+
+<h3>Создания выпадающего меню, открывающегося вверх</h3>
+
+<!-- Кнопки, объединенные в группу с помощью класса .btn-group -->
+<div class="btn-group">
+    <!-- Обычные кнопки -->
+    <button type="button" class="btn btn-warning">Обычная кнопка</button>
+    <button type="button" class="btn btn-danger">Обычная кнопка</button>
+    <!-- Кнопка с выпадающим меню, которое открывается вверх -->
+    <div class="btn-group dropup">
+        <button type="button" data-toggle="dropdown" class="btn btn-info dropdown-toggle">
+            Вверх
+            <span class="caret"></span>
+        </button>
+        <!-- Выпадающее меню -->
+        <ul class="dropdown-menu">
+            <!-- Пункты меню -->
+            <li><a href="lessons/bootstrap-3/98-bootstrap-3-dropdown-lists#samples">Пункт 1</a></li>
+            <li><a href="lessons/bootstrap-3/98-bootstrap-3-dropdown-lists#samples">Пункт 2</a></li>
+            <li class="divider"></li>
+            <li><a href="lessons/bootstrap-3/98-bootstrap-3-dropdown-lists#samples">Пункт 3</a></li>
+        </ul>
+    </div>
+    <!-- Кнопка с выпадающим меню, которое открывается вниз -->
+    <div class="btn-group">
+        <button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">
+            Вниз
+            <span class="caret"></span>
+        </button>
+        <!-- Выпадающее меню -->
+        <ul class="dropdown-menu">
+            <!-- Пункты меню -->
+            <li><a href="lessons/bootstrap-3/98-bootstrap-3-dropdown-lists#samples">Пункт 1</a></li>
+            <li><a href="lessons/bootstrap-3/98-bootstrap-3-dropdown-lists#samples">Пункт 2</a></li>
+            <li class="divider"></li>
+            <li><a href="lessons/bootstrap-3/98-bootstrap-3-dropdown-lists#samples">Пункт 3</a></li>
+        </ul>
+    </div>
+</div>
+
+<h3>Добавление выпадающих меню с помощью JavaScript</h3>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".dropdown-toggle-js").dropdown();
+    });
+</script>
+
+<div class="dropdown">
+    <a href="#" class="dropdown-toggle-js" data-toggle="dropdown">
+        Ссылка с выпадающим меню
+        <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+        <li><a href="#">Пункт 1</a></li>
+        <li><a href="#">Пункт 2</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Пункт 3</a></li>
+    </ul>
+</div>

@@ -1,0 +1,25 @@
+<form>
+    <h2 class="form-signin-heading">Please sign in</h2>
+
+
+    <div class="form-group" v-bind:class="{ 'has-error': errors.login }">
+        <label>Login:</label>
+        <input type="text" v-model="entity.login" class="form-control" placeholder="Login" required="" autofocus="">
+        <div class="invalid-feedback text-error">
+            {{ errors.login }}
+        </div>
+    </div>
+    <div class="form-group" v-bind:class="{ 'has-error': errors.password }">
+        <label>Password</label>
+        <input type="password" v-model="entity.password" class="form-control" placeholder="Password" required="">
+        <div class="invalid-feedback text-error">
+            {{ errors.password }}
+        </div>
+    </div>
+
+    <div class="checkbox">
+        <label><input type="checkbox" v-model="entity.isRemember" value="remember-me"> Remember me</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary" v-on:click="auth">Sign in</button>
+</form>

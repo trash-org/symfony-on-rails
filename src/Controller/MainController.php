@@ -30,6 +30,10 @@ class MainController extends AbstractController
                     'title' => 'rails',
                     'url' => '/rails',
                 ],
+                [
+                    'title' => 'SPA',
+                    'url' => 'http://spa.symfony4.lab/',
+                ],
             ],
         ]);
     }

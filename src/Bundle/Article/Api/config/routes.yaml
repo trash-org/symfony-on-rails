@@ -1,42 +1,42 @@
 article_index:
     methods: [GET]
-    path: /api/v1/article
+    path: /v1/article
     controller: App\Bundle\Article\Api\Controller\ArticleController::index
 
 article_create:
-    path: /api/v1/article
+    path: /v1/article
     methods: [POST]
     controller: App\Bundle\Article\Api\Controller\ArticleController::create
 
 article_view:
     methods: [GET]
-    path: /api/v1/article/{id}
+    path: /v1/article/{id}
     controller: App\Bundle\Article\Api\Controller\ArticleController::view
     requirements:
         id: '\d+'
 
 article_update:
     methods: [PUT]
-    path: /api/v1/article/{id}
+    path: /v1/article/{id}
     controller: App\Bundle\Article\Api\Controller\ArticleController::update
     requirements:
         id: '\d+'
 
 article_delete:
     methods: [DELETE]
-    path: /api/v1/article/{id}
+    path: /v1/article/{id}
     controller: App\Bundle\Article\Api\Controller\ArticleController::delete
     requirements:
         id: '\d+'
 
 article_index_options:
     methods: [OPTIONS]
-    path: /api/v1/article
+    path: /v1/article
     controller: App\Bundle\Article\Api\Controller\ArticleController::options
 
 article_options:
     methods: [OPTIONS]
-    path: /api/v1/article/{id}
+    path: /v1/article/{id}
     controller: App\Bundle\Article\Api\Controller\ArticleController::options
     requirements:
         id: '\d+'
