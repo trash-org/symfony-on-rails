@@ -8,6 +8,9 @@ use App\Rails\Eloquent\Db\Enum\DbDriverEnum;
 use App\Rails\Eloquent\Db\Helper\TableAliasHelper;
 use App\Rails\Eloquent\Fixture\Entity\FixtureEntity;
 use Illuminate\Database\Capsule\Manager;
+use Illuminate\Database\Schema\Builder;
+use Illuminate\Database\Schema\MySqlBuilder;
+use Illuminate\Database\Schema\PostgresBuilder;
 use php7extension\yii\helpers\ArrayHelper;
 
 class DbRepository extends BaseRepository
@@ -18,7 +21,8 @@ class DbRepository extends BaseRepository
     public function __construct()
     {
         $schema = Manager::schema();
-        //Manager::connection()->statement('SET FOREIGN_KEY_CHECKS=0;');
+
+        // Выключаем проверку целостности связей
         $schema->disableForeignKeyConstraints();
     }
 
@@ -30,6 +34,33 @@ class DbRepository extends BaseRepository
         $data = ArrayHelper::toArray($collection);
         $queryBuilder->insert($data);
         $this->resetAutoIncrement($name);
+    }
+
+    public function loadData($name) : Collection
+    {
+        $targetTableName = TableAliasHelper::encode('default', $name);
+        $queryBuilder = Manager::table($targetTableName);
+        $data = $queryBuilder->get()->toArray();
+        return new Collection($data);
+    }
+
+    public function allTables() : Collection
+    {
+        /* @var Builder|MySqlBuilder|PostgresBuilder $schema */
+        $schema = Manager::schema();
+        $dbName = $schema->getConnection()->getDatabaseName();
+        $array = $schema->getAllTables();
+        $collection = new Collection;
+        foreach ($array as $item) {
+            $key = 'Tables_in_' . $dbName;
+            $targetTableName = $item->{$key};
+            $sourceTableName = TableAliasHelper::decode('default', $targetTableName);
+            $entity = $this->forgeEntity([
+                'name' => $sourceTableName,
+            ]);
+            $collection->add($entity);
+        }
+        return $collection;
     }
 
     private function resetAutoIncrement($name) {
@@ -47,35 +78,5 @@ class DbRepository extends BaseRepository
             }
         }
     }
-
-    public function loadData($name) : Collection
-    {
-        $targetTableName = TableAliasHelper::encode('default', $name);
-        $queryBuilder = Manager::table($targetTableName);
-        $data = $queryBuilder->get()->toArray();
-        return new Collection($data);
-    }
-
-    public function allTables() : Collection
-    {
-        $schema = Manager::schema();
-        $dbName = $schema->getConnection()->getDatabaseName();
-        $array = $schema->getAllTables();
-        $collection = new Collection;
-        foreach ($array as $item) {
-            $key = 'Tables_in_' . $dbName;
-            $entity = $this->forgeEntity([
-                'name' => $item->{$key}
-            ]);
-            $collection->add($entity);
-        }
-        return $collection;
-    }
-
-    /*public function encodeTableName(string $sourceTableName) : string
-    {
-        $targetTableName = TableAliasHelper::encode($this->connectionName(), $sourceTableName);
-        return $targetTableName;
-    }*/
 
 }

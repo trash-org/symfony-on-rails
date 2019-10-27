@@ -3,7 +3,6 @@
 namespace App\Rails\Eloquent\Fixture\Service;
 
 use App\Rails\Domain\Data\Collection;
-use App\Rails\Eloquent\Db\Helper\TableAliasHelper;
 use App\Rails\Eloquent\Fixture\Repository\DbRepository;
 use App\Rails\Eloquent\Fixture\Repository\FileRepository;
 use App\Rails\Eloquent\Migration\Repository\HistoryRepository;
@@ -39,18 +38,14 @@ class FixtureService
     }
 
     public function exportTable($name) {
-        $sourceTableName = TableAliasHelper::decode('default', $name);
         $collection = $this->dbRepository->loadData($name);
         if($collection->count()) {
-            $this->fileRepository->saveData($sourceTableName, $collection);
+            $this->fileRepository->saveData($name, $collection);
         }
     }
 
     private function filterByExclude(Collection $collection) {
         $excludeNames = $this->excludeNames;
-        foreach ($excludeNames as &$name) {
-            $name = TableAliasHelper::encode('default', $name);
-        }
         return $collection->whereNotIn('name', $excludeNames);
     }
 
