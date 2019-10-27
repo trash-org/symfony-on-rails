@@ -20,6 +20,12 @@ class TableAliasHelper
         return $targetTableName;
     }
 
+    public static function decode(string $connectionName, string $sourceTableName) {
+        $map = self::$connectionMaps[$connectionName];
+        $map = array_flip($map);
+        $targetTableName = ArrayHelper::getValue($map, $sourceTableName, $sourceTableName);
+        return $targetTableName;
+    }
 
 
 
