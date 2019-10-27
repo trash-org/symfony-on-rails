@@ -8,21 +8,26 @@ return [
     //'defaultConnection' => 'pgsqlServer',
     'connections' => [
         'mysqlServer' => [
-            "driver" => 'mysql',
-            "host" => 'localhost',
-            "database" => 'symfony4',
-            "username" => 'root',
+            'driver' => DbDriverEnum::MYSQL,
+            'host' => 'localhost',
+            'database' => 'symfony4',
+            'username' => 'root',
+            'map' => [
+                'article_post' => 'art_post',
+                'article_category' => 'art_category',
+                'eq_migration' => 'migration',
+            ],
         ],
         'sqliteServer' => [
-            "driver" => 'sqlite',
-            "database" => __DIR__ . '/../../var/sqlite/default.sqlite',
+            'driver' => DbDriverEnum::SQLITE,
+            'database' => __DIR__ . '/../../var/sqlite/default.sqlite',
         ],
         'pgsqlServer' => [
-            "driver" => DbDriverEnum::PGSQL,
-            "host" => 'localhost',
-            "database" => 'symfony4',
-            "username" => 'postgres',
-            "password" => 'postgres',
+            'driver' => DbDriverEnum::PGSQL,
+            'host' => 'localhost',
+            'database' => 'symfony4',
+            'username' => 'postgres',
+            'password' => 'postgres',
         ],
     ],
 ];

@@ -2,25 +2,16 @@
 
 namespace App\Rails\Eloquent\Migration\Base;
 
+use App\Rails\Eloquent\Db\Traits\TableNameTrait;
 use Illuminate\Database\Capsule\Manager;
 use Illuminate\Database\Migrations\Migration;
 
 abstract class BaseMigration extends Migration
 {
 
-    public $connectionName = 'default';
-    public $tableName;
+    use TableNameTrait;
+
     protected $schema;
-
-    public function connectionName()
-    {
-        return $this->connectionName;
-    }
-
-    public function tableName()
-    {
-        return $this->tableName;
-    }
 
     public function __construct()
     {

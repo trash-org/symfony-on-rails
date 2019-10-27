@@ -8,10 +8,7 @@ use Illuminate\Database\Schema\Blueprint;
 class m_2014_10_12_200000_create_post_table extends BaseCreateTableMigration
 {
 
-    public function tableName()
-    {
-        return 'article_post';
-    }
+    protected $tableName = 'article_post';
 
     public function tableSchema()
     {
@@ -22,7 +19,7 @@ class m_2014_10_12_200000_create_post_table extends BaseCreateTableMigration
             $table
                 ->foreign('category_id')
                 ->references('id')
-                ->on('article_category')
+                ->on($this->encodeTableName('article_category'))
                 ->onDelete('CASCADE')
                 ->onUpdate('CASCADE');
         };

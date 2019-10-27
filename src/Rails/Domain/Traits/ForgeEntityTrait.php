@@ -7,7 +7,7 @@ use App\Rails\Domain\Helper\EntityHelper;
 trait ForgeEntityTrait
 {
 
-    public $entityClass;
+    protected $entityClass;
 
     public function getEntityClass(): string
     {

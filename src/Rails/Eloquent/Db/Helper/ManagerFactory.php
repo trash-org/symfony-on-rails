@@ -16,6 +16,7 @@ class ManagerFactory
         $capsule->setAsGlobal();
         foreach ($connections as $connectionName => $config) {
             $capsule->addConnection($config);
+            TableAliasHelper::addMap($connectionName, ArrayHelper::getValue($config, 'map', []));
         }
         $capsule->bootEloquent();
         return $capsule;

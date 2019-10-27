@@ -11,8 +11,8 @@ use php7rails\domain\enums\RelationEnum;
 class PostRepository extends BaseDbCrudRepository implements PostRepositoryInterface, GetEntityClassInterface
 {
 
-    public $tableName = 'article_post';
-    public $entityClass = PostEntity::class;
+    protected $tableName = 'article_post';
+    protected $entityClass = PostEntity::class;
     private $categoryRepository;
 
     public function __construct(CategoryRepository $categoryRepository)

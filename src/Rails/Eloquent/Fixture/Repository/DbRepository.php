@@ -5,6 +5,7 @@ namespace App\Rails\Eloquent\Fixture\Repository;
 use App\Rails\Domain\Data\Collection;
 use App\Rails\Domain\Repository\BaseRepository;
 use App\Rails\Eloquent\Db\Enum\DbDriverEnum;
+use App\Rails\Eloquent\Db\Helper\TableAliasHelper;
 use App\Rails\Eloquent\Fixture\Entity\FixtureEntity;
 use Illuminate\Database\Capsule\Manager;
 use php7extension\yii\helpers\ArrayHelper;
@@ -23,7 +24,8 @@ class DbRepository extends BaseRepository
 
     public function saveData($name, Collection $collection)
     {
-        $queryBuilder = Manager::table($name);
+        $targetTableName = TableAliasHelper::encode('default', $name);
+        $queryBuilder = Manager::table($targetTableName);
         $queryBuilder->truncate();
         $data = ArrayHelper::toArray($collection);
         $queryBuilder->insert($data);
@@ -31,14 +33,15 @@ class DbRepository extends BaseRepository
     }
 
     private function resetAutoIncrement($name) {
+        $targetTableName = TableAliasHelper::encode('default', $name);
         $schema = Manager::schema();
-        $queryBuilder = Manager::table($name);
+        $queryBuilder = Manager::table($targetTableName);
         $driver = $schema->getConnection()->getConfig('driver');
         if($driver == DbDriverEnum::PGSQL) {
             $max = $queryBuilder->max('id');
             if($max) {
                 $pkName = 'id';
-                $sql = 'SELECT setval(\''.$name.'_'.$pkName.'_seq\', '.($max+1).')';
+                $sql = 'SELECT setval(\''.$targetTableName.'_'.$pkName.'_seq\', '.($max+1).')';
                 $connection = $queryBuilder->getConnection();
                 $connection->statement($sql);
             }
@@ -47,7 +50,8 @@ class DbRepository extends BaseRepository
 
     public function loadData($name) : Collection
     {
-        $queryBuilder = Manager::table($name);
+        $targetTableName = TableAliasHelper::encode('default', $name);
+        $queryBuilder = Manager::table($targetTableName);
         $data = $queryBuilder->get()->toArray();
         return new Collection($data);
     }
@@ -67,5 +71,11 @@ class DbRepository extends BaseRepository
         }
         return $collection;
     }
+
+    /*public function encodeTableName(string $sourceTableName) : string
+    {
+        $targetTableName = TableAliasHelper::encode($this->connectionName(), $sourceTableName);
+        return $targetTableName;
+    }*/
 
 }

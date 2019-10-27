@@ -9,7 +9,7 @@ use App\Rails\Eloquent\Db\Repository\BaseDbCrudRepository;
 class CategoryRepository extends BaseDbCrudRepository implements /*PostRepositoryInterface,*/ GetEntityClassInterface
 {
 
-    public $tableName = 'article_category';
-    public $entityClass = CategoryEntity::class;
+    protected $tableName = 'article_category';
+    protected $entityClass = CategoryEntity::class;
 
 }
