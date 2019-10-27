@@ -2,12 +2,15 @@
 
 namespace App\Rails\Eloquent\Migration\Repository;
 
+use App\Rails\Eloquent\Db\Enum\DbDriverEnum;
+use App\Rails\Eloquent\Db\Helper\ManagerFactory;
 use App\Rails\Eloquent\Migration\Entity\MigrationEntity;
 use App\Rails\Eloquent\Migration\Base\BaseCreateTableMigration;
 use Illuminate\Database\Capsule\Manager;
 use Illuminate\Database\Schema\Blueprint;
 use php7extension\core\common\helpers\ClassHelper;
 use php7extension\yii\helpers\ArrayHelper;
+use php7extension\yii\helpers\FileHelper;
 
 class HistoryRepository
 {
@@ -86,6 +89,7 @@ class HistoryRepository
     }
 
     private static function forgeMigrationTable($connectionName = 'default') {
+        ManagerFactory::forgeDb($connectionName);
         $schema = Manager::schema($connectionName);
         $hasTable = $schema->hasTable(self::MIGRATION_TABLE_NAME);
         if($hasTable) {

@@ -101,6 +101,45 @@ class DefaultControllerTest extends BaseRestTest
         $this->assertEquals(HttpStatusCodeEnum::OK, $response->getStatusCode());
     }
 
+    public function testAllSortByCategory()
+    {
+        $response = $this->sendGet('article', [
+            'per-page' => '4',
+            'page' => '2',
+            'sort' => 'category_id',
+        ]);
+
+        $actualBody = [
+            [
+                'id' => 5,
+                'category_id' => 2,
+                'title' => '5555',
+                'category' => null,
+            ],
+            [
+                'id' => 8,
+                'category_id' => 2,
+                'title' => '8888',
+                'category' => null,
+            ],
+            [
+                'id' => 3,
+                'category_id' => 3,
+                'title' => '3333',
+                'category' => null,
+            ],
+            [
+                'id' => 6,
+                'category_id' => 3,
+                'title' => '6666',
+                'category' => null,
+            ],
+        ];
+        $this->assertBody($response, $actualBody);
+        $this->assertPagination($response, null, 2, 4);
+        $this->assertEquals(HttpStatusCodeEnum::OK, $response->getStatusCode());
+    }
+
     /*public function testAllOnlyFields()
     {
         $response = $this->sendGet('article', [

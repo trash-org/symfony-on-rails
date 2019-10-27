@@ -48,6 +48,7 @@ abstract class BaseDbCrudRepository extends BaseDbRepository implements CrudRepo
         $queryBuilder = $this->getQueryBuilder();
         QueryBuilderHelper::setWhere($query, $queryBuilder);
         QueryBuilderHelper::setSelect($query, $queryBuilder);
+        QueryBuilderHelper::setOrder($query, $queryBuilder);
         QueryBuilderHelper::setPaginate($query, $queryBuilder);
         $collection = $this->allByBuilder($queryBuilder);
         return $collection;
