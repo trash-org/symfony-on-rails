@@ -2,6 +2,7 @@
 
 namespace App\Rails\Domain\Helper;
 
+use App\Rails\Domain\Data\Collection;
 use php7extension\yii\helpers\Inflector;
 
 class EntityHelper
@@ -31,9 +32,10 @@ class EntityHelper
     }
 
     public static function createEntityCollection($entityClass,  $data = []) {
-        $collection = [];
+        $collection = new Collection;
         foreach ($data as $item) {
-            $collection[] = self::createEntity($entityClass, $item);
+            $entity = self::createEntity($entityClass, $item);
+            $collection->add($entity);
         }
         return $collection;
     }

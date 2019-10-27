@@ -3,6 +3,7 @@
 namespace App\Rails\Eloquent\Db\Repository;
 
 use App\Rails\Domain\Repository\BaseRepository;
+use App\Rails\Eloquent\Db\Traits\TableNameTrait;
 use Illuminate\Database\Capsule\Manager;
 use Illuminate\Database\Query\Builder;
 use php7extension\core\exceptions\NotFoundException;
@@ -10,23 +11,25 @@ use php7extension\core\exceptions\NotFoundException;
 abstract class BaseDbRepository extends BaseRepository
 {
 
-    public $connectionName = 'default';
-    public $tableName;
+    use TableNameTrait;
 
-    public function connectionName()
-    {
-        return $this->connectionName;
-    }
+    protected $autoIncrement = 'id';
 
-    public function tableName()
+    public function autoIncrement()
     {
-        return $this->tableName;
+        return $this->autoIncrement;
     }
 
     protected function getQueryBuilder() : Builder
     {
         $queryBuilder = Manager::table($this->tableName(), null, $this->connectionName());
         return $queryBuilder;
+    }
+
+    protected function getSchema() : \Illuminate\Database\Schema\Builder
+    {
+        $schema = Manager::schema($this->connectionName());
+        return $schema;
     }
 
     protected function allByBuilder(Builder $queryBuilder) {

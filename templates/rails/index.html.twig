@@ -1,58 +1,65 @@
-<h1>rails</h1>
+{% extends 'base.html.twig' %}
 
-<h1>Common</h1>
+{% block title %}Rails{% endblock %}
 
-<ul>
-    <li><a href="/rails/db">db</a></li>
-    <li><a href="/rails/rbac/roles">rbac/roles</a></li>
-    <li><a href="/rails/security">security</a></li>
-</ul>
+{% block body %}
 
-<h1>guzzle</h1>
+    <h1>rails</h1>
 
-<ul>
-    <li><a href="/guzzle/index">guzzle/index</a></li>
-    <li><a href="/guzzle/auth">guzzle/auth</a></li>
-    <li><a href="/guzzle/stress">guzzle/stress</a></li>
-</ul>
+    <h1>Common</h1>
 
-<h1>jwt</h1>
+    <ul>
+        <li><a href="/rails/db">db</a></li>
+        <li><a href="/rails/rbac/roles">rbac/roles</a></li>
+        <li><a href="/rails/security">security</a></li>
+    </ul>
 
-<ul>
-    <li><a href="/jwt/index">jwt/index</a></li>
-</ul>
+    <h1>guzzle</h1>
 
-<h1>package</h1>
+    <ul>
+        <li><a href="/guzzle/index">guzzle/index</a></li>
+        <li><a href="/guzzle/auth">guzzle/auth</a></li>
+        <li><a href="/guzzle/stress">guzzle/stress</a></li>
+    </ul>
 
-<ul>
-    <li><a href="/package/groups">package/groups</a></li>
-    <li><a href="/package/groups">package/groups</a></li>
-    <li><a href="/package/one-group">package/one-group</a></li>
-    <li><a href="/package/packages">package/packages</a></li>
-    <li><a href="/package/one-package">package/one-package</a></li>
-</ul>
+    <h1>jwt</h1>
 
-<h1>qr</h1>
+    <ul>
+        <li><a href="/jwt/index">jwt/index</a></li>
+    </ul>
 
-<ul>
-    <li><a href="/qr">qr</a></li>
-</ul>
+    <h1>package</h1>
 
-<h1>rbac</h1>
+    <ul>
+        <li><a href="/package/groups">package/groups</a></li>
+        <li><a href="/package/groups">package/groups</a></li>
+        <li><a href="/package/one-group">package/one-group</a></li>
+        <li><a href="/package/packages">package/packages</a></li>
+        <li><a href="/package/one-package">package/one-package</a></li>
+    </ul>
 
-<ul>
-    <li><a href="/rbac/role">rbac/role</a></li>
-    <li><a href="/rbac/permission">rbac/permission</a></li>
-</ul>
+    <h1>qr</h1>
 
-<h1>sandbox</h1>
+    <ul>
+        <li><a href="/qr">qr</a></li>
+    </ul>
 
-<ul>
-    <li><a href="/sandbox/auth">sandbox/auth</a></li>
-    <li><a href="/sandbox/validate-entity">sandbox/validate-entity</a></li>
-    <li><a href="/sandbox/test-model">sandbox/test-model</a></li>
-    <li><a href="/sandbox/query-builder">sandbox/query-builder</a></li>
-    <li><a href="/sandbox/all-changed">sandbox/all-changed</a></li>
-    <li><a href="/sandbox/all-for-release">sandbox/all-for-release</a></li>
-    <li><a href="/sandbox/all-version">sandbox/all-version</a></li>
-</ul>
+    <h1>rbac</h1>
+
+    <ul>
+        <li><a href="/rbac/role">rbac/role</a></li>
+        <li><a href="/rbac/permission">rbac/permission</a></li>
+    </ul>
+
+    <h1>sandbox</h1>
+
+    <ul>
+        <li><a href="/sandbox/auth">sandbox/auth</a></li>
+        <li><a href="/sandbox/validate-entity">sandbox/validate-entity</a></li>
+        <li><a href="/sandbox/test-model">sandbox/test-model</a></li>
+        <li><a href="/sandbox/query-builder">sandbox/query-builder</a></li>
+        <li><a href="/sandbox/all-changed">sandbox/all-changed</a></li>
+        <li><a href="/sandbox/all-for-release">sandbox/all-for-release</a></li>
+        <li><a href="/sandbox/all-version">sandbox/all-version</a></li>
+    </ul>
+{% endblock %}

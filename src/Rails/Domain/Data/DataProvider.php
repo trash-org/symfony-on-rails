@@ -36,7 +36,7 @@ class DataProvider
         return $this->entity;
     }
 
-    private function getCollection() : array {
+    private function getCollection() : Collection {
         if( ! isset($this->entity->collection)) {
             $query = clone $this->query;
             $query->limit($this->entity->pageSize);
