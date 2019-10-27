@@ -12,3 +12,6 @@ app_article:
 
 app_user:
     resource: "../../src/Bundle/User/Api/config/routes.yaml"
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
