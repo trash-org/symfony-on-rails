@@ -12,6 +12,12 @@ abstract class BaseDbRepository extends BaseRepository
 
     public $connectionName = 'default';
     public $tableName;
+    public $autoIncrement = 'id';
+
+    public function autoIncrement()
+    {
+        return $this->autoIncrement;
+    }
 
     public function connectionName()
     {

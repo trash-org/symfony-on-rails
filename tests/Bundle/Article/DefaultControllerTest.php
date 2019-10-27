@@ -106,7 +106,7 @@ class DefaultControllerTest extends BaseRestTest
         $response = $this->sendGet('article', [
             'per-page' => '4',
             'page' => '2',
-            'sort' => 'category_id',
+            'sort' => 'category_id,id',
         ]);
 
         $actualBody = [
@@ -145,7 +145,7 @@ class DefaultControllerTest extends BaseRestTest
         $response = $this->sendGet('article', [
             'per-page' => '4',
             'page' => '2',
-            'sort' => '-category_id',
+            'sort' => '-category_id,id',
         ]);
 
         $actualBody = [

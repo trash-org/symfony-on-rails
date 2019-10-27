@@ -4,9 +4,9 @@ namespace App\Rails\Eloquent\Fixture\Repository;
 
 use App\Rails\Domain\Data\Collection;
 use App\Rails\Domain\Repository\BaseRepository;
+use App\Rails\Eloquent\Db\Enum\DbDriverEnum;
 use App\Rails\Eloquent\Fixture\Entity\FixtureEntity;
 use Illuminate\Database\Capsule\Manager;
-use Illuminate\Support\Facades\DB;
 use php7extension\yii\helpers\ArrayHelper;
 
 class DbRepository extends BaseRepository
@@ -27,6 +27,22 @@ class DbRepository extends BaseRepository
         $queryBuilder->truncate();
         $data = ArrayHelper::toArray($collection);
         $queryBuilder->insert($data);
+        $this->resetAutoIncrement($name);
+    }
+
+    private function resetAutoIncrement($name) {
+        $schema = Manager::schema();
+        $queryBuilder = Manager::table($name);
+        $driver = $schema->getConnection()->getConfig('driver');
+        if($driver == DbDriverEnum::PGSQL) {
+            $max = $queryBuilder->max('id');
+            if($max) {
+                $pkName = 'id';
+                $sql = 'SELECT setval(\''.$name.'_'.$pkName.'_seq\', '.($max+1).')';
+                $connection = $queryBuilder->getConnection();
+                $connection->statement($sql);
+            }
+        }
     }
 
     public function loadData($name) : Collection
