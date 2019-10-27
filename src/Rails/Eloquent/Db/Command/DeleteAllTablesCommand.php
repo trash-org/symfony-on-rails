@@ -10,7 +10,7 @@ use php7extension\yii\helpers\ArrayHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class ExportCommand extends BaseCommand
+class DeleteAllTablesCommand extends BaseCommand
 {
     protected static $defaultName = 'orm:db:delete-all-tables';
 
@@ -32,6 +32,11 @@ class ExportCommand extends BaseCommand
 
         /** @var FixtureEntity[]|Collection $tableCollection */
         $tableCollection = $this->fixtureService->allForDelete();
+
+        if(empty($tableCollection->count())) {
+            $output->writeln(['', '<fg=magenta>- No tables -</>', '']);
+            return;
+        }
 
         $withConfirm = $input->getOption('withConfirm');
         if($withConfirm) {
