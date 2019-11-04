@@ -122,27 +122,24 @@ class BaseRestTest extends WebTestCase
 
     protected function assertOrder($collection, $attribute, $direction= SORT_ASC)
     {
-
-
-        if($direction == SORT_ASC) {
-            $start = 0;
-        } else {
-            $start = 9999999999;
-        }
+        $currentValue = null;
         foreach ($collection as $item) {
+            if($currentValue === null) {
+                $currentValue = $item[$attribute];
+            }
             if($direction == SORT_ASC) {
-                if($item[$attribute] < $start) {
+                if($item[$attribute] < $currentValue) {
                     $this->expectExceptionMessage('Fail order!');
                 }
-                if($item[$attribute] > $start) {
-                    $start = $item[$attribute];
+                if($item[$attribute] > $currentValue) {
+                    $currentValue = $item[$attribute];
                 }
             } else {
-                if($item[$attribute] > $start) {
+                if($item[$attribute] > $currentValue) {
                     $this->expectExceptionMessage('Fail order!');
                 }
-                if($item[$attribute] < $start) {
-                    $start = $item[$attribute];
+                if($item[$attribute] < $currentValue) {
+                    $currentValue = $item[$attribute];
                 }
             }
         }
