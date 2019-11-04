@@ -120,6 +120,34 @@ class BaseRestTest extends WebTestCase
         }
     }
 
+    protected function assertOrder($collection, $attribute, $direction= SORT_ASC)
+    {
+
+
+        if($direction == SORT_ASC) {
+            $start = 0;
+        } else {
+            $start = 9999999999;
+        }
+        foreach ($collection as $item) {
+            if($direction == SORT_ASC) {
+                if($item[$attribute] < $start) {
+                    $this->expectExceptionMessage('Fail order!');
+                }
+                if($item[$attribute] > $start) {
+                    $start = $item[$attribute];
+                }
+            } else {
+                if($item[$attribute] > $start) {
+                    $this->expectExceptionMessage('Fail order!');
+                }
+                if($item[$attribute] < $start) {
+                    $start = $item[$attribute];
+                }
+            }
+        }
+    }
+
     protected function assertPagination(ResponseInterface $response, $totalCount = null, $page = null, $pageSize = null)
     {
         $entity = new DataProviderEntity;

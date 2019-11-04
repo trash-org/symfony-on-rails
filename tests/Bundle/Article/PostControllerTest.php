@@ -22,25 +22,25 @@ class PostControllerTest extends BaseRestTest
         $actualBody = [
             [
                 "id" => 5,
-                "title" => '5555',
+                "title" => 'post 5',
                 'category_id' => 2,
                 'category' => null,
             ],
             [
                 "id" => 6,
-                "title" => '6666',
+                "title" => 'post 6',
                 'category_id' => 3,
                 'category' => null,
             ],
             [
                 "id" => 7,
-                "title" => '7777',
+                "title" => 'post 7',
                 'category_id' => 1,
                 'category' => null,
             ],
             [
                 "id" => 8,
-                "title" => '8888',
+                "title" => 'post 8',
                 'category_id' => 2,
                 'category' => null,
             ]
@@ -61,38 +61,38 @@ class PostControllerTest extends BaseRestTest
         $actualBody = [
             [
                 "id" => 5,
-                "title" => '5555',
+                "title" => 'post 5',
                 'category_id' => 2,
                 'category' => [
                     'id' => 2,
-                    'title' => '222',
+                    'title' => 'category 2',
                 ],
             ],
             [
                 "id" => 6,
-                "title" => '6666',
+                "title" => 'post 6',
                 'category_id' => 3,
                 'category' => [
                     'id' => 3,
-                    'title' => '333',
+                    'title' => 'category 3',
                 ],
             ],
             [
                 "id" => 7,
-                "title" => '7777',
+                "title" => 'post 7',
                 'category_id' => 1,
                 'category' => [
                     'id' => 1,
-                    'title' => '111',
+                    'title' => 'category 1',
                 ],
             ],
             [
                 "id" => 8,
-                "title" => '8888',
+                "title" => 'post 8',
                 'category_id' => 2,
                 'category' => [
                     'id' => 2,
-                    'title' => '222',
+                    'title' => 'category 2',
                 ],
             ]
         ];
@@ -109,33 +109,9 @@ class PostControllerTest extends BaseRestTest
             'sort' => 'category_id,id',
         ]);
 
-        $actualBody = [
-            [
-                'id' => 5,
-                'category_id' => 2,
-                'title' => '5555',
-                'category' => null,
-            ],
-            [
-                'id' => 8,
-                'category_id' => 2,
-                'title' => '8888',
-                'category' => null,
-            ],
-            [
-                'id' => 3,
-                'category_id' => 3,
-                'title' => '3333',
-                'category' => null,
-            ],
-            [
-                'id' => 6,
-                'category_id' => 3,
-                'title' => '6666',
-                'category' => null,
-            ],
-        ];
-        $this->assertBody($response, $actualBody);
+        $body = $this->getBody($response);
+        $this->assertOrder($body, 'category_id', SORT_ASC);
+
         $this->assertPagination($response, null, 2, 4);
         $this->assertEquals(HttpStatusCodeEnum::OK, $response->getStatusCode());
     }
@@ -148,33 +124,9 @@ class PostControllerTest extends BaseRestTest
             'sort' => '-category_id,id',
         ]);
 
-        $actualBody = [
-            [
-                'id' => 5,
-                'category_id' => 2,
-                'title' => '5555',
-                'category' => null,
-            ],
-            [
-                'id' => 8,
-                'category_id' => 2,
-                'title' => '8888',
-                'category' => null,
-            ],
-            [
-                'id' => 1,
-                'category_id' => 1,
-                'title' => '1111',
-                'category' => null,
-            ],
-            [
-                'id' => 4,
-                'category_id' => 1,
-                'title' => '4444',
-                'category' => null,
-            ],
-        ];
-        $this->assertBody($response, $actualBody);
+        $body = $this->getBody($response);
+        $this->assertOrder($body, 'category_id', SORT_DESC);
+
         $this->assertPagination($response, null, 2, 4);
         $this->assertEquals(HttpStatusCodeEnum::OK, $response->getStatusCode());
     }
@@ -243,7 +195,7 @@ class PostControllerTest extends BaseRestTest
 
         $actualBody = [
             'id' => 3,
-            'title' => '3333',
+            'title' => 'post 3',
             'category_id' => 3,
             'category' => null,
         ];
@@ -259,11 +211,11 @@ class PostControllerTest extends BaseRestTest
 
         $actualBody = [
             'id' => 3,
-            'title' => '3333',
+            'title' => 'post 3',
             'category_id' => 3,
             'category' => [
                 'id' => 3,
-                'title' => '333',
+                'title' => 'category 3',
             ],
         ];
         $this->assertBody($response, $actualBody);
