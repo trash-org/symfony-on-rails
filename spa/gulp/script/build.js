@@ -1,73 +1,50 @@
 var gulp = require('gulp');
-var clean = require('gulp-clean');
 var src = require('../config/src');
-var helper = require('../../node_modules/jrails/gulp/script/helper');
 var builderTypeHelper = require('../../node_modules/jrails/gulp/script/builderTypeHelper');
+var rjs = require('gulp-requirejs');
+var del = require('del');
+var replace = require('gulp-replace');
+var fs = require("fs");
 
-var build = {
+module.exports = {
 
-    /**
-     * Собираем проект для продакшн
-     * 
-     * Шаги:
-     * - собираем стили
-     * - собираем скрипты
-     * - собираем шаблоны
-     * - мнифицируем
-     */
-    prod: function () {
-        builderTypeHelper.buildStyle(src.style.all, './dist/assets/style', 'build.css', true);
-        builderTypeHelper.buildScript(src.script.all, './dist/assets/script', 'build.js', true);
-
-        var data = {
-            scriptList: ['assets/script/build-min.js'],
-            styleList: ['assets/style/build.css']
-        };
-        data.scriptList = helper.replaceInArray(data.scriptList, '/src/', '/');
-        data.styleList = helper.replaceInArray(data.styleList, '/src/', '/');
-
-        builderTypeHelper.buildPage(data, './dist');
+    one: function () {
+        fs.readFile("./dist/assets/built.js", "utf-8", function(err, code) {
+            gulp.src(['./src/root/index.html'])
+                .pipe(replace('<!--SCRIPT_PLACEHOLDER-->', '<script>\n' + code + '\n</script>'))
+                .pipe(gulp.dest('./dist/one'));
+            fs.readFile("./dist/assets/built.css", "utf-8", function(err, code) {
+                gulp.src(['./dist/one/index.html'])
+                    .pipe(replace('<!--STYLE_PLACEHOLDER-->', '<style>\n' + code + '\n</style>'))
+                    .pipe(gulp.dest('./dist/one'));
+            });
+        });
     },
 
-    /**
-     * Собираем проект для разработки
-     * 
-     * Шаги:
-     * - собираем стили в разные файлы (вендоры, рельсы)
-     * - собираем скрипты в разные файлы (вендоры, рельсы)
-     */
+    dist: function () {
+        var dir = './dist/assets';
+        // удаление сбоорки (нужно для пересборки)
+        var promise = del(dir);
+        promise.then(function () {
+            var config = require('../config/distConfig');
+            rjs(config).pipe(gulp.dest('.'));
+            // сборка стилей для боя
+            builderTypeHelper.buildStyle(src.style.all, dir, 'built.css', true);
+            // копируем нужные файлы
+            builderTypeHelper.copy(['./src/root/*'], 'dist');
+        });
+    },
+
     dev: function () {
-        builderTypeHelper.buildStyle(src.style.all, './src/assets/style', 'vendor.css');
-        builderTypeHelper.buildScript(src.script.vendor, './src/assets/script', 'vendor.js');
-        builderTypeHelper.buildScript(src.script.rails, './src/assets/script', 'rails.js');
-
-        var vendorScriptList = ['./src/assets/script/vendor.js'];
-        var bundleScriptList = helper.getFileList(src.script.rails);
-        var appScriptList = helper.getFileList(src.script.app);
-        var data = {};
-        data.scriptList = vendorScriptList.concat(bundleScriptList.concat(appScriptList));
-        data.styleList = ['./src/assets/style/vendor.css'];
-        builderTypeHelper.buildPage(data, '.');
+        var dir = './src/assets';
+        // удаление сбоорки (нужно для пересборки)
+        var promise = del(dir);
+        promise.then(function () {
+            var config = require('../config/devConfig');
+            rjs(config).pipe(gulp.dest('.'));
+            // сборка стилей для разработки
+            builderTypeHelper.buildStyle(src.style.all, dir, 'vendor.css', true);
+        });
     },
 
-    /**
-     * Собираем рельсы
-     *
-     * Шаги:
-     * - собираем стили отдельно
-     * - собираем скрипты отдельно
-     */
-    rails: function () {
-        builderTypeHelper.buildScript(src.script.rails, './src/assets/script', 'rails.js', true);
-    },
-
-    clean: function () {
-        return gulp.src([
-            './src/assets',
-            './dist',
-        ], {read: false})
-            .pipe(clean());
-    },
 };
-
-module.exports = build;

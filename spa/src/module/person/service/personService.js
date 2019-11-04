@@ -1,17 +1,17 @@
-space('bundle.module.person.service.personService', function() {
+define(['jrails/event/eventService', 'jrails/rest/client'], function(eventService, restClient) {
 
     return {
 
         oneSelf: function () {
-            var promise = container.restClient.get('person');
+            var promise = restClient.get('person');
             promise.then(function (entity) {
-                container.event.trigger('person.info.view', entity);
+                eventService.trigger('person.info.view', entity);
             });
             return promise;
         },
 
         update: function (entity) {
-            var promise = container.restClient.put('person', {
+            var promise = restClient.put('person', {
                 first_name: entity.first_name,
                 middle_name: entity.middle_name,
                 last_name: entity.last_name,
@@ -20,7 +20,7 @@ space('bundle.module.person.service.personService', function() {
                 email: entity.email,
             });
             promise.then(function (data) {
-                container.event.trigger('person.info.update', data);
+                eventService.trigger('person.info.update', data);
             });
             return promise;
         },

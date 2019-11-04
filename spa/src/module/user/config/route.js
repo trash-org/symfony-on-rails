@@ -1,19 +1,21 @@
-space(function() {
-
-    var router = use('bundle.spa.router');
+define([
+    'jrails/spa/router',
+    'jrails/spa/controllerFactory',
+    'module/user/vm/authVm',
+    'module/user/vm/logoutVm'
+], function(
+    router,
+    controllerFactory,
+    authVm,
+    logoutVm
+) {
 
     router.addRoute('/user/auth', function () {
-        bundle.vue.loader.run({
-            controller: 'user',
-            action: 'auth',
-        });
+        controllerFactory.createByClass(authVm);
     });
 
     router.addRoute('/user/logout', function () {
-        bundle.vue.loader.run({
-            controller: 'user',
-            action: 'logout',
-        });
+        controllerFactory.createByClass(logoutVm);
     });
 
 });

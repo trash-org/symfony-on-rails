@@ -1,4 +1,4 @@
-space('lang.user.auth', function() {
+define(function() {
 
     return {
 

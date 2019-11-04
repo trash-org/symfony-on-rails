@@ -1,19 +1,21 @@
-space(function() {
-
-    var router = use('bundle.spa.router');
+define([
+    'jrails/spa/router',
+    'jrails/spa/controllerFactory',
+    'module/person/vm/viewVm',
+    'module/person/vm/updateVm',
+], function(
+    router,
+    controllerFactory,
+    viewVm,
+    updateVm
+) {
 
     router.addRoute('/person/view', function () {
-        bundle.vue.loader.run({
-            controller: 'person',
-            action: 'view',
-        });
+        controllerFactory.createByClass(viewVm);
     });
 
     router.addRoute('/person/update', function () {
-        bundle.vue.loader.run({
-            controller: 'person',
-            action: 'update',
-        });
+        controllerFactory.createByClass(updateVm);
     });
 
 });

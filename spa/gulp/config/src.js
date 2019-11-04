@@ -46,11 +46,11 @@ var src = {
             './src/module/person/lang/*.js',
 
             './src/module/**/config/*.js',
-            './src/module/app/controller/*.js',
-            './src/module/app/view/*.js',
+            './src/app/controller/*.js',
+            './src/app/view/*.js',
 
-            './src/module/app/bootstrap.js',
-            './src/module/app/run.js',
+            './src/app/bootstrap.js',
+            './src/app/run.js',
         ]
     }
 };

@@ -1,4 +1,4 @@
-space('lang.person.info', function() {
+define(function() {
 
     return {
 

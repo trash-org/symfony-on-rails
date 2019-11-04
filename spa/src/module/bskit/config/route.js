@@ -1,22 +1,21 @@
-space(function() {
-
-    var router = use('bundle.spa.router');
+define([
+    'jrails/spa/router',
+    'jrails/spa/controllerFactory',
+    'module/bskit/vm/allVm',
+    'module/bskit/vm/oneVm',
+], function(
+    router,
+    controllerFactory,
+    allVm,
+    oneVm
+) {
 
     router.addRoute('/bskit', function () {
-        bundle.vue.loader.run({
-            controller: 'bskit',
-            action: 'all',
-        });
+        controllerFactory.createByClass(allVm);
     });
 
     router.addRoute('/bskit/:id', function (id) {
-        bundle.vue.loader.run({
-            controller: 'bskit',
-            action: id,
-            query: {
-                id: id,
-            },
-        });
+        controllerFactory.createByClass(oneVm, {id: id});
     });
 
 });

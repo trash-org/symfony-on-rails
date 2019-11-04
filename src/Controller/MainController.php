@@ -36,11 +36,11 @@ class MainController extends AbstractController
                 ],
                 [
                     'title' => 'FOS - register',
-                    'url' => 'http://spa.symfony4.lab/register',
+                    'url' => 'http://symfony4.lab/register',
                 ],
                 [
                     'title' => 'FOS - login',
-                    'url' => 'http://spa.symfony4.lab/login',
+                    'url' => 'http://symfony4.lab/login',
                 ],
             ],
         ]);

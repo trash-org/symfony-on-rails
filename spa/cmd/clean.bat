@@ -1,3 +1,0 @@
-cd ..
-gulp clean
-pause

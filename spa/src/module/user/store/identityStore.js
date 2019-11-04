@@ -1,6 +1,6 @@
-space('bundle.module.user.store.identityStore', function() {
+define(['jrails/helper/class', 'jrails/domain/baseLocalStorage'], function(classHelper, baseLocalStorage) {
 
-    return bundle.helper.class.extends(bundle.domain.baseLocalStorage, {
+    return classHelper.extends(baseLocalStorage, {
 
         storageKey: 'user.identity_1',
 

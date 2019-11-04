@@ -1,11 +1,9 @@
-space('bundle.module.user.service.authService', function() {
-
-    var identityStore = bundle.module.user.store.identityStore;
+define(['module/user/store/identityStore', 'jrails/kernel/container', 'jrails/event/eventService', 'jrails/rest/client'], function(identityStore, container, eventService, restClient) {
 
     return {
 
         authRequired: function () {
-            container.event.trigger('user.auth.authRequired');
+            eventService.trigger('user.auth.authRequired');
         },
 
         getIdentity: function () {
@@ -30,17 +28,18 @@ space('bundle.module.user.service.authService', function() {
         },
 
         auth: function (loginDto) {
-            var promise = container.restClient.post('auth', loginDto);
+            //console.log(restClient);
+            var promise = restClient.post('auth', loginDto);
             promise.then(function (identity) {
                 identityStore.set(identity);
-                container.event.trigger('user.auth.login', identity);
+                eventService.trigger('user.auth.login', identity);
             });
             return promise;
         },
 
         logout: function () {
             identityStore.set(null);
-            container.event.trigger('user.auth.logout');
+            eventService.trigger('user.auth.logout');
             //module.user.store.authStore.identity = null;
         },
 
