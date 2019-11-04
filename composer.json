@@ -6,6 +6,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "friendsofsymfony/rest-bundle": "^2.5",
+        "friendsofsymfony/user-bundle": "^2.1",
         "guzzlehttp/guzzle": "^6.3",
         "illuminate/database": "^6.3",
         "jms/serializer-bundle": "^3.4",
@@ -16,9 +17,8 @@
         "php7extension/yii": "dev-master",
         "php7rails/app": "dev-master",
         "php7rails/domain": "dev-master",
-        "php7tool/vendor": "dev-master",
         "php7tool/test": "dev-master",
-        "yubundle/bundle": "dev-master",
+        "php7tool/vendor": "dev-master",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/asset": "4.3.*",
         "symfony/console": "4.3.*",
@@ -40,7 +40,8 @@
         "symfony/twig-bundle": "4.3.*",
         "symfony/validator": "4.3.*",
         "symfony/web-link": "4.3.*",
-        "symfony/yaml": "4.3.*"
+        "symfony/yaml": "4.3.*",
+        "yubundle/bundle": "dev-master"
     },
     "require-dev": {
         "symfony/debug-pack": "*",
