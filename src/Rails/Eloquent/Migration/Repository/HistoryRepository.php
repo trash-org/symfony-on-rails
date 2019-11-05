@@ -56,24 +56,28 @@ class HistoryRepository
     public static function upMigration($class) {
         /** @var BaseCreateTableMigration $migration */
         $migration = new $class;
+        $schema = Manager::schema($migration->connectionName());
+        $connection = $schema->getConnection();
         // todo: begin transaction
-        Manager::connection()->beginTransaction();
-        $migration->up();
+        $connection->beginTransaction();
+        $migration->up($schema);
         $version = ClassHelper::getClassOfClassName($class);
-        Manager::connection()->commit();
         self::insert($version);
+        $connection->commit();
         // todo: end transaction
     }
 
     public static function downMigration($class) {
         /** @var BaseCreateTableMigration $migration */
         $migration = new $class;
+        $schema = Manager::schema($migration->connectionName());
+        $connection = $schema->getConnection();
         // todo: begin transaction
-        Manager::connection()->beginTransaction();
-        $migration->down();
+        $connection->beginTransaction();
+        $migration->down($schema);
         $version = ClassHelper::getClassOfClassName($class);
         self::delete($version);
-        Manager::connection()->commit();
+        $connection->commit();
         // todo: end transaction
     }
 

@@ -82,7 +82,7 @@ class BaseRestTest extends WebTestCase
     protected function assertBody(ResponseInterface $response, $actualBody)
     {
         $body = $this->getBody($response);
-        $this->assertEquals($actualBody, $body);
+        $this->assertArraySubset($actualBody, $body);
     }
 
     protected function getLastInsertId(ResponseInterface $response)

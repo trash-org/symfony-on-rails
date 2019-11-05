@@ -2,6 +2,13 @@
 
 use App\Rails\Eloquent\Db\Enum\DbDriverEnum;
 
+$map = [
+    'article_post' => 'art_post',
+    'article_category' => 'art_category',
+    'eq_migration' => 'migration',
+    //'fos_user' => 'user',
+];
+
 return [
     'defaultConnection' => 'mysqlServer',
     //'defaultConnection' => 'sqliteServer',
@@ -12,15 +19,12 @@ return [
             'host' => 'localhost',
             'database' => 'symfony4',
             'username' => 'root',
-            'map' => [
-                'article_post' => 'art_post',
-                'article_category' => 'art_category',
-                'eq_migration' => 'migration',
-            ],
+            'map' => $map,
         ],
         'sqliteServer' => [
             'driver' => DbDriverEnum::SQLITE,
             'database' => __DIR__ . '/../../var/sqlite/default.sqlite',
+            'map' => $map,
         ],
         'pgsqlServer' => [
             'driver' => DbDriverEnum::PGSQL,
@@ -28,6 +32,7 @@ return [
             'database' => 'symfony4',
             'username' => 'postgres',
             'password' => 'postgres',
+            'map' => $map,
         ],
     ],
 ];

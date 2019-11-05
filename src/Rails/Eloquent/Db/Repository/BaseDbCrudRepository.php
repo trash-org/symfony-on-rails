@@ -14,7 +14,6 @@ use php7rails\domain\data\Query;
 abstract class BaseDbCrudRepository extends BaseDbRepository implements CrudRepositoryInterface
 {
 
-
     public function relations() {
         return [];
     }

@@ -3,6 +3,7 @@
 namespace Tests\Bundle\Article\Controller;
 
 use App\Rails\Test\BaseRestTest;
+use php7extension\core\web\enums\HttpMethodEnum;
 use php7extension\core\web\enums\HttpStatusCodeEnum;
 
 class PostControllerTest extends BaseRestTest
@@ -61,38 +62,26 @@ class PostControllerTest extends BaseRestTest
         $actualBody = [
             [
                 "id" => 5,
-                "title" => 'post 5',
-                'category_id' => 2,
                 'category' => [
                     'id' => 2,
-                    'title' => 'category 2',
                 ],
             ],
             [
                 "id" => 6,
-                "title" => 'post 6',
-                'category_id' => 3,
                 'category' => [
                     'id' => 3,
-                    'title' => 'category 3',
                 ],
             ],
             [
                 "id" => 7,
-                "title" => 'post 7',
-                'category_id' => 1,
                 'category' => [
                     'id' => 1,
-                    'title' => 'category 1',
                 ],
             ],
             [
                 "id" => 8,
-                "title" => 'post 8',
-                'category_id' => 2,
                 'category' => [
                     'id' => 2,
-                    'title' => 'category 2',
                 ],
             ]
         ];
@@ -131,56 +120,42 @@ class PostControllerTest extends BaseRestTest
         $this->assertEquals(HttpStatusCodeEnum::OK, $response->getStatusCode());
     }
 
-    /*public function testAllOnlyFields()
+    public function testAllOnlyFields()
     {
         $response = $this->sendGet('article', [
-            'per-page' => '4',
-            'page' => '2',
+            'per-page' => '2',
             'fields' => 'id',
+            'sort' => 'id',
         ]);
 
         $actualBody = [
             [
-                "id" => 5,
+                "id" => 1,
                 "title" => null,
                 'category_id' => null,
             ],
             [
-                "id" => 6,
+                "id" => 2,
                 "title" => null,
                 'category_id' => null,
             ],
-            [
-                "id" => 7,
-                "title" => null,
-                'category_id' => null,
-            ],
-            [
-                "id" => 8,
-                "title" => null,
-                'category_id' => null,
-            ]
         ];
         $this->assertBody($response, $actualBody);
-        $this->assertPagination($response, null, 2, 4);
+        //$this->assertPagination($response, null, 2, 2);
         $this->assertEquals(HttpStatusCodeEnum::OK, $response->getStatusCode());
-    }*/
+    }
 
     public function testAllById()
     {
         $response = $this->sendGet('article', [
             'per-page' => '4',
             'page' => '2',
-            'fields' => 'id',
             'id' => '3',
         ]);
 
         $actualBody = [
             [
                 "id" => 3,
-                "title" => null,
-                'category_id' => null,
-                'category' => null,
             ],
         ];
         $this->assertBody($response, $actualBody);
@@ -197,7 +172,6 @@ class PostControllerTest extends BaseRestTest
             'id' => 3,
             'title' => 'post 3',
             'category_id' => 3,
-            'category' => null,
         ];
         $this->assertBody($response, $actualBody);
         $this->assertEquals(HttpStatusCodeEnum::OK, $response->getStatusCode());
@@ -211,8 +185,6 @@ class PostControllerTest extends BaseRestTest
 
         $actualBody = [
             'id' => 3,
-            'title' => 'post 3',
-            'category_id' => 3,
             'category' => [
                 'id' => 3,
                 'title' => 'category 3',
@@ -238,14 +210,20 @@ class PostControllerTest extends BaseRestTest
 
     public function testCreate()
     {
-        $response = $this->sendPost('article', [
+        $data = [
             'title' => 'test123',
             'category_id' => 3,
-        ]);
+        ];
+        $response = $this->sendPost('article', $data);
         $this->assertCreated($response);
         $lastId = $this->getLastInsertId($response);
         $responseView = $this->sendGet('article/' . $lastId);
         $this->assertEquals(HttpStatusCodeEnum::OK, $responseView->getStatusCode());
+        $this->assertBody($responseView, [
+            'id' => $lastId,
+            'title' => 'test123',
+            'category_id' => 3,
+        ]);
 
         $response = $this->sendPut('article/' . $lastId, ['title' => 'qwerty']);
         $this->assertEquals(HttpStatusCodeEnum::NO_CONTENT, $response->getStatusCode());
@@ -255,7 +233,6 @@ class PostControllerTest extends BaseRestTest
             'id' => $lastId,
             'title' => 'qwerty',
             'category_id' => 3,
-            'category' => null,
         ]);
 
         $response = $this->sendDelete('article/' . $lastId);
@@ -281,7 +258,17 @@ class PostControllerTest extends BaseRestTest
     {
         $response = $this->sendOptions('article/1');
 
-        $this->assertCors($response, '*', null, ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'HEAD', 'PATCH', 'TRACE', 'CONNECT']);
+        $this->assertCors($response, '*', null, [
+            HttpMethodEnum::GET,
+            HttpMethodEnum::POST,
+            HttpMethodEnum::PUT,
+            HttpMethodEnum::DELETE,
+            HttpMethodEnum::OPTIONS,
+            HttpMethodEnum::HEAD,
+            HttpMethodEnum::PATCH,
+            HttpMethodEnum::TRACE,
+            HttpMethodEnum::CONNECT,
+        ]);
     }
 
     public function testNotRoute()

@@ -2,8 +2,12 @@
 
 use App\Rails\Eloquent\Fixture\Helper\FixtureFactoryHelper;
 
-$callback = function($index) {
+$fixture = new FixtureFactoryHelper;
+$fixture->setCount(10);
+$fixture->setCallback(function($index, FixtureFactoryHelper $fixtureFactory) {
     $username = 'user' . $index;
+    // каждый 3-й админ
+    $isAdmin = $fixtureFactory->ordIndex($index, 3) == 1;
     return [
         'id' => $index,
         'username' => $username,
@@ -13,8 +17,7 @@ $callback = function($index) {
         'enabled' => 1,
         'password' => '$2y$13$2BjMn.uhY8Yal6kICMoN.OuOIinRKmX7ld/sCJhGd6rpUjAR9d3DG',
         'last_login' => '2019-10-27 18:11:21',
-        'roles' => 'a:0:{}',
+        'roles' => $isAdmin ? 'a:2:{i:0;s:9:"ROLE_USER";i:1;s:10:"ROLE_ADMIN";}' : 'a:1:{i:0;s:9:"ROLE_USER";}',
     ];
-};
-
-return FixtureFactoryHelper::createCollection($callback, 10);
+});
+return $fixture->generateCollection();

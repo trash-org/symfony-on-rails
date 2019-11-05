@@ -2,12 +2,13 @@
 
 use App\Rails\Eloquent\Fixture\Helper\FixtureFactoryHelper;
 
-$callback = function($index) {
+$fixture = new FixtureFactoryHelper;
+$fixture->setCount(200);
+$fixture->setCallback(function($index, FixtureFactoryHelper $fixtureFactory) {
     return [
         'id' => $index,
         'title' => 'post ' . $index,
-        'category_id' => FixtureFactoryHelper::ord($index, 3),
+        'category_id' => $fixtureFactory->ordIndex($index, 3),
     ];
-};
-
-return FixtureFactoryHelper::createCollection($callback, 900);
+});
+return $fixture->generateCollection();

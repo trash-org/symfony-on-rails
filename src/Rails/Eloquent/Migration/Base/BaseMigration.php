@@ -3,19 +3,17 @@
 namespace App\Rails\Eloquent\Migration\Base;
 
 use App\Rails\Eloquent\Db\Traits\TableNameTrait;
-use Illuminate\Database\Capsule\Manager;
-use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Builder;
 
-abstract class BaseMigration extends Migration
+abstract class BaseMigration
 {
 
     use TableNameTrait;
 
-    protected $schema;
-
-    public function __construct()
-    {
-        $this->schema = Manager::schema($this->connectionName());
+    protected function runSqlQuery(Builder $schema, $sql) {
+        $connection = $schema->getConnection();
+        $rawSql = $connection->raw($sql);
+        $connection->select($rawSql);
     }
 
 }

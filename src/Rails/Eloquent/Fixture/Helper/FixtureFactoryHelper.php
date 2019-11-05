@@ -2,20 +2,75 @@
 
 namespace App\Rails\Eloquent\Fixture\Helper;
 
+use Closure;
+
 class FixtureFactoryHelper
 {
 
-    public static function ord($index, $count) {
-        $categoryId = ($index + $count - 1) % $count + 1;
-        return $categoryId;
+    private $startIndex = 1;
+    private $step = 1;
+    private $count;
+    private $callback;
+
+    public function getStartIndex(): int
+    {
+        return $this->startIndex;
     }
 
-    public static function createCollection($callback, $count, $startIndex = 1, $step = 1) {
+    public function setStartIndex(int $startIndex): void
+    {
+        $this->startIndex = $startIndex;
+    }
+
+    public function getStep(): int
+    {
+        return $this->step;
+    }
+
+    public function setStep(int $step): void
+    {
+        $this->step = $step;
+    }
+
+    public function getCount() : int
+    {
+        return $this->count;
+    }
+
+    public function setCount(int $count): void
+    {
+        $this->count = $count;
+    }
+
+    public function getCallback() : Closure
+    {
+        return $this->callback;
+    }
+
+    public function setCallback(Closure $callback): void
+    {
+        $this->callback = $callback;
+    }
+
+    /*public function __construct($count = 10)
+    {
+        $this->count = $count;
+    }*/
+
+    public function ordIndex($index, $count) {
+        return ($index + $count - 1) % $count + 1;
+    }
+
+    public function generateCollection() {
         $collection = [];
-        for ($i = $startIndex; $i <= $count; $i = $i + $step) {
-            $collection[] = $callback($i);
+        for ($index = $this->startIndex; $index <= $this->count; $index = $index + $this->step) {
+            $collection[] = $this->generateItem($index);
         }
         return $collection;
+    }
+
+    public function generateItem($index) {
+        return call_user_func_array($this->callback, [$index, $this]);
     }
 
 }
