@@ -2,10 +2,14 @@
 
 namespace App\Rails\Domain\Data;
 
+use App\Rails\Domain\Data\ArraySerializerHandlers\ArrayHandler;
+use App\Rails\Domain\Data\ArraySerializerHandlers\ObjectHandler;
+use App\Rails\Domain\Data\ArraySerializerHandlers\TimeHandler;
 use php7extension\core\web\enums\HttpHeaderEnum;
 use php7extension\yii\helpers\ArrayHelper;
 use Symfony\Component\Debug\Exception\FlattenException;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class JsonSerializer
 {
@@ -18,6 +22,7 @@ class JsonSerializer
             $response = new JsonResponse;
         }
         $this->response = $response;
+        //$this->response->headers->set(HttpHeaderEnum::CONTENT_TYPE, 'application/json');
     }
 
     public function serializeException(FlattenException $exception) {
@@ -66,21 +71,22 @@ class JsonSerializer
 
     public function setData($data) {
 
-        //$serializer = \JMS\Serializer\SerializerBuilder::create()->build();
-        //$rr = $serializer->serialize($data, 'json');
-//dd($rr);
-        /*$methods = get_class_methods($data);
-        foreach ($methods as &$method) {
-            $method = substr($method, 3);
-            $method = Inflector::camel2id($method);
+        /*$serializer = \JMS\Serializer\SerializerBuilder::create()->build();
+        $data = $serializer->serialize($data, 'json');
+        $this->response->setContent($data);*/
+
+        if($data instanceof Collection) {
+            $data = $data->toArray();
         }
-        $methods = array_unique($methods);*/
-
-        //$methods = EntityHelper::toArray($data);
-        //dd($methods);
-
         if(is_array($data) || is_object($data)) {
-            $data = ArrayHelper::toArray($data);
+            //$data = ArrayHelper::toArray($data);
+            $arraySerializer = new ArraySerializer([
+                ArrayHandler::class,
+                TimeHandler::class,
+                ObjectHandler::class,
+            ]);
+            $data = $arraySerializer->toArray($data);
+
         }
         $this->response->setData($data);
     }
