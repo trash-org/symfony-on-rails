@@ -11,7 +11,7 @@ use App\Rails\Eloquent\Fixture\Repository\FileRepository;
 require dirname(__DIR__).'/vendor/autoload.php';
 
 // todo: выпилить костыли (менеджер соединений создавать с помощью контейнера DI)
-// указываем путь конфига БД
+// читаем конфиг БД
 $connectionConfig = include (__DIR__ . '/routes/../../config/eloquent/connection.php');
 
 // создаем менеджер соединений Eloquent (глобально)
