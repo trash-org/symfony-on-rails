@@ -1,0 +1,35 @@
+#!/usr/bin/env php
+<?php
+
+use Symfony\Component\Console\Application;
+use App\Rails\Eloquent\Db\Helper\ManagerFactory;
+use App\Rails\Eloquent\Fixture\Command\ImportCommand;
+use App\Rails\Eloquent\Fixture\Service\FixtureService;
+use App\Rails\Eloquent\Fixture\Repository\DbRepository;
+use App\Rails\Eloquent\Fixture\Repository\FileRepository;
+
+require dirname(__DIR__).'/vendor/autoload.php';
+
+// todo: выпилить костыли (менеджер соединений создавать с помощью контейнера DI)
+// указываем путь конфига БД
+$connectionConfig = include (__DIR__ . '/routes/../../config/eloquent/connection.php');
+
+// создаем менеджер соединений Eloquent (глобально)
+ManagerFactory::createManager($connectionConfig);
+
+// указываем путь конфига фикстур
+FileRepository::$config = include (__DIR__ . '/routes/../../config/eloquent/fixture.php');
+
+// создаем консольное приложение
+$application = new Application();
+
+// создаем сервис "Фикстуры" с внедрением двух репозиториев
+$fixtureService = new FixtureService(new DbRepository, new FileRepository);
+
+// создаем контроллер
+$fixtureController = new ImportCommand('db:fixture:import', $fixtureService);
+
+// объявляем контроллер
+$application->add($fixtureController);
+
+$application->run();
