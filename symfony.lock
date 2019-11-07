@@ -248,6 +248,18 @@
     "php7extension/yii": {
         "version": "dev-master"
     },
+    "php7lab/domain": {
+        "version": "dev-master"
+    },
+    "php7lab/eloquent": {
+        "version": "dev-master"
+    },
+    "php7lab/rest": {
+        "version": "dev-master"
+    },
+    "php7lab/test": {
+        "version": "dev-master"
+    },
     "php7rails/app": {
         "version": "dev-master"
     },

@@ -2,7 +2,7 @@
 
 namespace Tests\Bundle\Article\Controller;
 
-use App\Rails\Test\BaseRestTest;
+use PhpLab\Test\BaseRestTest;
 use php7extension\core\web\enums\HttpMethodEnum;
 use php7extension\core\web\enums\HttpStatusCodeEnum;
 

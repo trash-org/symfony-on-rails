@@ -1,6 +1,6 @@
 <?php
 
-use App\Rails\Eloquent\Db\Helper\ManagerFactory;
+use PhpLab\Eloquent\Db\Helper\ManagerFactory;
 use php7rails\app\helpers\Constant;
 use Symfony\Component\Dotenv\Dotenv;
 

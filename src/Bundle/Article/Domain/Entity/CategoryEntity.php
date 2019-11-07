@@ -2,7 +2,7 @@
 
 namespace App\Bundle\Article\Domain\Entity;
 
-use App\Rails\Domain\Entity\BaseEntity;
+use PhpLab\Domain\Entity\BaseEntity;
 
 class CategoryEntity extends BaseEntity
 {

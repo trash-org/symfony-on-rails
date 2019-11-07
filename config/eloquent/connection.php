@@ -1,6 +1,6 @@
 <?php
 
-use App\Rails\Eloquent\Db\Enum\DbDriverEnum;
+use PhpLab\Eloquent\Db\Enum\DbDriverEnum;
 
 $map = [
     'article_post' => 'art_post',

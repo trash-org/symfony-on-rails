@@ -1,6 +1,6 @@
 <?php
 
-use App\Rails\Eloquent\Fixture\Helper\FixtureFactoryHelper;
+use PhpLab\Eloquent\Fixture\Helper\FixtureFactoryHelper;
 
 $fixture = new FixtureFactoryHelper;
 $fixture->setCount(30);

@@ -2,8 +2,8 @@
 
 namespace App\Bundle\Article\Domain\Migration;
 
-use App\Rails\Eloquent\Migration\Base\BaseCreateTableMigration;
-use App\Rails\Eloquent\Migration\Enum\ForeignActionEnum;
+use PhpLab\Eloquent\Migration\Base\BaseCreateTableMigration;
+use PhpLab\Eloquent\Migration\Enum\ForeignActionEnum;
 use Illuminate\Database\Schema\Blueprint;
 
 class m_2014_10_12_200000_create_post_table extends BaseCreateTableMigration

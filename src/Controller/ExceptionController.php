@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Rails\Rest\Lib\JsonRestSerializer;
-use App\Rails\Domain\Helper\RestApiHelper;
+use PhpLab\Rest\Lib\JsonRestSerializer;
+use PhpLab\Domain\Helper\RestApiHelper;
 use Symfony\Component\Debug\Exception\FlattenException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;

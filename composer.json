@@ -19,6 +19,12 @@
         "php7rails/domain": "dev-master",
         "php7tool/test": "dev-master",
         "php7tool/vendor": "dev-master",
+
+        "php7lab/domain": "dev-master",
+        "php7lab/eloquent": "dev-master",
+        "php7lab/rest": "dev-master",
+        "php7lab/test": "dev-master",
+
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/asset": "4.3.*",
         "symfony/console": "4.3.*",
@@ -101,6 +107,24 @@
             "type": "composer",
             "url": "https://asset-packagist.org"
         },
+
+        {
+            "type": "git",
+            "url": "https://github.com/php7lab/domain.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/php7lab/eloquent.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/php7lab/rest.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/php7lab/test.git"
+        },
+
         {
             "type": "git",
             "url": "https://github.com/php7tool/test.git"

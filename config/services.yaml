@@ -17,6 +17,10 @@ services:
         resource: '../src/*'
         exclude: '../src/{DependencyInjection,Entity,Migrations,Migration,Tests,Kernel.php}'
 
+    PhpLab\Eloquent\:
+        resource: '../vendor/php7lab/eloquent/src/*'
+        exclude: '../vendor/php7lab/eloquent/src/{DependencyInjection,Entity,Migrations,Migration,Tests,Kernel.php}'
+
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
     App\Controller\:

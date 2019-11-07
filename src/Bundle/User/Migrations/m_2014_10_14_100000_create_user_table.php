@@ -2,7 +2,7 @@
 
 namespace App\Bundle\User\Migrations;
 
-use App\Rails\Eloquent\Migration\Base\BaseCreateTableMigration;
+use PhpLab\Eloquent\Migration\Base\BaseCreateTableMigration;
 use Illuminate\Database\Schema\Blueprint;
 
 class m_2014_10_14_100000_create_user_table extends BaseCreateTableMigration
