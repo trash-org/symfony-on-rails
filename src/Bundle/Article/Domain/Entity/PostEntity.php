@@ -14,6 +14,11 @@ class PostEntity extends BaseEntity
     protected $created_at;
     protected $category;
 
+    public function __construct()
+    {
+        $this->created_at = new DateTime;
+    }
+
     public function setCreatedAt($value) {
         $this->created_at = new DateTime($value);
     }

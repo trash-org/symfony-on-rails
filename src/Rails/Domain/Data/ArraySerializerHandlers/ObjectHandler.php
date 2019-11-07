@@ -5,7 +5,7 @@ namespace App\Rails\Domain\Data\ArraySerializerHandlers;
 use App\Rails\Domain\Data\ArraySerializer;
 use php7extension\yii\helpers\ArrayHelper;
 
-class ObjectHandler
+class ObjectHandler implements SerializerHandlerInterface
 {
 
     public $properties = [];

@@ -3,9 +3,7 @@
 namespace App\Rails\Rest\Action;
 
 use App\Rails\Domain\Data\DataProvider;
-use App\Rails\Domain\Data\JsonSerializer;
-use App\Rails\Rest\Helper\RequestHelper;
-use php7rails\domain\data\GetParams;
+use App\Rails\Rest\Lib\JsonRestSerializer;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class IndexAction extends BaseAction
@@ -13,15 +11,13 @@ class IndexAction extends BaseAction
 
     public function run() : JsonResponse {
         $response = new JsonResponse;
-        $getParams = new GetParams();
-        $query = $getParams->getAllParams($this->request->query->all());
         $dp = new DataProvider([
             'service' => $this->service,
-            'query' => $query,
+            'query' => $this->query,
             'page' => $this->request->get("page", 1),
             'pageSize' => $this->request->get("per-page", 10),
         ]);
-        $serializer = new JsonSerializer($response);
+        $serializer = new JsonRestSerializer($response);
         $serializer->serializeDataProviderEntity($dp->getAll());
         return $response;
     }

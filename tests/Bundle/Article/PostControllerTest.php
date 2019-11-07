@@ -264,10 +264,6 @@ class PostControllerTest extends BaseRestTest
             HttpMethodEnum::PUT,
             HttpMethodEnum::DELETE,
             HttpMethodEnum::OPTIONS,
-            HttpMethodEnum::HEAD,
-            HttpMethodEnum::PATCH,
-            HttpMethodEnum::TRACE,
-            HttpMethodEnum::CONNECT,
         ]);
     }
 
