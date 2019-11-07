@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Migrations;
+namespace App\Bundle\User\Migrations;
 
 use App\Rails\Eloquent\Migration\Base\BaseCreateTableMigration;
 use Illuminate\Database\Schema\Blueprint;

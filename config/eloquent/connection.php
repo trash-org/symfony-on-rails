@@ -17,7 +17,7 @@ return [
         'mysqlServer' => [
             'driver' => DbDriverEnum::MYSQL,
             'host' => 'localhost',
-            'database' => 'symfony4',
+            'database' => 'symfony-on-rails',
             'username' => 'root',
             'map' => $map,
         ],
@@ -29,7 +29,7 @@ return [
         'pgsqlServer' => [
             'driver' => DbDriverEnum::PGSQL,
             'host' => 'localhost',
-            'database' => 'symfony4',
+            'database' => 'symfony-on-rails',
             'username' => 'postgres',
             'password' => 'postgres',
             'map' => $map,
