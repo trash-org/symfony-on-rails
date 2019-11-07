@@ -2,9 +2,10 @@
 
 namespace App\Controller;
 
-use App\Rails\Domain\Data\JsonSerializer;
+use App\Rails\Rest\Lib\JsonRestSerializer;
 use App\Rails\Domain\Helper\RestApiHelper;
 use Symfony\Component\Debug\Exception\FlattenException;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Log\DebugLoggerInterface;
 
@@ -14,9 +15,10 @@ class ExceptionController extends \Symfony\Bundle\TwigBundle\Controller\Exceptio
     public function showException(Request $request, FlattenException $exception, DebugLoggerInterface $logger = null) {
         $isApi = RestApiHelper::parseVersionFromUrl($request->getRequestUri());
         if($isApi) {
-            $serializer = new JsonSerializer;
+            $response = new JsonResponse;
+            $serializer = new JsonRestSerializer($response);
             $serializer->serializeException($exception);
-            return $serializer->getResponse();
+            return $response;
         } else {
             return parent::showAction($request,  $exception, $logger);
         }

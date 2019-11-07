@@ -4,7 +4,7 @@ namespace App\Rails\Domain\Data\ArraySerializerHandlers;
 
 use App\Rails\Domain\Data\ArraySerializer;
 
-class ArrayHandler
+class ArrayHandler implements SerializerHandlerInterface
 {
 
     public $properties = [];

@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Rails\Domain\Data\ArraySerializerHandlers;
+namespace App\Rails\Rest\Lib\ArraySerializerHandlers;
 
 use App\Rails\Domain\Data\ArraySerializer;
+use App\Rails\Domain\Data\ArraySerializerHandlers\SerializerHandlerInterface;
 use DateTime;
 
-class TimeHandler
+class TimeHandler implements SerializerHandlerInterface
 {
 
     public $properties = [];
