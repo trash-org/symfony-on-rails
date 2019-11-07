@@ -2,6 +2,7 @@
 
 namespace App\Rails\Eloquent\Migration\Repository;
 
+use App\Rails\Eloquent\Db\Helper\ManagerFactory;
 use App\Rails\Eloquent\Migration\Entity\MigrationEntity;
 use php7extension\yii\helpers\ArrayHelper;
 use php7extension\yii\helpers\FileHelper;
@@ -11,7 +12,8 @@ class SourceRepository
 
     public static function getAll()
     {
-        $directories = self::getConfig()['directory'];
+        $config = ManagerFactory::getConfig(ManagerFactory::MIGRATE);
+        $directories = $config['directory'];
         $classes = [];
         foreach ($directories as $dir) {
             $newClasses = self::scanDir($dir);
@@ -24,12 +26,6 @@ class SourceRepository
     {
         $rootDir = __DIR__ . '/../../../../../';
         return $rootDir;
-    }
-
-    private static function getConfig()
-    {
-        $rootDir = self::getRootPath();
-        return include($rootDir . 'config/eloquent/migrate.php');
     }
 
     private static function scanDir($dir)

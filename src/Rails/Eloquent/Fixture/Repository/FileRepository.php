@@ -4,6 +4,7 @@ namespace App\Rails\Eloquent\Fixture\Repository;
 
 use App\Rails\Domain\Data\Collection;
 use App\Rails\Domain\Repository\BaseRepository;
+use App\Rails\Eloquent\Db\Helper\ManagerFactory;
 use App\Rails\Eloquent\Fixture\Entity\FixtureEntity;
 use php7extension\core\store\StoreFile;
 use php7extension\yii\helpers\ArrayHelper;
@@ -13,15 +14,13 @@ class FileRepository extends BaseRepository
 {
 
     public $entityClass = FixtureEntity::class;
-    public static $config = [
-        'directory' => [],
-    ];
     public $extension = 'php';
 
     public function allTables() : Collection
     {
         $array = [];
-        foreach (self::$config['directory'] as $dir) {
+        $config = ManagerFactory::getConfig(ManagerFactory::FIXTURE);
+        foreach ($config['directory'] as $dir) {
             $fixtureArray = $this->scanDir(FileHelper::rootPath() . '/' . $dir);
             $array = ArrayHelper::merge($array, $fixtureArray);
         }
@@ -45,9 +44,10 @@ class FileRepository extends BaseRepository
         $collection = $this->allTables();
         $collection = $collection->where('name', '=', $name);
         if($collection->count() < 1) {
+            $config = ManagerFactory::getConfig(ManagerFactory::FIXTURE);
             return $this->forgeEntity([
                 'name' => $name,
-                'fileName' => self::$config['directory']['default'] . '/' . $name . '.' . $this->extension,
+                'fileName' => $config['directory']['default'] . '/' . $name . '.' . $this->extension,
             ]);
         }
 

@@ -24,11 +24,10 @@ $_SERVER['APP_ENV'] = $_ENV['APP_ENV'] = ($_SERVER['APP_ENV'] ?? $_ENV['APP_ENV'
 $_SERVER['APP_DEBUG'] = $_SERVER['APP_DEBUG'] ?? $_ENV['APP_DEBUG'] ?? 'prod' !== $_SERVER['APP_ENV'];
 $_SERVER['APP_DEBUG'] = $_ENV['APP_DEBUG'] = (int) $_SERVER['APP_DEBUG'] || filter_var($_SERVER['APP_DEBUG'], FILTER_VALIDATE_BOOLEAN) ? '1' : '0';
 
-// todo: выпилить эти костыли
-$connectionConfig = include (__DIR__ . '/routes/../../config/eloquent/connection.php');
+// todo: выпилить костыли (менеджер соединений создавать с помощью контейнера DI)
+// читаем конфиг БД и создаем менеджер соединений Eloquent (глобально)
+$connectionConfig = include (__DIR__ . '/../config/eloquent/main.php');
 ManagerFactory::createManager($connectionConfig);
-
-\App\Rails\Eloquent\Fixture\Repository\FileRepository::$config = include (__DIR__ . '/routes/../../config/eloquent/fixture.php');
 
 /** Подключение рельсов */
 include_once(__DIR__ . '/../vendor/php7rails/app/src/libs/Boot.php');

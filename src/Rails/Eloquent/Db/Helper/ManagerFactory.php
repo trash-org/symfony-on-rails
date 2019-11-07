@@ -10,7 +10,25 @@ use php7extension\yii\helpers\FileHelper;
 class ManagerFactory
 {
 
-    public static function createManager(array $config) : Manager {
+    const CONNECTION = 'connection';
+    const FIXTURE = 'fixture';
+    const MIGRATE = 'migrate';
+
+    private static $config;
+
+    public static function setConfig($name, $config) {
+        ArrayHelper::setValue(self::$config, $name, $config);
+    }
+
+    public static function getConfig($name = null) {
+        return ArrayHelper::getValue(self::$config, $name);
+    }
+
+    public static function createManager(array $mainConfig = null) : Manager {
+        if($mainConfig && empty(self::$config)) {
+            self::$config = $mainConfig;
+        }
+        $config = self::getConfig(self::CONNECTION);
         $connections = self::getConnections($config);
         $capsule = new Manager;
         $capsule->setAsGlobal();
@@ -23,7 +41,7 @@ class ManagerFactory
     }
 
     /**
-     * Страховка наличия файла БД SQLite
+     * Страховка наличия файла БД SQLite (todo: костыль)
      *
      * Если файл БД не создан, то создает пустой файл
      *

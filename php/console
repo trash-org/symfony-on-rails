@@ -3,36 +3,54 @@
 
 use Symfony\Component\Console\Application;
 use App\Rails\Eloquent\Db\Helper\ManagerFactory;
+
 use App\Rails\Eloquent\Fixture\Command\ImportCommand;
 use App\Rails\Eloquent\Fixture\Command\ExportCommand;
 use App\Rails\Eloquent\Fixture\Service\FixtureService;
 use App\Rails\Eloquent\Fixture\Repository\DbRepository;
 use App\Rails\Eloquent\Fixture\Repository\FileRepository;
 
-require dirname(__DIR__).'/vendor/autoload.php';
+use App\Rails\Eloquent\Migration\Service\MigrationService;
+use App\Rails\Eloquent\Migration\Repository\HistoryRepository;
+use App\Rails\Eloquent\Migration\Repository\SourceRepository;
+use App\Rails\Eloquent\Migration\Command\UpCommand;
+use App\Rails\Eloquent\Migration\Command\DownCommand;
+
+use App\Rails\Eloquent\Db\Command\DeleteAllTablesCommand;
+
+require __DIR__ . '/../vendor/autoload.php';
 
 // todo: выпилить костыли (менеджер соединений создавать с помощью контейнера DI)
-// читаем конфиг БД
-$connectionConfig = include (__DIR__ . '/routes/../../config/eloquent/connection.php');
-
-// создаем менеджер соединений Eloquent (глобально)
+// читаем конфиг БД и создаем менеджер соединений Eloquent (глобально)
+$connectionConfig = include (__DIR__ . '/../config/eloquent/main.php');
 ManagerFactory::createManager($connectionConfig);
 
-// указываем путь конфига фикстур
-FileRepository::$config = include (__DIR__ . '/routes/../../config/eloquent/fixture.php');
-
 // создаем консольное приложение
-$application = new Application();
+$application = new Application;
 
 // создаем сервис "Фикстуры" с внедрением двух репозиториев
 $fixtureService = new FixtureService(new DbRepository, new FileRepository);
 
 // создаем и объявляем команду "Экспорт фикстур"
-$exportController = new ExportCommand('db:fixture:export', $fixtureService);
-$application->add($exportController);
+$exportCommand = new ExportCommand(ExportCommand::getDefaultName(), $fixtureService);
+$application->add($exportCommand);
 
 // создаем и объявляем команду "Импорт фикстур"
-$importController = new ImportCommand('db:fixture:import', $fixtureService);
-$application->add($importController);
+$importCommand = new ImportCommand(ImportCommand::getDefaultName(), $fixtureService);
+$application->add($importCommand);
+
+$migrationService = new MigrationService(new SourceRepository, new HistoryRepository);
+
+// создаем и объявляем команду "UP"
+$upCommand = new UpCommand(UpCommand::getDefaultName(), $migrationService);
+$application->add($upCommand);
+
+// создаем и объявляем команду "Down"
+$downCommand = new DownCommand(DownCommand::getDefaultName(), $migrationService);
+$application->add($downCommand);
+
+// создаем и объявляем команду "deleteAllTables"
+$deleteAllTablesCommand = new DeleteAllTablesCommand(DeleteAllTablesCommand::getDefaultName(), $fixtureService);
+$application->add($deleteAllTablesCommand);
 
 $application->run();
