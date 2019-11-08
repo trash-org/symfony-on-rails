@@ -1,4 +1,7 @@
 @echo off
-cd ../../..
+
+set rootDir="%~dp0/../../.."
+
+cd %rootDir%
 phpunit
 pause

@@ -1,5 +1,9 @@
 @echo off
-cd ../..
+
+set rootDir="%~dp0/../../.."
+set eloquentBinDir=%rootDir%/vendor/php7lab/eloquent/bin
+
+cd %eloquentBinDir%
 php console db:delete-all-tables
 pause
 
