@@ -7,7 +7,8 @@
 /public/bundles/
 /var/
 /vendor/
-/.idea/
+/.idea/*
+!/.idea/codeStyles/
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
