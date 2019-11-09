@@ -9,15 +9,18 @@ if ($url === false) {
 }
 $url = array_map('rawurldecode', $url);*/
 
-$map = [
+/*$map = [
     'article_post' => 'art_post',
     'article_category' => 'art_category',
     'eq_migration' => 'migration',
     //'fos_user' => 'user',
-];
+];*/
+
+$map = include __DIR__ . '/map.php';
 
 return [
-    'defaultConnection' => 'mysqlServer',
+    'map' => $map,
+    /*'defaultConnection' => 'mysqlServer',
     //'defaultConnection' => 'sqliteServer',
     //'defaultConnection' => 'pgsqlServer',
     'connections' => [
@@ -41,5 +44,5 @@ return [
             'password' => 'postgres',
             'map' => $map,
         ],
-    ],
+    ],*/
 ];
