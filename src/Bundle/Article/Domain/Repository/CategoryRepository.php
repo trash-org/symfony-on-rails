@@ -4,9 +4,9 @@ namespace App\Bundle\Article\Domain\Repository;
 
 use App\Bundle\Article\Domain\Entity\CategoryEntity;
 use PhpLab\Domain\Interfaces\GetEntityClassInterface;
-use PhpLab\Eloquent\Db\Repository\BaseDbCrudRepository;
+use PhpLab\Eloquent\Db\Repository\BaseEloquentCrudRepository;
 
-class CategoryRepository extends BaseDbCrudRepository implements /*PostRepositoryInterface,*/ GetEntityClassInterface
+class CategoryRepository extends BaseEloquentCrudRepository implements GetEntityClassInterface
 {
 
     protected $tableName = 'article_category';

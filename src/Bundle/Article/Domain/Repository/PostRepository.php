@@ -6,9 +6,9 @@ use App\Bundle\Article\Domain\Entity\PostEntity;
 use App\Bundle\Article\Domain\Interfaces\PostRepositoryInterface;
 use php7rails\domain\enums\RelationEnum;
 use PhpLab\Domain\Interfaces\GetEntityClassInterface;
-use PhpLab\Eloquent\Db\Repository\BaseDbCrudRepository;
+use PhpLab\Eloquent\Db\Repository\BaseEloquentCrudRepository;
 
-class PostRepository extends BaseDbCrudRepository implements PostRepositoryInterface, GetEntityClassInterface
+class PostRepository extends BaseEloquentCrudRepository implements PostRepositoryInterface, GetEntityClassInterface
 {
 
     protected $tableName = 'article_post';
