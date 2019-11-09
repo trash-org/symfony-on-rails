@@ -8,5 +8,4 @@ interface PostRepositoryInterface extends CrudServiceInterface
 {
 
 
-
 }

@@ -2,7 +2,6 @@
 
 namespace App\Bundle\Rails\Web\Controller;
 
-use php7extension\core\controller\base\BaseWebController;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class VendorController extends AbstractController
@@ -10,19 +9,22 @@ class VendorController extends AbstractController
 
     protected $layoutRender = 'layout/main';
 
-    public function actionAllChanged() {
+    public function actionAllChanged()
+    {
         $all = \App::$domain->vendor->info->allChanged();
         dd($all);
         return $this->render('sandbox/index', ['data' => $all]);
     }
 
-    public function actionAllForRelease() {
+    public function actionAllForRelease()
+    {
         $all = \App::$domain->vendor->info->allForRelease();
         dd($all);
         return $this->render('sandbox/index', ['data' => $all]);
     }
 
-    public function actionAllVersion() {
+    public function actionAllVersion()
+    {
         $all = \App::$domain->vendor->info->allVersion();
         dd($all);
         return $this->render('sandbox/index', ['data' => $all]);

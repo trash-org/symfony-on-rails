@@ -2,22 +2,21 @@
 
 namespace App\Bundle\Rails\Web\Controller;
 
-use function GuzzleHttp\Promise\settle;
-use function GuzzleHttp\Promise\unwrap;
-use GuzzleHttp\Psr7\Response;
-use php7extension\core\controller\base\BaseWebController;
 use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Response;
 use php7extension\core\develop\helpers\Benchmark;
 use php7extension\core\web\enums\HttpHeaderEnum;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\HeaderUtils;
+use function GuzzleHttp\Promise\settle;
 
 class GuzzleHttpController extends AbstractController
 {
 
     protected $layoutRender = 'layout/main';
 
-    public function actionIndex() {
+    public function actionIndex()
+    {
         $client = new Client;
         $host = \App::$domain->component->request->getSchemeAndHttpHost();
         //dd($host);
@@ -32,7 +31,8 @@ class GuzzleHttpController extends AbstractController
         return $this->render('default/index');
     }
 
-    public function actionAuth() {
+    public function actionAuth()
+    {
         $client = new Client;
         $response = $client->request('POST', 'http://api.union.project/v1/auth', [
             'form_params' => [
@@ -40,7 +40,7 @@ class GuzzleHttpController extends AbstractController
                 'password' => 'Wwwqqq111',
             ],
             'headers' => [
-               'Accept' => 'application/json',
+                'Accept' => 'application/json',
                 //'Content-type' => 'application/json',
             ],
         ]);
@@ -49,7 +49,8 @@ class GuzzleHttpController extends AbstractController
         return $this->render('default/index');
     }
 
-    public function actionStress() {
+    public function actionStress()
+    {
         $client = new Client;
         $options = [
             'headers' => [
@@ -68,9 +69,9 @@ class GuzzleHttpController extends AbstractController
         //$url = 'http://api.union.project/v1/auth';
 
         $commonRuntime = 0;
-        for($k=0; $k<$totalCount; $k++) {
+        for ($k = 0; $k < $totalCount; $k++) {
             $promises = [];
-            for($i=0; $i<$queryCount; $i++) {
+            for ($i = 0; $i < $queryCount; $i++) {
                 $promises['query_' . $i] = $client->getAsync($url, $options);
             }
 
@@ -107,12 +108,13 @@ class GuzzleHttpController extends AbstractController
         return $this->render('default/index');
     }
 
-    private function getData(Response $response) {
+    private function getData(Response $response)
+    {
         $contentType = $response->getHeaderLine(HttpHeaderEnum::CONTENT_TYPE);
         $contentTypeParts = HeaderUtils::split($contentType, ';=');
         $assoc = HeaderUtils::combine($contentTypeParts);
         $content = $response->getBody()->getContents();
-        if(!empty($assoc['application/json'])) {
+        if (!empty($assoc['application/json'])) {
             $content = json_decode($content);
         }
         return $content;

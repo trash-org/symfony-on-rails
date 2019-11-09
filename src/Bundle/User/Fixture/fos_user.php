@@ -4,7 +4,7 @@ use PhpLab\Eloquent\Fixture\Helper\FixtureFactoryHelper;
 
 $fixture = new FixtureFactoryHelper;
 $fixture->setCount(10);
-$fixture->setCallback(function($index, FixtureFactoryHelper $fixtureFactory) {
+$fixture->setCallback(function ($index, FixtureFactoryHelper $fixtureFactory) {
     $username = 'user' . $index;
     // каждый 3-й админ
     $isAdmin = $fixtureFactory->ordIndex($index, 3) == 1;

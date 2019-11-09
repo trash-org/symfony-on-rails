@@ -2,8 +2,8 @@
 
 namespace App\Bundle\Article\Api\Controller;
 
-use PhpLab\Rest\Controller\BaseCrudApiController;
 use App\Bundle\Article\Domain\Interfaces\PostServiceInterface;
+use PhpLab\Rest\Controller\BaseCrudApiController;
 
 class ArticleController extends BaseCrudApiController
 {
