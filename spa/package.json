@@ -24,7 +24,7 @@
     "director": "^1.2.6",
     "gulp-concat": "^2.6.1",
     "highlight.js": "^9.15.10",
-    "jquery": "^2.2.4",
+    "jquery": "^3.4.1",
     "jquery-ui": "github:components/jqueryui#1.11.4",
     "jrails": "0.0.4",
     "marked": "^0.7.0",
