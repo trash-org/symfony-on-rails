@@ -1,33 +1,32 @@
-index:
-    connection:
-        map:
-            article_category: art_category
-            article_post: art_post
-            eq_migration: migration
+connection:
+    map:
+        article_category: art_category
+        article_post: art_post
+        eq_migration: migration
 #        defaultConnection: mysqlServer
 #        defaultConnection: sqliteServer
-        defaultConnection: pgsqlServer
-        connections:
-            mysqlServer:
-                driver: mysql
-                host: localhost
-                database: symfony-on-rails
-                username: root
-            pgsqlServer:
-                driver: pgsql
-                host: localhost
-                database: symfony-on-rails
-                username: postgres
-                password: postgres
-            sqliteServer:
-                driver: sqlite
-                database: /var/sqlite/default.sqlite
-    fixture:
-        directory:
-            - /src/Fixture
-            - /src/Bundle/Article/Domain/Fixture
-            - /src/Bundle/User/Fixture
-    migrate:
-        directory:
-            - /src/Bundle/Article/Domain/Migration
-            - /src/Bundle/User/Migrations
+    defaultConnection: pgsqlServer
+    connections:
+        mysqlServer:
+            driver: mysql
+            host: localhost
+            database: symfony-on-rails
+            username: root
+        pgsqlServer:
+            driver: pgsql
+            host: localhost
+            database: symfony-on-rails
+            username: postgres
+            password: postgres
+        sqliteServer:
+            driver: sqlite
+            database: /var/sqlite/default.sqlite
+fixture:
+    directory:
+        - /src/Fixture
+        - /src/Bundle/Article/Domain/Fixture
+        - /src/Bundle/User/Fixture
+migrate:
+    directory:
+        - /src/Bundle/Article/Domain/Migration
+        - /src/Bundle/User/Migrations
