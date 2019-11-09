@@ -19,7 +19,7 @@ services:
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
-    App\Controller\:
+    PhpLab\Rest\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
@@ -44,7 +44,7 @@ services:
         arguments:
             $mainConfigFile: '%env(ELOQUENT_CONFIG_FILE)%'
 
-    App\Controller\ExceptionController:
+    PhpLab\Rest\Controller\ExceptionController:
         public: true
         arguments:
             $debug: '%kernel.debug%'

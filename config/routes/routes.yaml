@@ -2,7 +2,7 @@
 # main page
 default:
     path: /
-    controller: App\Controller\MainController::index
+    controller: App\Bundle\Dashboard\Web\Controllers\MainController::index
 
 app_rails:
     resource: "../../src/Bundle/Rails/Web/config/routes.yaml"
