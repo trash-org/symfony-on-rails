@@ -54,7 +54,7 @@ class HelpersExtension extends AbstractExtension
     {
         $code = '';
         foreach ($this->script as $script) {
-            $code .= '<script src="'.$script['path'].'"></script>';
+            $code .= '<script src="' . $script['path'] . '"></script>';
         }
         return $code;
     }
@@ -71,7 +71,7 @@ class HelpersExtension extends AbstractExtension
     {
         $code = '';
         foreach ($this->style as $style) {
-            $code .= '<link href="'.$style['path'].'" rel="stylesheet">';
+            $code .= '<link href="' . $style['path'] . '" rel="stylesheet">';
         }
         return $code;
     }

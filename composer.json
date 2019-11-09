@@ -8,7 +8,6 @@
         "friendsofsymfony/rest-bundle": "^2.5",
         "friendsofsymfony/user-bundle": "^2.1",
         "guzzlehttp/guzzle": "^6.3",
-        "illuminate/database": "^6.3",
         "jms/serializer-bundle": "^3.4",
         "php7extension/bundle": "dev-master",
         "php7extension/core": "dev-master",

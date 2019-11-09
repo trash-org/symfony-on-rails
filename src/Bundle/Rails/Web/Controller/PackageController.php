@@ -2,9 +2,6 @@
 
 namespace App\Bundle\Rails\Web\Controller;
 
-use php7extension\core\controller\base\BaseController;
-use php7extension\core\controller\base\BaseWebController;
-use php7rails\domain\data\Query;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PackageController extends AbstractController
@@ -12,25 +9,29 @@ class PackageController extends AbstractController
 
     protected $layoutRender = 'layout/main';
 
-    public function actionGroups() {
+    public function actionGroups()
+    {
         $all = \App::$domain->package->group->all();
         dd($all);
         //return $this->render('sandbox/index', ['data' => $all]);
     }
 
-    public function actionOneGroup() {
+    public function actionOneGroup()
+    {
         $all = \App::$domain->package->group->oneByName('php7rails');
         dd($all);
         return $this->render('sandbox/index', ['data' => $all]);
     }
 
-    public function actionPackages() {
+    public function actionPackages()
+    {
         $all = \App::$domain->package->package->all();
         dd($all);
         return $this->render('sandbox/index', ['data' => $all]);
     }
 
-    public function actionOnePackage() {
+    public function actionOnePackage()
+    {
         $all = \App::$domain->package->package->oneById('php7rails/app');
         dd($all);
         return $this->render('sandbox/index', ['data' => $all]);

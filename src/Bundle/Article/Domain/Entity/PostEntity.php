@@ -2,8 +2,8 @@
 
 namespace App\Bundle\Article\Domain\Entity;
 
-use PhpLab\Domain\Entity\BaseEntity;
 use DateTime;
+use PhpLab\Domain\Entity\BaseEntity;
 
 class PostEntity extends BaseEntity
 {
@@ -19,7 +19,8 @@ class PostEntity extends BaseEntity
         $this->created_at = new DateTime;
     }
 
-    public function setCreatedAt($value) {
+    public function setCreatedAt($value)
+    {
         $this->created_at = new DateTime($value);
     }
 
