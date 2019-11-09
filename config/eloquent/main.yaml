@@ -5,22 +5,22 @@ connection:
         eq_migration: migration
 #        defaultConnection: mysqlServer
 #        defaultConnection: sqliteServer
-    defaultConnection: pgsqlServer
-    connections:
-        mysqlServer:
-            driver: mysql
-            host: localhost
-            database: symfony-on-rails
-            username: root
-        pgsqlServer:
-            driver: pgsql
-            host: localhost
-            database: symfony-on-rails
-            username: postgres
-            password: postgres
-        sqliteServer:
-            driver: sqlite
-            database: /var/sqlite/default.sqlite
+#    defaultConnection: pgsqlServer
+#    connections:
+#        mysqlServer:
+#            driver: mysql
+#            host: localhost
+#            database: symfony-on-rails
+#            username: root
+#        pgsqlServer:
+#            driver: pgsql
+#            host: localhost
+#            database: symfony-on-rails
+#            username: postgres
+#            password: postgres
+#        sqliteServer:
+#            driver: sqlite
+#            database: /var/sqlite/default.sqlite
 fixture:
     directory:
         - /src/Fixture
