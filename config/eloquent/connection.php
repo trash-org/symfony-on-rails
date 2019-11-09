@@ -2,14 +2,7 @@
 
 use PhpLab\Eloquent\Db\Enum\DbDriverEnum;
 
-/*$map = [
-    'article_post' => 'art_post',
-    'article_category' => 'art_category',
-    'eq_migration' => 'migration',
-    //'fos_user' => 'user',
-];*/
 
-$map = include __DIR__ . '/map.php';
 
 return [
     'map' => $map,
