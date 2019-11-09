@@ -39,7 +39,7 @@ class HelpersExtension extends AbstractExtension
 
     public function asset($path, $param = null)
     {
-        return $this->assetsService->getAssetUrl($path, $param);
+        return $path;
     }
 
     public function script($path, $attributes = [])
@@ -54,7 +54,7 @@ class HelpersExtension extends AbstractExtension
     {
         $code = '';
         foreach ($this->script as $script) {
-            $code .= '<script src="' . $script['path'] . '"></script>';
+            $code .= '<script src="' . $this->asset($script['path']) . '"></script>';
         }
         return $code;
     }
@@ -71,7 +71,7 @@ class HelpersExtension extends AbstractExtension
     {
         $code = '';
         foreach ($this->style as $style) {
-            $code .= '<link href="' . $style['path'] . '" rel="stylesheet">';
+            $code .= '<link href="' . $this->asset($style['path']) . '" rel="stylesheet">';
         }
         return $code;
     }
