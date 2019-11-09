@@ -1,16 +1,13 @@
 <?php
 
-return [
-	[
-		'id' => 1,
-		'title' => '111',
-	],
-	[
-		'id' => 2,
-		'title' => '222',
-	],
-	[
-		'id' => 3,
-		'title' => '333',
-	],
-];
+use PhpLab\Eloquent\Fixture\Helper\FixtureFactoryHelper;
+
+$fixture = new FixtureFactoryHelper;
+$fixture->setCount(30);
+$fixture->setCallback(function ($index, FixtureFactoryHelper $fixtureFactory) {
+    return [
+        'id' => $index,
+        'title' => 'category ' . $index,
+    ];
+});
+return $fixture->generateCollection();

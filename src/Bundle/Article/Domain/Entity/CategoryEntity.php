@@ -2,10 +2,12 @@
 
 namespace App\Bundle\Article\Domain\Entity;
 
-class CategoryEntity
+use PhpLab\Domain\Entity\BaseEntity;
+
+class CategoryEntity extends BaseEntity
 {
 
-    public $id;
-    public $title;
+    protected $id;
+    protected $title;
 
 }

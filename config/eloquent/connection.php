@@ -1,33 +1,34 @@
 <?php
 
-use App\Rails\Eloquent\Db\Enum\DbDriverEnum;
+use PhpLab\Eloquent\Db\Enum\DbDriverEnum;
+
+
 
 return [
-    'defaultConnection' => 'mysqlServer',
+    'map' => $map,
+    /*'defaultConnection' => 'mysqlServer',
     //'defaultConnection' => 'sqliteServer',
     //'defaultConnection' => 'pgsqlServer',
     'connections' => [
         'mysqlServer' => [
             'driver' => DbDriverEnum::MYSQL,
             'host' => 'localhost',
-            'database' => 'symfony4',
+            'database' => 'symfony-on-rails',
             'username' => 'root',
-            'map' => [
-                'article_post' => 'art_post',
-                'article_category' => 'art_category',
-                'eq_migration' => 'migration',
-            ],
+            'map' => $map,
         ],
         'sqliteServer' => [
             'driver' => DbDriverEnum::SQLITE,
             'database' => __DIR__ . '/../../var/sqlite/default.sqlite',
+            'map' => $map,
         ],
         'pgsqlServer' => [
             'driver' => DbDriverEnum::PGSQL,
             'host' => 'localhost',
-            'database' => 'symfony4',
+            'database' => 'symfony-on-rails',
             'username' => 'postgres',
             'password' => 'postgres',
+            'map' => $map,
         ],
-    ],
+    ],*/
 ];

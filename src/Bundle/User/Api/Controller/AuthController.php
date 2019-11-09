@@ -4,14 +4,11 @@ namespace App\Bundle\User\Api\Controller;
 
 use App\Bundle\User\Domain\Form\AuthForm;
 use App\Bundle\User\Domain\Service\AuthService;
-use php7extension\core\exceptions\NotFoundException;
 use php7extension\core\web\enums\HttpHeaderEnum;
 use php7extension\yii\helpers\ArrayHelper;
-use php7rails\domain\exceptions\UnprocessableEntityHttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends AbstractController
 {

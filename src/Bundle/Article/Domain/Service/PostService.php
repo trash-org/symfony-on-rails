@@ -4,8 +4,8 @@ namespace App\Bundle\Article\Domain\Service;
 
 use App\Bundle\Article\Domain\Interfaces\PostRepositoryInterface;
 use App\Bundle\Article\Domain\Interfaces\PostServiceInterface;
-use App\Rails\Domain\Service\BaseCrudService;
-use App\Rails\Domain\Interfaces\GetEntityClassInterface;
+use PhpLab\Domain\Interfaces\GetEntityClassInterface;
+use PhpLab\Domain\Service\BaseCrudService;
 
 /**
  * Class PostService

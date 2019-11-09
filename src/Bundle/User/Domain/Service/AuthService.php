@@ -8,10 +8,11 @@ use App\Bundle\User\Domain\Form\AuthForm;
 class AuthService
 {
 
-    public function authentication(AuthForm $form) : Identity {
+    public function authentication(AuthForm $form): Identity
+    {
         $identity = new Identity;
         $identity->id = 1;
-        $identity->login = $form->login;
+        $identity->login = 'admin';
         $identity->token = '1234567890987654321';
         return $identity;
     }

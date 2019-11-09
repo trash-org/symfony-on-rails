@@ -3,7 +3,6 @@
 namespace App\Bundle\Rails\Web\Controller;
 
 use App;
-use php7extension\core\controller\base\BaseWebController;
 use php7extension\core\develop\helpers\Benchmark;
 use php7extension\crypt\domain\entities\JwtEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,7 +12,8 @@ class JwtController extends AbstractController
 
     protected $layoutRender = 'layout/main';
 
-    public function actionIndex() {
+    public function actionIndex()
+    {
         $jwtEntity = new JwtEntity;
         $jwtEntity->subject = [
             'id' => 123456,

@@ -10,18 +10,20 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class RailsController extends AbstractController
 {
 
-    public function actionIndex() {
+    public function actionIndex()
+    {
         return $this->render('rails/index.html.twig', [
             //'number' => $number,
         ]);
     }
 
-    public function actionDb() {
+    public function actionDb()
+    {
         $queriesCount = 50;
         $query = 'SELECT * FROM "common"."migration" LIMIT 100';
 
         Benchmark::begin('db_test');
-        for ($i = 0; $i <= $queriesCount; $i ++) {
+        for ($i = 0; $i <= $queriesCount; $i++) {
             $results = \App::$domain->db->main->createCommand($query)->queryAll();
         }
         Benchmark::end('db_test');
@@ -35,7 +37,8 @@ class RailsController extends AbstractController
         return $this->render('default/index');
     }
 
-    public function actionRbacRoles() {
+    public function actionRbacRoles()
+    {
         $data = \App::$domain->rbac->role->all();
         //dd($data);
         $response = new JsonResponse();
@@ -43,7 +46,8 @@ class RailsController extends AbstractController
         return $response;
     }
 
-    public function actionSecurity() {
+    public function actionSecurity()
+    {
 
         $str = \App::$container->security->generateRandomString();
         dd($str);

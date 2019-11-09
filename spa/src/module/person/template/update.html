@@ -1,0 +1,46 @@
+<form>
+    <div class="form-group" v-bind:class="{ 'has-error': errors.first_name }">
+        <label>first_name:</label>
+        <input type="text" class="form-control" v-model="entity.first_name">
+        <div class="invalid-feedback text-error">
+            {{ errors.first_name }}
+        </div>
+    </div>
+    <div class="form-group" v-bind:class="{ 'has-error': errors.middle_name }">
+        <label>middle_name:</label>
+        <input type="text" class="form-control" v-model="entity.middle_name">
+        <div class="invalid-feedback text-error">
+            {{ errors.middle_name }}
+        </div>
+    </div>
+    <div class="form-group" v-bind:class="{ 'has-error': errors.last_name }">
+        <label>last_name:</label>
+        <input type="text" class="form-control" v-model="entity.last_name">
+        <div class="invalid-feedback text-error">
+            {{ errors.last_name }}
+        </div>
+    </div>
+    <div class="form-group" v-bind:class="{ 'has-error': errors.birthday }">
+        <label>birthday:</label>
+        <input type="text" class="form-control" v-model="entity.birthday">
+        <div class="invalid-feedback text-error">
+            {{ errors.birthday }}
+        </div>
+    </div>
+    <div class="form-group" v-bind:class="{ 'has-error': errors.code }">
+        <label>code:</label>
+        <input type="text" class="form-control" v-model="entity.code">
+        <div class="invalid-feedback text-error">
+            {{ errors.code }}
+        </div>
+    </div>
+    <div class="form-group" v-bind:class="{ 'has-error': errors.email }">
+        <label>email:</label>
+        <input type="text" class="form-control" v-model="entity.email">
+        <div class="invalid-feedback text-error">
+            {{ errors.email }}
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" v-on:click="save">Save</button>
+</form>

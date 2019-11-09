@@ -38,10 +38,13 @@ services:
         tags: ['controller.service_arguments']
 
     App\Bundle\User\Api\Controller\AuthController:
-            tags: ['controller.service_arguments']
+        tags: ['controller.service_arguments']
+
+    PhpLab\Eloquent\Db\Helper\Manager:
+        arguments:
+            $mainConfigFile: '%env(ELOQUENT_CONFIG_FILE)%'
 
     App\Controller\ExceptionController:
-            public: true
-            arguments:
-                $debug: '%kernel.debug%'
-
+        public: true
+        arguments:
+            $debug: '%kernel.debug%'

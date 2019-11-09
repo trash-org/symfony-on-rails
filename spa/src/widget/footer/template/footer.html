@@ -1,0 +1,6 @@
+<p class="pull-right" v-if="rightLinks">
+    <span v-for="link in rightLinks">
+        <a v-bind:href="link.url">{{link.title}}</a> |
+    </span>
+</p>
+<p>{{brand}}</p>

@@ -123,6 +123,9 @@
             "./config/packages/fos_rest.yaml"
         ]
     },
+    "friendsofsymfony/user-bundle": {
+        "version": "v2.1.2"
+    },
     "guzzlehttp/guzzle": {
         "version": "6.3.3"
     },
@@ -243,6 +246,18 @@
         "version": "dev-master"
     },
     "php7extension/yii": {
+        "version": "dev-master"
+    },
+    "php7lab/domain": {
+        "version": "dev-master"
+    },
+    "php7lab/eloquent": {
+        "version": "dev-master"
+    },
+    "php7lab/rest": {
+        "version": "dev-master"
+    },
+    "php7lab/test": {
         "version": "dev-master"
     },
     "php7rails/app": {
@@ -655,7 +670,7 @@
         ]
     },
     "symfony/templating": {
-        "version": "v4.3.5"
+        "version": "v4.3.6"
     },
     "symfony/test-pack": {
         "version": "v1.0.6"

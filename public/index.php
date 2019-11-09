@@ -1,20 +1,5 @@
 <?php
 
-/** Подключение рельсов */
-include_once(__DIR__ . '/../vendor/php7rails/app/src/libs/Boot.php');
-$boot = new \php7rails\app\libs\Boot;
-$boot->appName = 'frontend';
-$boot->init();
-$boot->loadConfig([
-    'config/rails/env',
-    'config/rails/env-local',
-]);
-$boot->setAliases([
-    '@yubundle/bundle' => 'vendor/yubundle/bundle/src',
-]);
-/** Подключение рельсов */
-
-
 use App\Kernel;
 use Symfony\Component\Debug\Debug;
 use Symfony\Component\HttpFoundation\Request;
