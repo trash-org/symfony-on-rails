@@ -38,10 +38,12 @@ services:
         tags: ['controller.service_arguments']
 
     App\Bundle\User\Api\Controller\AuthController:
-            tags: ['controller.service_arguments']
+        tags: ['controller.service_arguments']
+
+    PhpLab\Eloquent\Db\Helper\Manager:
+        tags: ['controller.service_arguments']
 
     App\Controller\ExceptionController:
             public: true
             arguments:
                 $debug: '%kernel.debug%'
-

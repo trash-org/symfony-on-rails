@@ -15,8 +15,9 @@ class PostRepository extends BaseDbCrudRepository implements PostRepositoryInter
     protected $entityClass = PostEntity::class;
     private $categoryRepository;
 
-    public function __construct(CategoryRepository $categoryRepository)
+    public function __construct(\PhpLab\Eloquent\Db\Helper\Manager $capsule, CategoryRepository $categoryRepository)
     {
+        parent::__construct($capsule);
         $this->categoryRepository = $categoryRepository;
     }
 
