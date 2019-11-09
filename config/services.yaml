@@ -41,9 +41,10 @@ services:
         tags: ['controller.service_arguments']
 
     PhpLab\Eloquent\Db\Helper\Manager:
-        tags: ['controller.service_arguments']
+        arguments:
+            $mainConfigFile: '%env(ELOQUENT_CONFIG_FILE)%'
 
     App\Controller\ExceptionController:
-            public: true
-            arguments:
-                $debug: '%kernel.debug%'
+        public: true
+        arguments:
+            $debug: '%kernel.debug%'
