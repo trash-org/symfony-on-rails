@@ -114,7 +114,7 @@ class GuzzleHttpController extends AbstractController
         $contentTypeParts = HeaderUtils::split($contentType, ';=');
         $assoc = HeaderUtils::combine($contentTypeParts);
         $content = $response->getBody()->getContents();
-        if (!empty($assoc['application/json'])) {
+        if ( ! empty($assoc['application/json'])) {
             $content = json_decode($content);
         }
         return $content;
