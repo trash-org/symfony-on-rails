@@ -30,7 +30,10 @@ class PostEntity extends BaseEntity
         return [
             'title' => [
                 new Length(['min' => 3]),
-                new NotBlank(),
+                new NotBlank,
+            ],
+            'created_at' => [
+                new \Symfony\Component\Validator\Constraints\DateTime,
             ],
         ];
     }
