@@ -9,8 +9,8 @@ use php7extension\core\web\enums\HttpStatusCodeEnum;
 class PostControllerPHPTest extends BaseRestTest
 {
 
-    protected $baseUrl = 'http://php.symfony-on-rails.lab';
-    protected $basePath = 'api/v1/';
+    protected $baseUrl = 'http://symfony-on-rails.lab';
+    protected $basePath = 'php/v1/';
     protected $lastId;
 
     public function testAll()

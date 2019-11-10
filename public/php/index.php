@@ -1,0 +1,54 @@
+<?php
+
+use App\Bundle\Article\Api\Controller\ArticleController;
+use App\Bundle\Article\Domain\Repository\CategoryRepository;
+use App\Bundle\Article\Domain\Repository\PostRepository;
+use App\Bundle\Article\Domain\Service\PostService;
+use PhpLab\Eloquent\Db\Helper\Manager;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+
+use Symfony\Component\Routing\Matcher\UrlMatcher;
+use Symfony\Component\Routing\RequestContext;
+use Symfony\Component\Routing\Route;
+use Symfony\Component\Routing\RouteCollection;
+
+require_once __DIR__ . '/../../vendor/php7lab/domain/src/Php/bootstrap.php';
+
+// init DB
+$eloquentConfigFile = $_ENV['ELOQUENT_CONFIG_FILE'];
+$capsule = new Manager(null, $eloquentConfigFile);
+
+// create service
+$categoryRepository = new CategoryRepository($capsule);
+$postRepository = new PostRepository($capsule, $categoryRepository);
+$postService = new PostService($postRepository);
+
+// define routes
+$routes = new RouteCollection;
+$route = new Route('/v1/article/{id}', ['_controller' => ArticleController::class, '_action' => 'view'], ['id'], [], null,[], ['GET']);
+$routes->add('article_view', $route);
+$route = new Route('/v1/article', ['_controller' => ArticleController::class, '_action' => 'index'], [], [], null,[], ['GET']);
+$routes->add('article_index', $route);
+
+$context = new RequestContext('/');
+$matcher = new UrlMatcher($routes, $context);
+try {
+    $request = Request::createFromGlobals();
+    $parameters = $matcher->match($request->getPathInfo());
+    $controllerClass = $parameters['_controller'];
+    $controllerMethod = $parameters['_action'];
+    $controllerInstance = new $controllerClass($postService);
+    if(in_array($controllerMethod, ['view', 'update', 'delete'])) {
+        $id = $parameters['id'];
+        $params = [$id, $request];
+    } elseif (in_array($controllerMethod, ['index', 'create'])) {
+        $params = [$request];
+    }
+    $callback = [$controllerInstance, $controllerMethod];
+    $response = call_user_func_array($callback, $params);
+} catch (\Symfony\Component\Routing\Exception\ResourceNotFoundException $e) {
+    $response = new JsonResponse(['message' => 'not found'], 404);
+}
+
+$response->send();
