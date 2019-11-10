@@ -21,15 +21,14 @@ $request = Request::createFromGlobals();
 $path = $request->getPathInfo();
 $path = trim($path, '/');
 
-if (preg_match('/v1\/post\/([\s\S]+)/i', $path, $matches) && $request->isMethod('get')) {
+if (preg_match('/api\/v1\/article\/([\s\S]+)$/i', $path, $matches) && $request->isMethod('get')) {
     $controller = new ArticleController($postService);
     $response = $controller->view($matches[1], $request);
-} elseif (preg_match('/v1\/post/i', $path, $matches) && $request->isMethod('get')) {
+} elseif (preg_match('/api\/v1\/article$/i', $path, $matches) && $request->isMethod('get')) {
     $controller = new ArticleController($postService);
     $response = $controller->index($request);
-}
-
-if (empty($response)) {
+} else {
     $response = new JsonResponse(['message' => 'not found'], 404);
 }
+
 $response->send();
