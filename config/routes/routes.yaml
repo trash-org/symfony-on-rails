@@ -8,7 +8,7 @@ app_rails:
     resource: "../../src/Bundle/Rails/Web/config/routes.yaml"
 
 app_article:
-    resource: "../../src/Bundle/Article/Api/config/routes.yaml"
+    resource: "../../vendor/php7example/bundle/src/Article/Api/config/routes.yaml"
 
 app_user:
     resource: "../../src/Bundle/User/Api/config/routes.yaml"

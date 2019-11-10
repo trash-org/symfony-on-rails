@@ -24,12 +24,12 @@ doctrine:
 #                dir: '%kernel.project_dir%/src/Entity'
 #                prefix: 'App\Entity'
 #                alias: App
-            Article:
-                is_bundle: false
-                type: annotation
-                dir: '%kernel.project_dir%/src/Bundle/Article/Domain/Entity'
-                prefix: 'App\Bundle\Article\Domain\Entity'
-                alias: App
+#            Article:
+#                is_bundle: false
+#                type: annotation
+#                dir: '%kernel.project_dir%/src/PhpExample/Bundle/Article/Domain/Entity'
+#                prefix: 'PhpExample\Bundle\Article\Domain\Entity'
+#                alias: App
             User:
                 is_bundle: false
                 type: annotation

@@ -24,9 +24,9 @@ connection:
 fixture:
     directory:
         - /src/Fixture
-        - /src/Bundle/Article/Domain/Fixture
+        - /vendor/php7example/bundle/src/Article/Domain/Fixture
         - /src/Bundle/User/Fixture
 migrate:
     directory:
-        - /src/Bundle/Article/Domain/Migration
+        - /vendor/php7example/bundle/src/Article/Domain/Migration
         - /src/Bundle/User/Migrations

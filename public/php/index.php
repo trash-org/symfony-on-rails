@@ -1,9 +1,9 @@
 <?php
 
-use App\Bundle\Article\Api\Controller\ArticleController;
-use App\Bundle\Article\Domain\Repository\CategoryRepository;
-use App\Bundle\Article\Domain\Repository\PostRepository;
-use App\Bundle\Article\Domain\Service\PostService;
+use PhpExample\Bundle\Article\Api\Controller\ArticleController;
+use PhpExample\Bundle\Article\Domain\Repository\CategoryRepository;
+use PhpExample\Bundle\Article\Domain\Repository\PostRepository;
+use PhpExample\Bundle\Article\Domain\Service\PostService;
 use PhpLab\Eloquent\Db\Helper\Manager;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;

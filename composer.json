@@ -23,6 +23,7 @@
         "php7lab/eloquent": "dev-master",
         "php7lab/rest": "dev-master",
         "php7lab/test": "dev-master",
+        "php7example/bundle": "dev-master",
 
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/asset": "4.3.*",
@@ -106,7 +107,10 @@
             "type": "composer",
             "url": "https://asset-packagist.org"
         },
-
+        {
+            "type": "git",
+            "url": "https://github.com/php7example/bundle.git"
+        },
         {
             "type": "git",
             "url": "https://github.com/php7lab/domain.git"

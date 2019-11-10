@@ -17,6 +17,10 @@ services:
         resource: '../src/*'
         exclude: '../src/{DependencyInjection,Entity,Migrations,Migration,Tests,Kernel.php}'
 
+    PhpExample\Bundle\Article\:
+        resource: '../vendor/php7example/bundle/src/Article/*'
+        exclude: '../vendor/php7example/bundle/src/Article/{DependencyInjection,Entity,Migrations,Migration,Tests,Kernel.php}'
+
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
     PhpLab\Rest\Controller\:
@@ -27,14 +31,14 @@ services:
     # please note that last definitions always *replace* previous ones
 
 #    post_repository:
-#        class: App\Bundle\Article\Domain\Repository\PostRepository
+#        class: PhpExample\Bundle\Article\Domain\Repository\PostRepository
 #        public: true
 #
 #    post_service:
-#        class: App\Bundle\Article\Domain\Service\PostService
+#        class: PhpExample\Bundle\Article\Domain\Service\PostService
 #        public: true
 
-    App\Bundle\Article\Api\Controller\ArticleController:
+    PhpExample\Bundle\Article\Api\Controller\ArticleController:
         tags: ['controller.service_arguments']
 
     App\Bundle\User\Api\Controller\AuthController:
