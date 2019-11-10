@@ -17,9 +17,9 @@ services:
         resource: '../src/*'
         exclude: '../src/{DependencyInjection,Entity,Migrations,Migration,Tests,Kernel.php}'
 
-    PhpExample\Bundle\Article\:
-        resource: '../vendor/php7example/bundle/src/Article/*'
-        exclude: '../vendor/php7example/bundle/src/Article/{DependencyInjection,Entity,Migrations,Migration,Tests,Kernel.php}'
+    PhpExample\Bundle\:
+        resource: '../vendor/php7example/bundle/src/*'
+        exclude: '../vendor/php7example/bundle/src/{DependencyInjection,Entity,Migrations,Migration,Tests,Kernel.php}'
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
