@@ -241,9 +241,9 @@ class PostControllerPHPTest extends BaseRestTest
 
         $responseView = $this->sendGet('article/' . $lastId);
         $this->assertEquals(HttpStatusCodeEnum::NOT_FOUND, $responseView->getStatusCode());
-    }
+    }*/
 
-    public function testMethodAllowed()
+    /*public function testMethodAllowed()
     {
         $response = $this->sendPost('article/1');
         $this->assertEquals(HttpStatusCodeEnum::METHOD_NOT_ALLOWED, $response->getStatusCode());
@@ -253,9 +253,9 @@ class PostControllerPHPTest extends BaseRestTest
 
         $response = $this->sendDelete('article');
         $this->assertEquals(HttpStatusCodeEnum::METHOD_NOT_ALLOWED, $response->getStatusCode());
-    }
+    }*/
 
-    public function testOptions()
+    /*public function testOptions()
     {
         $response = $this->sendOptions('article/1');
 
