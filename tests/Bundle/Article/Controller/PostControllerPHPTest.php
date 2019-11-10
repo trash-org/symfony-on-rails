@@ -16,6 +16,11 @@ class PostControllerPHPTest extends PostControllerTest
         $this->assertEquals(1, 1);
     }
 
+    public function testBadUpdate()
+    {
+        $this->assertEquals(1, 1);
+    }
+
     public function testCreate()
     {
         $this->assertEquals(1, 1);
