@@ -27,6 +27,11 @@ class MainController extends AbstractController
                     'url' => '/api/v1/article',
                 ],
                 [
+                    'title' => 'API - article (PHP)',
+                    'url' => '/php/v1/article',
+                ],
+
+                [
                     'title' => 'rails',
                     'url' => '/rails',
                 ],
