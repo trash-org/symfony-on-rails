@@ -200,13 +200,15 @@ class PostControllerTest extends BaseRestTest
         $this->assertEquals(HttpStatusCodeEnum::NOT_FOUND, $response->getStatusCode());
     }
 
-    /*public function testBadCreate()
+    public function testBadCreate()
     {
-        $response = $this->sendPost('article', [
-            'title' => 'test123',
-        ]);
+        $data = [
+            'title' => 'te',
+            'category_id' => 3,
+        ];
+        $response = $this->sendPost('article', $data);
         $this->assertEquals(HttpStatusCodeEnum::UNPROCESSABLE_ENTITY, $response->getStatusCode());
-    }*/
+    }
 
     public function testCreate()
     {

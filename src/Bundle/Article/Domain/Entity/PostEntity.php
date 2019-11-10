@@ -4,6 +4,8 @@ namespace App\Bundle\Article\Domain\Entity;
 
 use DateTime;
 use PhpLab\Domain\Entity\BaseEntity;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Length;
 
 class PostEntity extends BaseEntity
 {
@@ -22,6 +24,15 @@ class PostEntity extends BaseEntity
     public function setCreatedAt($value)
     {
         $this->created_at = new DateTime($value);
+    }
+
+    public function validationRules() {
+        return [
+            'title' => [
+                new Length(['min' => 3]),
+                new NotBlank(),
+            ],
+        ];
     }
 
 }
