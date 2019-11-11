@@ -3,10 +3,11 @@
 use App\Kernel;
 use Symfony\Component\Debug\Debug;
 use Symfony\Component\HttpFoundation\Request;
+use php7extension\core\web\helpers\CorsHelper;
 
 require dirname(__DIR__).'/../config/bootstrap.php';
 
-\php7extension\core\web\helpers\CorsHelper::autoload();
+CorsHelper::autoload();
 
 if ($_SERVER['APP_DEBUG']) {
     umask(0000);

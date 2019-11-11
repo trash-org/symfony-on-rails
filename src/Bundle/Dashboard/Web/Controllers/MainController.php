@@ -11,10 +11,6 @@ class MainController extends AbstractController
         return $this->render('main/index.html.twig', [
             'links' => [
                 [
-                    'title' => 'Fist controller',
-                    'url' => '/lucky/number',
-                ],
-                [
                     'title' => 'API - auth',
                     'url' => '/api/v1/auth',
                 ],
@@ -37,15 +33,15 @@ class MainController extends AbstractController
                 ],
                 [
                     'title' => 'SPA',
-                    'url' => 'http://spa.symfony4.lab/',
+                    'url' => '/spa',
                 ],
                 [
                     'title' => 'FOS - register',
-                    'url' => 'http://symfony4.lab/register',
+                    'url' => '/register',
                 ],
                 [
                     'title' => 'FOS - login',
-                    'url' => 'http://symfony4.lab/login',
+                    'url' => '/login',
                 ],
             ],
         ]);
