@@ -2,6 +2,8 @@ connection:
     map:
         article_category: art_category
         article_post: art_post
+        article_tag: art_tag
+        article_tag_post: art_tag_post
         eq_migration: migration
 #        defaultConnection: mysqlServer
 #        defaultConnection: sqliteServer

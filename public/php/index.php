@@ -3,6 +3,8 @@
 use PhpExample\Bundle\Article\Api\Controller\ArticleController;
 use PhpExample\Bundle\Article\Domain\Repository\Eloquent\CategoryRepository;
 use PhpExample\Bundle\Article\Domain\Repository\Eloquent\PostRepository;
+use PhpExample\Bundle\Article\Domain\Repository\Eloquent\TagPostRepository;
+use PhpExample\Bundle\Article\Domain\Repository\Eloquent\TagRepository;
 use PhpExample\Bundle\Article\Domain\Service\PostService;
 use PhpLab\Eloquent\Db\Helper\Manager;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -21,7 +23,9 @@ $capsule = new Manager(null, $eloquentConfigFile);
 
 // create service
 $categoryRepository = new CategoryRepository($capsule);
-$postRepository = new PostRepository($capsule, $categoryRepository);
+$tagRepository = new TagRepository($capsule);
+$tagPostRepository = new TagPostRepository($capsule);
+$postRepository = new PostRepository($capsule, $categoryRepository, $tagRepository, $tagPostRepository);
 $postService = new PostService($postRepository);
 
 // define routes
