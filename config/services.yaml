@@ -30,14 +30,6 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-#    post_repository:
-#        class: PhpExample\Bundle\Article\Domain\Repository\PostRepository
-#        public: true
-#
-#    post_service:
-#        class: PhpExample\Bundle\Article\Domain\Service\PostService
-#        public: true
-
     PhpExample\Bundle\Article\Api\Controller\ArticleController:
         tags: ['controller.service_arguments']
 
