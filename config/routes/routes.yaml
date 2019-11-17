@@ -10,6 +10,9 @@ app_rails:
 app_article:
     resource: "../../vendor/php7example/bundle/src/Article/Api/config/routes.yaml"
 
+app_messenger:
+    resource: "../../vendor/php7example/bundle/src/Messenger/Api/config/routes.yaml"
+
 app_user:
     resource: "../../src/Bundle/User/Api/config/routes.yaml"
 

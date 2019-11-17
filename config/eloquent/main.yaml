@@ -27,8 +27,10 @@ fixture:
     directory:
         - /src/Fixture
         - /vendor/php7example/bundle/src/Article/Domain/Fixture
+        - /vendor/php7example/bundle/src/Messenger/Domain/Fixture
         - /src/Bundle/User/Fixture
 migrate:
     directory:
         - /vendor/php7example/bundle/src/Article/Domain/Migration
+        - /vendor/php7example/bundle/src/Messenger/Domain/Migration
         - /src/Bundle/User/Migrations

@@ -23,8 +23,16 @@ class MainController extends AbstractController
                     'url' => '/api/v1/article',
                 ],
                 [
+                    'title' => 'API - messenger-chat',
+                    'url' => '/api/v1/messenger-chat',
+                ],
+                [
                     'title' => 'API - article (PHP)',
                     'url' => '/php/v1/article',
+                ],
+                [
+                    'title' => 'API - messenger-chat (PHP)',
+                    'url' => '/php/v1/messenger-chat',
                 ],
 
                 [
