@@ -5,7 +5,6 @@ namespace Tests\Bundle\Article\Controller;
 class PostControllerPHPTest extends \PhpExample\Bundle\Tests\rest\Article\PostControllerTest
 {
 
-    protected $baseUrl = 'http://symfony-on-rails.lab';
     protected $basePath = 'php/v1/';
 
     public function testBadCreate()
