@@ -56,7 +56,7 @@ class PostControllerTest extends BaseRestTest
         $response = $this->sendGet('article', [
             'per-page' => '4',
             'page' => '2',
-            'expand' => 'category',
+            'expand' => 'category,tags',
         ]);
 
         $actualBody = [
@@ -65,11 +65,27 @@ class PostControllerTest extends BaseRestTest
                 'category' => [
                     'id' => 2,
                 ],
+                'tags' => [
+                    [
+                        'id' => 2,
+                    ],
+                    [
+                        'id' => 3,
+                    ],
+                ],
             ],
             [
                 "id" => 6,
                 'category' => [
                     'id' => 3,
+                ],
+                'tags' => [
+                    [
+                        'id' => 4,
+                    ],
+                    [
+                        'id' => 5,
+                    ],
                 ],
             ],
             [
@@ -77,11 +93,27 @@ class PostControllerTest extends BaseRestTest
                 'category' => [
                     'id' => 1,
                 ],
+                'tags' => [
+                    [
+                        'id' => 6,
+                    ],
+                    [
+                        'id' => 7,
+                    ],
+                ],
             ],
             [
                 "id" => 8,
                 'category' => [
                     'id' => 2,
+                ],
+                'tags' => [
+                    [
+                        'id' => 1,
+                    ],
+                    [
+                        'id' => 2,
+                    ],
                 ],
             ]
         ];
@@ -180,7 +212,7 @@ class PostControllerTest extends BaseRestTest
     public function testViewWithRelations()
     {
         $response = $this->sendGet('article/3', [
-            'expand' => 'category',
+            'expand' => 'category,tags',
         ]);
 
         $actualBody = [
@@ -188,6 +220,14 @@ class PostControllerTest extends BaseRestTest
             'category' => [
                 'id' => 3,
                 'title' => 'category 3',
+            ],
+            'tags' => [
+                [
+                    'id' => 5,
+                ],
+                [
+                    'id' => 6,
+                ],
             ],
         ];
         $this->assertBody($response, $actualBody);
