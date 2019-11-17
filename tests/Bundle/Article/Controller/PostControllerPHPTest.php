@@ -2,13 +2,10 @@
 
 namespace Tests\Bundle\Article\Controller;
 
-use PhpLab\Test\BaseRestTest;
-use php7extension\core\web\enums\HttpMethodEnum;
-use php7extension\core\web\enums\HttpStatusCodeEnum;
-
-class PostControllerPHPTest extends PostControllerTest
+class PostControllerPHPTest extends \PhpExample\Bundle\Tests\rest\Article\PostControllerTest
 {
 
+    protected $baseUrl = 'http://symfony-on-rails.lab';
     protected $basePath = 'php/v1/';
 
     public function testBadCreate()
