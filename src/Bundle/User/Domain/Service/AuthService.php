@@ -4,15 +4,17 @@ namespace App\Bundle\User\Domain\Service;
 
 use App\Bundle\User\Domain\Entity\User;
 use App\Bundle\User\Domain\Form\AuthForm;
-use Doctrine\Common\Persistence\ObjectRepository;
+use App\Bundle\User\Domain\Repositories\Config\ProfileRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use FOS\UserBundle\Doctrine\UserManager;
+use FOS\UserBundle\Model\UserInterface;
+use php7extension\core\common\helpers\StringHelper;
 use php7extension\yii\base\Security;
 use PhpLab\Domain\Data\Collection;
 use PhpLab\Domain\Exceptions\UnauthorizedException;
 use PhpLab\Domain\Exceptions\UnprocessibleEntityException;
 use PhpLab\Rest\Entity\ValidateErrorEntity;
 use FOS\UserBundle\Model\UserManagerInterface;
+use php7extension\crypt\domain\entities\JwtEntity;
 
 class AuthService
 {
@@ -20,34 +22,36 @@ class AuthService
     private $em;
     private $userManager;
     private $security;
+    private $jwtService;
 
     public function __construct(EntityManagerInterface $em, UserManagerInterface $userManager)
     {
         $this->em = $em;
         $this->userManager = $userManager;
         $this->security = new Security;
+        $this->jwtService = new JwtService(new ProfileRepository);
     }
 
-    public function info(): User
+    public function info(): UserInterface
     {
-        //$repository = $this->getRepository();
         /** @var User $userEntity */
-        //$userEntity = $repository->findOneBy(['username' => 'user1']);
         $userEntity = $this->userManager->findUserByUsername('user1');
         if(empty($userEntity)) {
             $exception = new UnauthorizedException;
             throw $exception;
         }
-        //print_r($userEntity);exit;
+
+
+
+        //print_r($token);
+
         return $userEntity;
     }
 
-    public function authentication(AuthForm $form): User
+    public function authentication(AuthForm $form): UserInterface
     {
-        //$repository = $this->getRepository();
         /** @var User $userEntity */
         $userEntity = $this->userManager->findUserByUsername($form->login);
-        //$userEntity = $repository->findOneBy(['username' => $form->login]);
         if(empty($userEntity)) {
             $errorCollection = new Collection;
             $validateErrorEntity = new ValidateErrorEntity;
@@ -69,12 +73,16 @@ class AuthService
             $exception->setErrorCollection($errorCollection);
             throw $exception;
         }
+        $token = $this->forgeToken($userEntity);
+        //$token = StringHelper::generateRandomString(64);
+        $userEntity->setApiToken($token);
         return $userEntity;
     }
 
-    /*private function getRepository() : ObjectRepository {
-        $repository = $this->em->getRepository(User::class);
-        return $repository;
-    }*/
-
+    private function forgeToken(UserInterface $userEntity) {
+        $jwtEntity = new JwtEntity;
+        $jwtEntity->subject = ['id' => $userEntity->getId()];
+        $token = 'jwt ' . $this->jwtService->sign($jwtEntity, 'auth');
+        return $token;
+    }
 }

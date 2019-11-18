@@ -2,6 +2,7 @@
 
 namespace App\Bundle\User\Api\Controller;
 
+use App\Bundle\User\Domain\Entity\User;
 use App\Bundle\User\Domain\Form\AuthForm;
 use App\Bundle\User\Domain\Service\AuthService;
 use App\Bundle\User\Domain\Service\TokenAuthenticator;
@@ -29,6 +30,7 @@ class AuthController extends AbstractController
     {
         $response = new JsonResponse;
         try {
+            /** @var User $userEntity */
             $userEntity = $this->authService->info();
             $serializer = new JsonRestSerializer($response);
             $serializer->serialize($userEntity);
@@ -43,9 +45,9 @@ class AuthController extends AbstractController
         $response = new JsonResponse();
         $authForm = new AuthForm($request->request->all());
         try {
+            /** @var User $userEntity */
             $userEntity = $this->authService->authentication($authForm);
-            $userEntity->setToken(StringHelper::generateRandomString(64));
-            $response->headers->set(HttpHeaderEnum::AUTHORIZATION, $userEntity->getToken());
+            $response->headers->set(HttpHeaderEnum::AUTHORIZATION, $userEntity->getApiToken());
             $serializer = new JsonRestSerializer($response);
             $serializer->serialize($userEntity);
         } catch (UnprocessibleEntityException $e) {
