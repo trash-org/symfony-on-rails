@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Main page{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-8">
+            {% for item in links %}
+                <li>
+                    <a href="{{ item.url }}">{{ item.title }}</a>
+                </li>
+            {% endfor %}
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">Posts</div>
+                <div class="list-group">
+                    {% for post in postCollection %}
+                        <a href="#" class="list-group-item">{{ post.title }} <span class="badge">{{ post.category.title }}</span></a>
+                    {% endfor %}
+                    <a href="#" class="list-group-item"><b>Sow all >>></b></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

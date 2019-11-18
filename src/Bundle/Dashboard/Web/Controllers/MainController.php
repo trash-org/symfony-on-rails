@@ -2,13 +2,28 @@
 
 namespace App\Bundle\Dashboard\Web\Controllers;
 
+use php7rails\domain\data\Query;
+use PhpExample\Bundle\Article\Domain\Interfaces\PostServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MainController extends AbstractController
 {
+
+    private $postService;
+
+    public function __construct(PostServiceInterface $postService)
+    {
+        $this->postService = $postService;
+    }
+
     public function index()
     {
-        return $this->render('main/index.html.twig', [
+        $query = new Query;
+        $query->with('category');
+        $query->perPage(5);
+        $postCollection = $this->postService->all($query);
+        return $this->render('dashboard/index.html.twig', [
+            'postCollection' => $postCollection,
             'links' => [
                 [
                     'title' => 'API - auth',
