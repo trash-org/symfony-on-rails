@@ -4,11 +4,16 @@ namespace App\Bundle\User\Api\Controller;
 
 use App\Bundle\User\Domain\Form\AuthForm;
 use App\Bundle\User\Domain\Service\AuthService;
+use App\Bundle\User\Domain\Service\TokenAuthenticator;
+use php7extension\core\common\helpers\StringHelper;
 use php7extension\core\web\enums\HttpHeaderEnum;
 use php7extension\yii\helpers\ArrayHelper;
+use PhpLab\Domain\Exceptions\UnprocessibleEntityException;
+use PhpLab\Rest\Lib\JsonRestSerializer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends AbstractController
 {
@@ -20,21 +25,34 @@ class AuthController extends AbstractController
         $this->authService = $authService;
     }
 
-    public function login(Request $request)
+    public function index(Request $request)
     {
-        //$login = $request->query->get('login');
-        //$password = $request->query->get('password');
-        $response = new JsonResponse();
+        $response = new JsonResponse;
         try {
-            //$identity = \App::$domain->account->auth->authentication($login, $password);
-
-            $authForm = new AuthForm($request->query->all());
-            $identity = $this->authService->authentication($authForm);
-
-            $response->setData(ArrayHelper::toArray($identity));
-            $response->headers->set(HttpHeaderEnum::AUTHORIZATION, $identity->token);
+            $userEntity = $this->authService->info();
+            $serializer = new JsonRestSerializer($response);
+            $serializer->serialize($userEntity);
         } catch (\Exception $e) {
             $response->setData($e->getMessage());
+        }
+        return $response;
+    }
+
+    public function login(Request $request)
+    {
+        $response = new JsonResponse();
+        $authForm = new AuthForm($request->request->all());
+        try {
+            $userEntity = $this->authService->authentication($authForm);
+            $userEntity->setToken(StringHelper::generateRandomString(64));
+            $response->headers->set(HttpHeaderEnum::AUTHORIZATION, $userEntity->getToken());
+            $serializer = new JsonRestSerializer($response);
+            $serializer->serialize($userEntity);
+        } catch (UnprocessibleEntityException $e) {
+            $errorCollection = $e->getErrorCollection();
+            $serializer = new JsonRestSerializer($response);
+            $serializer->serialize($errorCollection);
+            $response->setStatusCode(Response::HTTP_UNPROCESSABLE_ENTITY);
         }
         return $response;
     }
