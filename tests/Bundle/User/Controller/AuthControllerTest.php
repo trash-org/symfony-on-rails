@@ -2,8 +2,6 @@
 
 namespace Tests\Bundle\User\Controller;
 
-use PhpLab\Test\BaseRestTest;
-use php7extension\core\web\enums\HttpMethodEnum;
 use php7extension\core\web\enums\HttpStatusCodeEnum;
 
 class AuthControllerTest extends \PhpExample\Bundle\Tests\rest\Messenger\ChatControllerTest
@@ -11,37 +9,55 @@ class AuthControllerTest extends \PhpExample\Bundle\Tests\rest\Messenger\ChatCon
 
     protected $basePath = 'api/v1/';
 
-    public function testAll()
+    public function testAuthBadPassword()
     {
-        $response = $this->sendGet('messenger-chat', [
-            'per-page' => '4',
-            'page' => '2',
+        $response = $this->sendPost('auth', [
+            'login' => 'user1',
+            'password' => 'Wwwqqq11133333',
         ]);
 
         $actualBody = [
             [
-                "id" => 5,
-                "title" => 'chat 5',
-                'type' => 'public',
-            ],
-            [
-                "id" => 6,
-                "title" => 'chat 6',
-                'type' => 'public',
-            ],
-            [
-                "id" => 7,
-                "title" => 'chat 7',
-                'type' => 'public',
-            ],
-            [
-                "id" => 8,
-                "title" => 'chat 8',
-                'type' => 'public',
-            ],
+                "field" => "password",
+                "message" => "Bad password",
+            ]
         ];
         $this->assertBody($response, $actualBody);
-        $this->assertPagination($response, null, 2, 4);
+        $this->assertEquals(HttpStatusCodeEnum::UNPROCESSABLE_ENTITY, $response->getStatusCode());
+    }
+
+    public function testAuthNotFoundLogin()
+    {
+        $response = $this->sendPost('auth', [
+            'login' => 'qwerty',
+            'password' => 'Wwwqqq111',
+        ]);
+
+        $actualBody = [
+            [
+                "field" => "login",
+                "message" => "User not found",
+            ]
+        ];
+        $this->assertBody($response, $actualBody);
+        $this->assertEquals(HttpStatusCodeEnum::UNPROCESSABLE_ENTITY, $response->getStatusCode());
+    }
+
+    public function testAuth()
+    {
+        $response = $this->sendPost('auth', [
+            'login' => 'user1',
+            'password' => 'Wwwqqq111',
+        ]);
+
+        $actualBody = [
+            'id' => 1,
+            'username' => 'user1',
+            'username_canonical' => 'user1',
+            'email' => 'user1@example.com',
+            'email_canonical' => 'user1@example.com',
+        ];
+        $this->assertBody($response, $actualBody);
         $this->assertEquals(HttpStatusCodeEnum::OK, $response->getStatusCode());
     }
 
