@@ -18,8 +18,8 @@ class AuthControllerTest extends \PhpExample\Bundle\Tests\rest\Messenger\ChatCon
 
         $actualBody = [
             [
-                "field" => "password",
-                "message" => "Bad password",
+                'field' => 'password',
+                'message' => 'Bad password',
             ]
         ];
         $this->assertBody($response, $actualBody);
@@ -35,8 +35,8 @@ class AuthControllerTest extends \PhpExample\Bundle\Tests\rest\Messenger\ChatCon
 
         $actualBody = [
             [
-                "field" => "login",
-                "message" => "User not found",
+                'field' => 'login',
+                'message' => 'User not found',
             ]
         ];
         $this->assertBody($response, $actualBody);
@@ -56,8 +56,14 @@ class AuthControllerTest extends \PhpExample\Bundle\Tests\rest\Messenger\ChatCon
             'username_canonical' => 'user1',
             'email' => 'user1@example.com',
             'email_canonical' => 'user1@example.com',
+            'roles' => [
+                'ROLE_USER',
+                'ROLE_ADMIN',
+            ],
         ];
         $this->assertBody($response, $actualBody);
+        $body = $this->getBody($response);
+        $this->assertNotEmpty(preg_match('#jwt\s[\s\S]+\.[\s\S]+\.[\s\S]+#i', $body['api_token']));
         $this->assertEquals(HttpStatusCodeEnum::OK, $response->getStatusCode());
     }
 
