@@ -18,6 +18,9 @@ class MainController extends AbstractController
 
     public function index()
     {
+        //$user = $this->container->get('security.token_storage')->getToken()->getUser();
+        //dd($user);
+
         $query = new Query;
         $query->with('category');
         $query->perPage(5);

@@ -35,6 +35,8 @@ class AuthController extends AbstractController
 
     public function index(Request $request)
     {
+        //$user = $this->container->get('security.token_storage')->getToken()->getUser();
+        //dd($user);
         $response = new JsonResponse;
         try {
             /** @var User $userEntity */
@@ -61,6 +63,9 @@ class AuthController extends AbstractController
             //$serializer->serialize($userEntity);
             $userJsonContent = $this->serializeUser($userEntity);
             $response->setContent($userJsonContent);
+            // Manually authenticate user in controller
+            //$token = new UsernamePasswordToken($userEntity, null, 'main', $userEntity->getRoles());
+            //$this->container->get('security.token_storage')->setToken($token);
         } catch (UnprocessibleEntityException $e) {
             $errorCollection = $e->getErrorCollection();
             $serializer = new JsonRestSerializer($response);

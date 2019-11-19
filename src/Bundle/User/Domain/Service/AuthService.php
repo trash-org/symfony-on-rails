@@ -57,7 +57,15 @@ class AuthService
             $exception->setErrorCollection($errorCollection);
             throw $exception;
         }
-        $isValidPassword = $this->security->validatePassword($form->password, $userEntity->getPassword());
+        $this->verificationPassword($userEntity, $form->password);
+        $token = $this->forgeToken($userEntity);
+        //$token = StringHelper::generateRandomString(64);
+        $userEntity->setApiToken($token);
+        return $userEntity;
+    }
+
+    private function verificationPassword(UserInterface $userEntity, string $password) : bool {
+        $isValidPassword = $this->security->validatePassword($password, $userEntity->getPassword());
         if( ! $isValidPassword) {
             $errorCollection = new Collection;
             $validateErrorEntity = new ValidateErrorEntity;
@@ -68,10 +76,7 @@ class AuthService
             $exception->setErrorCollection($errorCollection);
             throw $exception;
         }
-        $token = $this->forgeToken($userEntity);
-        //$token = StringHelper::generateRandomString(64);
-        $userEntity->setApiToken($token);
-        return $userEntity;
+        return $isValidPassword;
     }
 
     private function forgeToken(UserInterface $userEntity) {
