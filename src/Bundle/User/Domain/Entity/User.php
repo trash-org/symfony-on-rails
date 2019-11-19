@@ -36,6 +36,34 @@ class User extends BaseUser implements ValidateEntityInterface
     }
 
     /**
+     * Защита кода от показа на REST API
+     *
+     * @param bool $isShow
+     * @return null|string
+     */
+    /*public function getPassword($isShow = false)
+    {
+        if( ! $isShow) {
+            return null;
+        }
+        return $this->password;
+    }*/
+
+    /**
+     * Защита кода от показа на REST API
+     *
+     * @param bool $isShow
+     * @return null|string
+     */
+    /*public function getConfirmationToken($isShow = false)
+    {
+        if( ! $isShow) {
+            return null;
+        }
+        return $this->confirmationToken;
+    }*/
+
+    /**
      * @return mixed
      */
     public function getId()

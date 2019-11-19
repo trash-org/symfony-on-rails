@@ -40,11 +40,6 @@ class AuthService
             $exception = new UnauthorizedException;
             throw $exception;
         }
-
-
-
-        //print_r($token);
-
         return $userEntity;
     }
 

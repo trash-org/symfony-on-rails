@@ -65,6 +65,7 @@ class AuthControllerTest extends \PhpExample\Bundle\Tests\rest\Messenger\ChatCon
         $body = $this->getBody($response);
         $this->assertNotEmpty(preg_match('#jwt\s[\s\S]+\.[\s\S]+\.[\s\S]+#i', $body['api_token']));
         $this->assertEquals(HttpStatusCodeEnum::OK, $response->getStatusCode());
+        $this->assertFalse(isset($body['password']));
     }
 
 }
