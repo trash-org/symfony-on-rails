@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Main page{% endblock %}
+
+{% block body %}
+
+    <ul>
+        {% for post in dataProviderEntity.collection %}
+            <li>{{ post.title }}</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

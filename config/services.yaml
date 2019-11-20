@@ -33,6 +33,9 @@ services:
     PhpExample\Bundle\Article\Api\Controller\ArticleController:
         tags: ['controller.service_arguments']
 
+    PhpExample\Bundle\Article\Web\Controller\ArticleController:
+        tags: ['controller.service_arguments']
+
     PhpExample\Bundle\Messenger\Api\Controller\ChatController:
         tags: ['controller.service_arguments']
 
