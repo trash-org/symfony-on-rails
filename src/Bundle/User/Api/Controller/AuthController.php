@@ -5,10 +5,7 @@ namespace App\Bundle\User\Api\Controller;
 use App\Bundle\User\Domain\Entity\User;
 use App\Bundle\User\Domain\Form\AuthForm;
 use App\Bundle\User\Domain\Service\AuthService;
-use App\Bundle\User\Domain\Service\TokenAuthenticator;
-use php7extension\core\common\helpers\StringHelper;
 use php7extension\core\web\enums\HttpHeaderEnum;
-use php7extension\yii\helpers\ArrayHelper;
 use PhpLab\Domain\Exceptions\UnprocessibleEntityException;
 use PhpLab\Rest\Lib\JsonRestSerializer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -41,8 +38,6 @@ class AuthController extends AbstractController
         try {
             /** @var User $userEntity */
             $userEntity = $this->authService->info();
-            //$serializer = new JsonRestSerializer($response);
-            //$serializer->serialize($userEntity);
             $userJsonContent = $this->serializeUser($userEntity);
             $response->setContent($userJsonContent);
         } catch (\Exception $e) {
@@ -59,8 +54,6 @@ class AuthController extends AbstractController
             /** @var User $userEntity */
             $userEntity = $this->authService->authentication($authForm);
             $response->headers->set(HttpHeaderEnum::AUTHORIZATION, $userEntity->getApiToken());
-            //$serializer = new JsonRestSerializer($response);
-            //$serializer->serialize($userEntity);
             $userJsonContent = $this->serializeUser($userEntity);
             $response->setContent($userJsonContent);
             // Manually authenticate user in controller
@@ -76,6 +69,8 @@ class AuthController extends AbstractController
     }
 
     private function serializeUser($userEntity) {
+        //$serializer = new JsonRestSerializer($response);
+        //$serializer->serialize($userEntity);
         $context = [
             AbstractNormalizer::IGNORED_ATTRIBUTES => ['password']
         ];

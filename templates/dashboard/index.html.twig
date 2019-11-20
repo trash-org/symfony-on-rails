@@ -20,13 +20,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Posts</div>
                 <div class="list-group">
-                    {% for post in postCollection %}
-                        <a href="#" class="list-group-item">
-                            {{ post.title }}
-                            <span class="badge">{{ post.category.title }}</span>
-                        </a>
-                    {% endfor %}
-                    <a href="#" class="list-group-item"><b>Sow all >>></b></a>
+                    {% include 'article/postWidget.html.twig' %}
                 </div>
             </div>
         </div>
