@@ -4,6 +4,9 @@
 
 {% block body %}
 
-    <h3>{{ post.title }}</h3>
+    <h3>
+        {{ post.title }}
+        <span class="label label-default">{{ post.category.title }}</span>
+    </h3>
 
 {% endblock %}

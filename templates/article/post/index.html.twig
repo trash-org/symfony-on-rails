@@ -4,11 +4,7 @@
 
 {% block body %}
 
-    <ul>
-        {% for post in dataProviderEntity.collection %}
-            <li>{{ post.title }}</li>
-        {% endfor %}
-    </ul>
+    {% include 'article/post/index.list.html.twig' %}
 
     {% include 'widget/pagination.html.twig' %}
 
