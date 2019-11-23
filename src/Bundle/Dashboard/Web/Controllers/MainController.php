@@ -3,7 +3,7 @@
 namespace App\Bundle\Dashboard\Web\Controllers;
 
 use php7rails\domain\data\Query;
-use PhpExample\Bundle\Article\Domain\Interfaces\PostServiceInterface;
+use PhpLab\Sandbox\Bundle\Article\Domain\Interfaces\PostServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MainController extends AbstractController

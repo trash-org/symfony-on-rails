@@ -17,7 +17,7 @@ services:
         resource: '../src/*'
         exclude: '../src/{DependencyInjection,Entity,Migrations,Migration,Tests,Kernel.php}'
 
-    PhpExample\Bundle\:
+    PhpLab\Sandbox\Bundle\:
         resource: '../vendor/php7example/bundle/src/*'
         exclude: '../vendor/php7example/bundle/src/{DependencyInjection,Entity,Migrations,Migration,Tests,Kernel.php}'
 
@@ -34,13 +34,13 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    PhpExample\Bundle\Article\Api\Controller\ArticleController:
+    PhpLab\Sandbox\Bundle\Article\Api\Controller\ArticleController:
         tags: ['controller.service_arguments']
 
-    PhpExample\Bundle\Article\Web\Controller\ArticleController:
+    PhpLab\Sandbox\Bundle\Article\Web\Controller\ArticleController:
         tags: ['controller.service_arguments']
 
-    PhpExample\Bundle\Messenger\Api\Controller\ChatController:
+    PhpLab\Sandbox\Bundle\Messenger\Api\Controller\ChatController:
         tags: ['controller.service_arguments']
 
     PhpLab\Sandbox\Bundle\User\Api\Controller\AuthController:

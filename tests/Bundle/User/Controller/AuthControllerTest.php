@@ -4,7 +4,7 @@ namespace Tests\Bundle\User\Controller;
 
 use php7extension\core\web\enums\HttpStatusCodeEnum;
 
-class AuthControllerTest extends \PhpExample\Bundle\Tests\rest\Messenger\ChatControllerTest
+class AuthControllerTest extends \PhpLab\Sandbox\Tests\rest\Messenger\ChatControllerTest
 {
 
     protected $basePath = 'api/v1/';

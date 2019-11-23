@@ -26,11 +26,11 @@ connection:
 fixture:
     directory:
         - /src/Fixture
-        - /vendor/php7example/bundle/src/Article/Domain/Fixture
-        - /vendor/php7example/bundle/src/Messenger/Domain/Fixture
+        - /vendor/php7lab/sandbox/src/Bundle/Article/Domain/Fixture
+        - /vendor/php7lab/sandbox/src/Bundle/Messenger/Domain/Fixture
         - /vendor/php7lab/sandbox/src/Bundle/User/Fixture
 migrate:
     directory:
-        - /vendor/php7example/bundle/src/Article/Domain/Migration
-        - /vendor/php7example/bundle/src/Messenger/Domain/Migration
+        - /vendor/php7lab/sandbox/src/Bundle/Article/Domain/Migration
+        - /vendor/php7lab/sandbox/src/Bundle/Messenger/Domain/Migration
         - /vendor/php7lab/sandbox/src/Bundle/User/Migrations

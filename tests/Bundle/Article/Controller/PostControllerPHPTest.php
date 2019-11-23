@@ -2,7 +2,7 @@
 
 namespace Tests\Bundle\Article\Controller;
 
-class PostControllerPHPTest extends \PhpExample\Bundle\Tests\rest\Article\PostControllerTest
+class PostControllerPHPTest extends \PhpLab\Sandbox\Tests\rest\Article\PostControllerTest
 {
 
     protected $basePath = 'php/v1/';
