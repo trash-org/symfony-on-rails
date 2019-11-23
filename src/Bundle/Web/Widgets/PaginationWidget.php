@@ -26,7 +26,8 @@ class PaginationWidget extends BaseWidget implements WidgetInterface
             $itemsHtml .= $this->renderPageItem($page);
         }
         $itemsHtml .= $this->renderNextItem();
-        $itemsHtml .= '<li>' . $this->renderPageSizeSelector() . '</li>';
+        $renderPageSizeSelector = $this->renderPageSizeSelector();
+        $itemsHtml .= $renderPageSizeSelector ? '<li>' . $renderPageSizeSelector . '</li>' : '';
         return $this->renderLayout($itemsHtml);
     }
 
@@ -41,6 +42,9 @@ class PaginationWidget extends BaseWidget implements WidgetInterface
     }
 
     private function renderPageSizeSelector() {
+        if(empty($this->perPageArray)) {
+            return '';
+        }
         $html = '';
         foreach ($this->perPageArray as $size) {
             $html .= "<li><a href='?per-page={$size}'>{$size}</a></li>";

@@ -3,5 +3,3 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     exception_controller: PhpLab\Rest\Controller\ExceptionController::showException
-    paths:
-        "%kernel.root_dir%/../vendor/php7example/bundle/src/Article/Resources/views": ArticleBundle
