@@ -7,11 +7,8 @@ default:
 app_rails:
     resource: "../../src/Bundle/Rails/Web/config/routes.yaml"
 
-app_article_api:
-    resource: "../../vendor/php7example/bundle/src/Article/Api/config/routes.yaml"
-
-app_article_web:
-    resource: "../../vendor/php7example/bundle/src/Article/Web/config/routes.yaml"
+article:
+    resource: "@ArticleBundle/Resources/config/routing/all.yaml"
 
 app_messenger:
     resource: "../../vendor/php7example/bundle/src/Messenger/Api/config/routes.yaml"
