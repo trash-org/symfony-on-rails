@@ -1,9 +1,0 @@
-{% for post in postCollection %}
-    <a href="/article/view/{{ post.id }}" class="list-group-item">
-        {{ post.title }}
-        <span class="badge">{{ post.category.title }}</span>
-    </a>
-{% endfor %}
-<a href="/article" class="list-group-item">
-    <b>Sow all >>></b>
-</a>
