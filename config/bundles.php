@@ -16,7 +16,7 @@ return [
     JMS\SerializerBundle\JMSSerializerBundle::class => ['all' => true],
     FOS\RestBundle\FOSRestBundle::class => ['all' => true],
     FOS\UserBundle\FOSUserBundle::class => ['all' => true],
-    PhpLab\Sandbox\Bundle\Article\ArticleBundle::class => ['all' => true],
-    PhpLab\Sandbox\Bundle\Messenger\MessengerBundle::class => ['all' => true],
-    PhpLab\Sandbox\Bundle\User\UserBundle::class => ['all' => true],
+    PhpLab\Sandbox\Article\ArticleBundle::class => ['all' => true],
+    PhpLab\Sandbox\Messenger\MessengerBundle::class => ['all' => true],
+    PhpLab\Sandbox\User\UserBundle::class => ['all' => true],
 ];
