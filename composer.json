@@ -5,10 +5,10 @@
         "php": "^7.1.3",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "friendsofsymfony/rest-bundle": "^2.5",
+
         "friendsofsymfony/user-bundle": "^2.1",
         "guzzlehttp/guzzle": "^6.3",
-        "jms/serializer-bundle": "^3.4",
+
         "php7extension/bundle": "dev-master",
         "php7extension/core": "dev-master",
         "php7extension/crypt": "dev-master",
@@ -18,13 +18,13 @@
         "php7rails/domain": "dev-master",
         "php7tool/test": "dev-master",
         "php7tool/vendor": "dev-master",
+        "yubundle/bundle": "dev-master",
 
         "php7lab/sandbox": "dev-master",
         "php7lab/domain": "dev-master",
         "php7lab/eloquent": "dev-master",
         "php7lab/rest": "dev-master",
         "php7lab/test": "dev-master",
-        "php7example/bundle": "dev-master",
 
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/asset": "4.3.*",
@@ -47,8 +47,7 @@
         "symfony/twig-bundle": "4.3.*",
         "symfony/validator": "4.3.*",
         "symfony/web-link": "4.3.*",
-        "symfony/yaml": "4.3.*",
-        "yubundle/bundle": "dev-master"
+        "symfony/yaml": "4.3.*"
     },
     "require-dev": {
         "symfony/debug-pack": "*",
@@ -107,10 +106,6 @@
         {
             "type": "composer",
             "url": "https://asset-packagist.org"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/php7example/bundle.git"
         },
         {
             "type": "git",
