@@ -2,6 +2,9 @@
 
 namespace App\Twig;
 
+use App\Bundle\Web\Widgets\PaginationWidget;
+use App\Bundle\Web\Widgets\WidgetInterface;
+use PhpLab\Domain\Data\DataProviderEntity;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -17,6 +20,7 @@ class HelpersExtension extends AbstractExtension
             new TwigFunction('asset', [$this, 'asset'], ['is_safe' => ['html']]),
             new TwigFunction('paginate', [$this, 'paginate'], ['is_safe' => ['html']]),
             new TwigFunction('widget', [$this, 'widget'], ['is_safe' => ['html']]),
+            new TwigFunction('pagination', [$this, 'pagination'], ['is_safe' => ['html']]),
 
             new TwigFunction('script', [$this, 'script'], ['is_safe' => ['html']]),
             new TwigFunction('printScript', [$this, 'printScript'], ['is_safe' => ['html']]),
@@ -35,6 +39,12 @@ class HelpersExtension extends AbstractExtension
             $widget->{$paramName} = $paramValue;
         }
         return $widget->render();
+    }
+
+    public function pagination(DataProviderEntity $dataProviderEntity)
+    {
+        $widgetInstance = new PaginationWidget($dataProviderEntity);
+        return $widgetInstance->render();
     }
 
     public function asset($path, $param = null)
