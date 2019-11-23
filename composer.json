@@ -19,6 +19,7 @@
         "php7tool/test": "dev-master",
         "php7tool/vendor": "dev-master",
 
+        "php7lab/sandbox": "dev-master",
         "php7lab/domain": "dev-master",
         "php7lab/eloquent": "dev-master",
         "php7lab/rest": "dev-master",
@@ -110,6 +111,10 @@
         {
             "type": "git",
             "url": "https://github.com/php7example/bundle.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/php7lab/sandbox.git"
         },
         {
             "type": "git",

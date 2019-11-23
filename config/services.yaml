@@ -21,6 +21,10 @@ services:
         resource: '../vendor/php7example/bundle/src/*'
         exclude: '../vendor/php7example/bundle/src/{DependencyInjection,Entity,Migrations,Migration,Tests,Kernel.php}'
 
+    PhpLab\Sandbox\:
+        resource: '../vendor/php7lab/sandbox/src/*'
+        exclude: '../vendor/php7lab/sandbox/src/{DependencyInjection,Entity,Migrations,Migration,Tests,Kernel.php}'
+
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
     PhpLab\Rest\Controller\:
@@ -39,7 +43,7 @@ services:
     PhpExample\Bundle\Messenger\Api\Controller\ChatController:
         tags: ['controller.service_arguments']
 
-    App\Bundle\User\Api\Controller\AuthController:
+    PhpLab\Sandbox\Bundle\User\Api\Controller\AuthController:
         tags: ['controller.service_arguments']
 
     PhpLab\Eloquent\Db\Helper\Manager:

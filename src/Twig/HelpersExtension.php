@@ -2,8 +2,8 @@
 
 namespace App\Twig;
 
-use App\Bundle\Web\Widgets\PaginationWidget;
-use App\Bundle\Web\Widgets\WidgetInterface;
+use PhpLab\Sandbox\Rails\Web\Widgets\PaginationWidget;
+use PhpLab\Sandbox\Rails\Web\Widgets\WidgetInterface;
 use PhpLab\Domain\Data\DataProviderEntity;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;

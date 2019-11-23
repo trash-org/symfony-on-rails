@@ -53,9 +53,6 @@
             "./src/Repository/.gitignore"
         ]
     },
-    "doctrine/doctrine-cache-bundle": {
-        "version": "1.3.5"
-    },
     "doctrine/doctrine-migrations-bundle": {
         "version": "1.2",
         "recipe": {
@@ -258,6 +255,9 @@
         "version": "dev-master"
     },
     "php7lab/rest": {
+        "version": "dev-master"
+    },
+    "php7lab/sandbox": {
         "version": "dev-master"
     },
     "php7lab/test": {

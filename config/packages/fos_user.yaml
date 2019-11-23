@@ -1,7 +1,7 @@
 fos_user:
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'
     firewall_name: main
-    user_class: App\Bundle\User\Domain\Entity\User
+    user_class: PhpLab\Sandbox\Bundle\User\Domain\Entity\User
     from_email:
         address: "vincent@vfac.fr"
         sender_name: "vincent@vfac.fr"

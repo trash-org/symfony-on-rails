@@ -3,7 +3,6 @@
 return [
     Symfony\Bundle\FrameworkBundle\FrameworkBundle::class => ['all' => true],
     Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle::class => ['all' => true],
-    Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle::class => ['all' => true],
     Doctrine\Bundle\DoctrineBundle\DoctrineBundle::class => ['all' => true],
     Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle::class => ['all' => true],
     Symfony\Bundle\SecurityBundle\SecurityBundle::class => ['all' => true],
@@ -18,4 +17,6 @@ return [
     FOS\RestBundle\FOSRestBundle::class => ['all' => true],
     FOS\UserBundle\FOSUserBundle::class => ['all' => true],
     PhpExample\Bundle\Article\ArticleBundle::class => ['all' => true],
+    PhpExample\Bundle\Messenger\MessengerBundle::class => ['all' => true],
+    PhpLab\Sandbox\Bundle\User\UserBundle::class => ['all' => true],
 ];

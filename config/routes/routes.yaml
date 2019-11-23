@@ -11,10 +11,10 @@ article:
     resource: "@ArticleBundle/Resources/config/routing/all.yaml"
 
 app_messenger:
-    resource: "../../vendor/php7example/bundle/src/Messenger/Api/config/routes.yaml"
+    resource: "@MessengerBundle/Resources/config/routing/all.yaml"
 
 app_user:
-    resource: "../../src/Bundle/User/Api/config/routes.yaml"
+    resource: "@UserBundle/Api/config/routes.yaml"
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
