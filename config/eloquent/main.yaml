@@ -25,12 +25,12 @@ connection:
 #            database: /var/sqlite/default.sqlite
 fixture:
     directory:
-        - /src/Fixture
-        - /vendor/php7lab/sandbox/src/Article/Domain/Fixture
-        - /vendor/php7lab/sandbox/src/Messenger/Domain/Fixture
-        - /vendor/php7lab/sandbox/src/User/Fixture
+#        - /src/Fixtures
+        - /vendor/php7lab/sandbox/src/Article/Domain/Fixtures
+        - /vendor/php7lab/sandbox/src/Messenger/Domain/Fixtures
+        - /vendor/php7lab/sandbox/src/User/Domain/Fixtures
 migrate:
     directory:
-        - /vendor/php7lab/sandbox/src/Article/Domain/Migration
-        - /vendor/php7lab/sandbox/src/Messenger/Domain/Migration
-        - /vendor/php7lab/sandbox/src/User/Migrations
+        - /vendor/php7lab/sandbox/src/Article/Domain/Migrations
+        - /vendor/php7lab/sandbox/src/Messenger/Domain/Migrations
+        - /vendor/php7lab/sandbox/src/User/Domain/Migrations
