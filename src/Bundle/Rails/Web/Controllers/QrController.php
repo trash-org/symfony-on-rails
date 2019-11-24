@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Bundle\Rails\Web\Controller;
+namespace App\Bundle\Rails\Web\Controllers;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 

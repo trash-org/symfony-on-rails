@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Bundle\Rails\Web\Controller;
+namespace App\Bundle\Rails\Web\Controllers;
 
 use App;
 use php7extension\core\develop\helpers\Benchmark;

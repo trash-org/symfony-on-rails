@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Bundle\Rails\Web\Controller;
+namespace App\Bundle\Rails\Web\Controllers;
 
 use php7extension\bundle\geo\domain\entities\CityEntity;
 use php7extension\yii\db\Query;

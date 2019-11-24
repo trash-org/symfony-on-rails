@@ -24,23 +24,23 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    PhpLab\Sandbox\Article\Api\Controller\ArticleController:
+    PhpLab\Sandbox\Article\Api\Controllers\ArticleController:
         tags: ['controller.service_arguments']
 
-    PhpLab\Sandbox\Article\Web\Controller\ArticleController:
+    PhpLab\Sandbox\Article\Web\Controllers\ArticleController:
         tags: ['controller.service_arguments']
 
-    PhpLab\Sandbox\Messenger\Api\Controller\ChatController:
+    PhpLab\Sandbox\Messenger\Api\Controllers\ChatController:
         tags: ['controller.service_arguments']
 
-    PhpLab\Sandbox\User\Api\Controller\AuthController:
+    PhpLab\Sandbox\User\Api\Controllers\AuthController:
         tags: ['controller.service_arguments']
 
-    PhpLab\Eloquent\Db\Helper\Manager:
+    PhpLab\Eloquent\Db\Helpers\Manager:
         arguments:
             $mainConfigFile: '%env(ELOQUENT_CONFIG_FILE)%'
 
-    PhpLab\Rest\Controller\ExceptionController:
+    PhpLab\Rest\Controllers\ExceptionController:
         public: true
         arguments:
             $debug: '%kernel.debug%'

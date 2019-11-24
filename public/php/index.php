@@ -1,12 +1,12 @@
 <?php
 
-use PhpLab\Sandbox\Article\Api\Controller\ArticleController;
-use PhpLab\Sandbox\Article\Domain\Repository\Eloquent\CategoryRepository;
-use PhpLab\Sandbox\Article\Domain\Repository\Eloquent\PostRepository;
-use PhpLab\Sandbox\Article\Domain\Repository\Eloquent\TagPostRepository;
-use PhpLab\Sandbox\Article\Domain\Repository\Eloquent\TagRepository;
-use PhpLab\Sandbox\Article\Domain\Service\PostService;
-use PhpLab\Eloquent\Db\Helper\Manager;
+use PhpLab\Sandbox\Article\Api\Controllers\ArticleController;
+use PhpLab\Sandbox\Article\Domain\Repositories\Eloquent\CategoryRepository;
+use PhpLab\Sandbox\Article\Domain\Repositories\Eloquent\PostRepository;
+use PhpLab\Sandbox\Article\Domain\Repositories\Eloquent\TagPostRepository;
+use PhpLab\Sandbox\Article\Domain\Repositories\Eloquent\TagRepository;
+use PhpLab\Sandbox\Article\Domain\Services\PostService;
+use PhpLab\Eloquent\Db\Helpers\Manager;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 

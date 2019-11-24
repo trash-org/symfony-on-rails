@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Bundle\Rails\Web\Controller;
+namespace App\Bundle\Rails\Web\Controllers;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;

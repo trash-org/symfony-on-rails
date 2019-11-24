@@ -1,99 +1,99 @@
 
 rails_index:
     path: /rails
-    controller: App\Bundle\Rails\Web\Controller\RailsController::actionIndex
+    controller: App\Bundle\Rails\Web\Controllers\RailsController::actionIndex
 
 rails_db_test:
     path: /rails/db
-    controller: App\Bundle\Rails\Web\Controller\RailsController::actionDb
+    controller: App\Bundle\Rails\Web\Controllers\RailsController::actionDb
 
 rails_rbac_roles:
     path: /rails/rbac/roles
-    controller: App\Bundle\Rails\Web\Controller\RailsController::actionRbacRoles
+    controller: App\Bundle\Rails\Web\Controllers\RailsController::actionRbacRoles
 
 rails_security_test:
     path: /rails/security
-    controller: App\Bundle\Rails\Web\Controller\RailsController::actionSecurity
+    controller: App\Bundle\Rails\Web\Controllers\RailsController::actionSecurity
 
 
 rails_guzzle:
     path: /guzzle/index
-    controller: App\Bundle\Rails\Web\Controller\GuzzleHttpController::actionIndex
+    controller: App\Bundle\Rails\Web\Controllers\GuzzleHttpController::actionIndex
 
 rails_guzzle_auth:
     path: /guzzle/auth
-    controller: App\Bundle\Rails\Web\Controller\GuzzleHttpController::actionAuth
+    controller: App\Bundle\Rails\Web\Controllers\GuzzleHttpController::actionAuth
 
 rails_guzzle_stress:
     path: /guzzle/stress
-    controller: App\Bundle\Rails\Web\Controller\GuzzleHttpController::actionStress
+    controller: App\Bundle\Rails\Web\Controllers\GuzzleHttpController::actionStress
 
 
 rails_jwt:
     path: /jwt/index
-    controller: App\Bundle\Rails\Web\Controller\JwtController::actionIndex
+    controller: App\Bundle\Rails\Web\Controllers\JwtController::actionIndex
 
 
 
 rails_package_groups:
     path: /package/groups
-    controller: App\Bundle\Rails\Web\Controller\PackageController::actionGroups
+    controller: App\Bundle\Rails\Web\Controllers\PackageController::actionGroups
 
 rails_package_one-group:
     path: /package/one-group
-    controller: App\Bundle\Rails\Web\Controller\PackageController::actionOneGroup
+    controller: App\Bundle\Rails\Web\Controllers\PackageController::actionOneGroup
 
 rails_package_packages:
     path: /package/packages
-    controller: App\Bundle\Rails\Web\Controller\PackageController::actionPackages
+    controller: App\Bundle\Rails\Web\Controllers\PackageController::actionPackages
 
 rails_package_one-package:
     path: /package/one-package
-    controller: App\Bundle\Rails\Web\Controller\PackageController::actionOnePackage
+    controller: App\Bundle\Rails\Web\Controllers\PackageController::actionOnePackage
 
 
 rails_qr:
     path: /qr
-    controller: App\Bundle\Rails\Web\Controller\QrController::actionIndex
+    controller: App\Bundle\Rails\Web\Controllers\QrController::actionIndex
 
 
 rails_rbac_role:
     path: /rbac/role
-    controller: App\Bundle\Rails\Web\Controller\RbacController::actionRole
+    controller: App\Bundle\Rails\Web\Controllers\RbacController::actionRole
 
 rails_rbac_permission:
     path: /rbac/permission
-    controller: App\Bundle\Rails\Web\Controller\RbacController::actionPermission
+    controller: App\Bundle\Rails\Web\Controllers\RbacController::actionPermission
 
 
 
 rails_sandbox_auth:
     path: /sandbox/auth
-    controller: App\Bundle\Rails\Web\Controller\SandboxController::actionAuth
+    controller: App\Bundle\Rails\Web\Controllers\SandboxController::actionAuth
 
 rails_sandbox_validate-entity:
     path: /sandbox/validate-entity
-    controller: App\Bundle\Rails\Web\Controller\SandboxController::actionValidateEntity
+    controller: App\Bundle\Rails\Web\Controllers\SandboxController::actionValidateEntity
 
 rails_sandbox_test-model:
     path: /sandbox/test-model
-    controller: App\Bundle\Rails\Web\Controller\SandboxController::actionTestModel
+    controller: App\Bundle\Rails\Web\Controllers\SandboxController::actionTestModel
 
 
 rails_sandbox_query-builder:
     path: /sandbox/query-builder
-    controller: App\Bundle\Rails\Web\Controller\SandboxController::actionQueryBuilder
+    controller: App\Bundle\Rails\Web\Controllers\SandboxController::actionQueryBuilder
 
 
 
 rails_sandbox_all-changed:
     path: /sandbox/all-changed
-    controller: App\Bundle\Rails\Web\Controller\VendorController::actionAllChanged
+    controller: App\Bundle\Rails\Web\Controllers\VendorController::actionAllChanged
 
 rails_sandbox_all-for-release:
     path: /sandbox/all-for-release
-    controller: App\Bundle\Rails\Web\Controller\VendorController::actionAllForRelease
+    controller: App\Bundle\Rails\Web\Controllers\VendorController::actionAllForRelease
 
 rails_sandbox_all-version:
     path: /sandbox/all-version
-    controller: App\Bundle\Rails\Web\Controller\VendorController::actionAllVersion
+    controller: App\Bundle\Rails\Web\Controllers\VendorController::actionAllVersion
