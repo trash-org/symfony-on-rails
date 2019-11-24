@@ -19,4 +19,5 @@ return [
     PhpLab\Sandbox\Article\ArticleBundle::class => ['all' => true],
     PhpLab\Sandbox\Messenger\MessengerBundle::class => ['all' => true],
     PhpLab\Sandbox\User\UserBundle::class => ['all' => true],
+    PhpLab\Sandbox\Notify\NotifyBundle::class => ['all' => true],
 ];

@@ -12,6 +12,7 @@
 <body>
 {% include 'widget/navbar.html.twig' %}
 <div class="container">
+    {% include '@Notify/notify.html.twig' %}
     {% block body %}{% endblock %}
     {% include 'widget/footer.html.twig' %}
 </div>
