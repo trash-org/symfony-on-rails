@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Welcome!{% endblock %}</title>
-    {% include 'widget/style.html.twig' %}
+    {% include '@Web/style.html.twig' %}
 </head>
 <body>
 {% include 'widget/navbar.html.twig' %}
@@ -16,6 +16,6 @@
     {% block body %}{% endblock %}
     {% include 'widget/footer.html.twig' %}
 </div>
-{% include 'widget/script.html.twig' %}
+{% include '@Web/script.html.twig' %}
 </body>
 </html>
