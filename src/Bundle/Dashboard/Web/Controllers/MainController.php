@@ -41,6 +41,10 @@ class MainController extends AbstractController
                     'url' => '/api/v1/article',
                 ],
                 [
+                    'title' => 'Web - messenger-chat',
+                    'url' => '/chat',
+                ],
+                [
                     'title' => 'API - messenger-chat',
                     'url' => '/api/v1/messenger-chat',
                 ],

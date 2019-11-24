@@ -33,6 +33,9 @@ services:
     PhpLab\Sandbox\Messenger\Api\Controllers\ChatController:
         tags: ['controller.service_arguments']
 
+    PhpLab\Sandbox\Messenger\Web\Controllers\ChatController:
+        tags: ['controller.service_arguments']
+
     PhpLab\Sandbox\User\Api\Controllers\AuthController:
         tags: ['controller.service_arguments']
 
