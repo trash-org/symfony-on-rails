@@ -230,9 +230,6 @@
     "phar-io/version": {
         "version": "1.0.1"
     },
-    "php7example/bundle": {
-        "version": "dev-master"
-    },
     "php7extension/bundle": {
         "version": "dev-master"
     },
