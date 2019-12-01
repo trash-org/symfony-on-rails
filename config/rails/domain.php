@@ -16,7 +16,7 @@ $domains = [
     //'account' => 'php7extension\bundle\account\domain\v3\Domain',
 
     'account' => 'php7extension\bundle\account\domain\v3\Domain',
-    'user' => 'yubundle\bundle\user\domain\v1\Domain',
+    //'user' => 'yubundle\bundle\user\domain\v1\Domain',
 
     //'i18n' => 'php7extension\bundle\i18n\domain\Domain',
 
