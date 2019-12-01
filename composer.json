@@ -18,7 +18,6 @@
         "php7rails/domain": "dev-master",
         "php7tool/test": "dev-master",
         "php7tool/vendor": "dev-master",
-        "yubundle/bundle": "dev-master",
 
         "php7lab/sandbox": "dev-master",
         "php7lab/domain": "dev-master",
@@ -167,10 +166,6 @@
         {
             "type": "git",
             "url": "https://github.com/php7extension/crypt.git"
-        },
-        {
-            "type": "git",
-            "url": "http://git.yuwert.kz/yubundle/bundle.git"
         }
     ]
 }
