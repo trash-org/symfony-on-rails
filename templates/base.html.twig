@@ -1,12 +1,10 @@
-
-{{ style('/resource/style/vendor/vendor.css') }}
-{{ script('/resource/script/vendor/vendor.js') }}
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Welcome!{% endblock %}</title>
+    {{ style('/resource/style/vendor/vendor.css') }}
+    {{ script('/resource/script/vendor/vendor.js') }}
     {% include '@Web/style.html.twig' %}
 </head>
 <body>
