@@ -2,4 +2,9 @@
 
 {% block body %}
     {{ include('@FOSUser/Security/login_content.html.twig') }}
+    <ul>
+        {#<li><a href="{{ path('fos_user_security_login') }}">Login</a></li>#}
+        <li><a href="{{ path('fos_user_registration_register') }}">Registration</a></li>
+        <li><a href="{{ path('fos_user_resetting_request') }}">Reset password</a></li>
+    </ul>
 {% endblock body %}
