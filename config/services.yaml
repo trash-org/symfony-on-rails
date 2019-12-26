@@ -43,6 +43,10 @@ services:
         arguments:
             $mainConfigFile: '%env(ELOQUENT_CONFIG_FILE)%'
 
+    PhpLab\Sandbox\Package\Domain\Repositories\File\GroupRepository:
+        arguments:
+            $fileName: '%env(ELOQUENT_CONFIG_FILE)%'
+
     PhpLab\Rest\Controllers\ExceptionController:
         public: true
         arguments:
