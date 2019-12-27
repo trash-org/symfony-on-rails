@@ -10,10 +10,8 @@
         "guzzlehttp/guzzle": "^6.3",
 
         "php7extension/bundle": "dev-master",
-        "php7extension/core": "dev-master",
         "php7extension/crypt": "dev-master",
         "php7extension/psr": "dev-master",
-        "php7extension/yii": "dev-master",
         "php7rails/app": "dev-master",
         "php7rails/domain": "dev-master",
         "php7tool/test": "dev-master",
@@ -154,14 +152,6 @@
         {
             "type": "git",
             "url": "https://github.com/php7extension/psr.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/php7extension/core.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/php7extension/yii.git"
         },
         {
             "type": "git",
