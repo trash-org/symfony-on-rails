@@ -34,3 +34,4 @@ migrate:
         - /vendor/php7lab/sandbox/src/Article/Domain/Migrations
         - /vendor/php7lab/sandbox/src/Messenger/Domain/Migrations
         - /vendor/php7lab/sandbox/src/User/Domain/Migrations
+        - /vendor/php7lab/sandbox/src/Queue/Domain/Migrations
